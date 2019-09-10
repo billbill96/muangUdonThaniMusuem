@@ -1,0 +1,24 @@
+PODS:
+  - Kingfisher (5.6.0)
+  - KontaktSDK (2.0.1)
+  - ObjectMapper (3.5.0)
+
+DEPENDENCIES:
+  - Kingfisher (~> 5.0)
+  - KontaktSDK (~> 2.0)
+  - ObjectMapper (~> 3.4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Kingfisher
+    - KontaktSDK
+    - ObjectMapper
+
+SPEC CHECKSUMS:
+  Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
+  KontaktSDK: 7dc507f20c8821d13132c6ec09089972e9b8bf5b
+  ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
+
+PODFILE CHECKSUM: 5ec22fbc1082c80604e35b599713a075cba67279
+
+COCOAPODS: 1.5.3

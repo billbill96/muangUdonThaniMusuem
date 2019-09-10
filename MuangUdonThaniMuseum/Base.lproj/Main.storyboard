@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r8b-5J-c9O">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Introduction View Controller-->
+        <scene sceneID="lqo-eu-H1Z">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="5AR-A8-nrT" customClass="IntroductionViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="coW-er-1bk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGC-NS-tKv">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="30a-YF-uPJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    </imageView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrB-aD-Lci">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="807"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XfH-yD-Ia5">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="166.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mo4-oW-Jkx">
+                                                        <rect key="frame" x="161.5" y="55" width="91" height="48"/>
+                                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Bold" family="Bodoni 72 Oldstyle" pointSize="40"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sc-aK-tbf">
+                                                        <rect key="frame" x="30" y="135" width="354" height="31.5"/>
+                                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="26"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="Mo4-oW-Jkx" firstAttribute="centerX" secondItem="XfH-yD-Ia5" secondAttribute="centerX" id="CRD-6w-fAe"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2Sc-aK-tbf" secondAttribute="bottom" id="IjN-WS-3Of"/>
+                                                    <constraint firstItem="2Sc-aK-tbf" firstAttribute="top" secondItem="XfH-yD-Ia5" secondAttribute="top" constant="135" id="XBq-Dy-tob"/>
+                                                    <constraint firstItem="2Sc-aK-tbf" firstAttribute="centerX" secondItem="XfH-yD-Ia5" secondAttribute="centerX" id="hIc-bq-rRq"/>
+                                                    <constraint firstItem="Mo4-oW-Jkx" firstAttribute="top" secondItem="XfH-yD-Ia5" secondAttribute="top" constant="55" id="xAZ-Uz-6UX"/>
+                                                    <constraint firstItem="2Sc-aK-tbf" firstAttribute="leading" secondItem="XfH-yD-Ia5" secondAttribute="leading" constant="30" id="xT5-g3-3To"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="XfH-yD-Ia5" firstAttribute="leading" secondItem="OrB-aD-Lci" secondAttribute="leading" id="1A6-t4-Pzb"/>
+                                            <constraint firstAttribute="bottom" secondItem="XfH-yD-Ia5" secondAttribute="bottom" id="Sjq-3o-N2N"/>
+                                            <constraint firstItem="XfH-yD-Ia5" firstAttribute="top" secondItem="OrB-aD-Lci" secondAttribute="top" id="VWP-kG-cDK"/>
+                                            <constraint firstItem="XfH-yD-Ia5" firstAttribute="centerX" secondItem="OrB-aD-Lci" secondAttribute="centerX" id="r3J-0m-6Ah"/>
+                                            <constraint firstAttribute="trailing" secondItem="XfH-yD-Ia5" secondAttribute="trailing" id="yHW-od-Op8"/>
+                                        </constraints>
+                                    </scrollView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vi-1S-IX0">
+                                        <rect key="frame" x="117" y="822" width="180" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="FJp-4Y-LUD"/>
+                                            <constraint firstAttribute="width" constant="180" id="kF7-J2-7ig"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="continueButtonClicked:" destination="5AR-A8-nrT" eventType="touchUpInside" id="i02-cv-Chd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="OrB-aD-Lci" firstAttribute="trailing" secondItem="30a-YF-uPJ" secondAttribute="trailing" id="3zO-sB-yJy"/>
+                                    <constraint firstItem="OrB-aD-Lci" firstAttribute="leading" secondItem="30a-YF-uPJ" secondAttribute="leading" id="Iqq-M9-HPZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="0vi-1S-IX0" secondAttribute="bottom" constant="30" id="Llo-Hd-z0g"/>
+                                    <constraint firstItem="0vi-1S-IX0" firstAttribute="top" secondItem="OrB-aD-Lci" secondAttribute="bottom" constant="15" id="OAg-Dt-SjG"/>
+                                    <constraint firstItem="0vi-1S-IX0" firstAttribute="centerX" secondItem="BGC-NS-tKv" secondAttribute="centerX" id="OFK-51-FS3"/>
+                                    <constraint firstAttribute="bottom" secondItem="30a-YF-uPJ" secondAttribute="bottom" id="Pmb-1Y-6xf"/>
+                                    <constraint firstItem="30a-YF-uPJ" firstAttribute="top" secondItem="BGC-NS-tKv" secondAttribute="top" id="Z11-Z0-18u"/>
+                                    <constraint firstAttribute="trailing" secondItem="OrB-aD-Lci" secondAttribute="trailing" id="gqP-2B-Fel"/>
+                                    <constraint firstItem="OrB-aD-Lci" firstAttribute="top" secondItem="BGC-NS-tKv" secondAttribute="top" id="lmz-UK-c6t"/>
+                                    <constraint firstItem="OrB-aD-Lci" firstAttribute="leading" secondItem="BGC-NS-tKv" secondAttribute="leading" id="pa0-zK-ebn"/>
+                                    <constraint firstItem="OrB-aD-Lci" firstAttribute="top" secondItem="BGC-NS-tKv" secondAttribute="top" id="x7D-uG-Tz6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BGC-NS-tKv" firstAttribute="top" secondItem="coW-er-1bk" secondAttribute="top" id="0Jc-iF-1b9"/>
+                            <constraint firstItem="BGC-NS-tKv" firstAttribute="leading" secondItem="Oox-sL-U6w" secondAttribute="leading" id="7AS-OD-2cN"/>
+                            <constraint firstAttribute="bottom" secondItem="BGC-NS-tKv" secondAttribute="bottom" id="Qe4-rq-VlU"/>
+                            <constraint firstItem="Oox-sL-U6w" firstAttribute="trailing" secondItem="BGC-NS-tKv" secondAttribute="trailing" id="tj2-cb-48j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Oox-sL-U6w"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZHl-6k-SGn"/>
+                    <connections>
+                        <outlet property="continueButton" destination="0vi-1S-IX0" id="9JX-ve-QK5"/>
+                        <outlet property="descripLabel" destination="2Sc-aK-tbf" id="T7V-kk-gT2"/>
+                        <outlet property="imageView" destination="30a-YF-uPJ" id="D46-Aj-f1b"/>
+                        <outlet property="introductionLabel" destination="Mo4-oW-Jkx" id="x4K-aI-aYz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hjD-HF-Jnt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="195.6521739130435" y="24.776785714285712"/>
+        </scene>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="TabBarViewController" id="BYZ-38-t0r" customClass="TabBarViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wi-YH-UE0">
+                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem tag="1" title="Home" image="icons8-facebook-26" id="yWy-pu-r2N"/>
+                                    <tabBarItem tag="2" title="Video" image="icons8-play-64" id="NWE-b4-PNS"/>
+                                    <tabBarItem tag="3" title="Share" image="icons8-facebook-26" id="R2o-jg-XBc"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9Wi-YH-UE0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4ja-Ps-zbq"/>
+                            <constraint firstItem="9Wi-YH-UE0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dgf-m5-11j"/>
+                            <constraint firstItem="9Wi-YH-UE0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Eeb-Pv-zbC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Wi-YH-UE0" secondAttribute="bottom" id="ks8-OF-7RD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dgA-QQ-sUp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1603" y="25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Juf-hs-YuA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="r8b-5J-c9O" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kau-pT-9we">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5AR-A8-nrT" kind="relationship" relationship="rootViewController" id="sBF-bu-C69"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4p9-GW-kUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-714.49275362318849" y="24.776785714285712"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icons8-facebook-26" width="22" height="22"/>
+        <image name="icons8-play-64" width="22" height="22"/>
+    </resources>
+</document>

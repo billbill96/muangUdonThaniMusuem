@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03FC09663D62D601642A4BF4 /* Pods_MuangUdonThaniMuseum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2E2B8310ABC017AC08741C /* Pods_MuangUdonThaniMuseum.framework */; };
+		3313DAE82323E509002F4578 /* TopStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DAE62323E509002F4578 /* TopStoryTableViewCell.swift */; };
+		3313DAE92323E509002F4578 /* TopStoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3313DAE72323E509002F4578 /* TopStoryTableViewCell.xib */; };
+		3313DAEC2323F582002F4578 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DAEA2323F582002F4578 /* NewsViewController.swift */; };
+		3313DAED2323F582002F4578 /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3313DAEB2323F582002F4578 /* NewsViewController.xib */; };
+		3313DAF02323F591002F4578 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DAEE2323F591002F4578 /* MapViewController.swift */; };
+		3313DAF12323F591002F4578 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3313DAEF2323F591002F4578 /* MapViewController.xib */; };
+		33A3D078232604B100F9E4E2 /* TopStoryDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3D076232604B100F9E4E2 /* TopStoryDescriptionViewController.swift */; };
+		33A3D079232604B100F9E4E2 /* TopStoryDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A3D077232604B100F9E4E2 /* TopStoryDescriptionViewController.xib */; };
+		33A3D0822326344400F9E4E2 /* VideoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3D0802326344400F9E4E2 /* VideoCellTableViewCell.swift */; };
+		33A3D0832326344400F9E4E2 /* VideoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A3D0812326344400F9E4E2 /* VideoCellTableViewCell.xib */; };
+		33AA26CF23228CBC00822127 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AA26CE23228CBC00822127 /* Service.swift */; };
+		33AA26D223228E2600822127 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AA26D123228E2600822127 /* LandingViewController.swift */; };
+		33AA26D423228E3800822127 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AA26D323228E3800822127 /* IntroductionViewController.swift */; };
+		33AA26DA2322C3AA00822127 /* TopStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AA26D82322C3AA00822127 /* TopStoryViewController.swift */; };
+		33AA26DB2322C3AA00822127 /* TopStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33AA26D92322C3AA00822127 /* TopStoryViewController.xib */; };
+		33C8262623200709009305EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8262523200709009305EB /* AppDelegate.swift */; };
+		33C8262823200709009305EB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8262723200709009305EB /* TabBarViewController.swift */; };
+		33C8262B23200709009305EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33C8262923200709009305EB /* Main.storyboard */; };
+		33C8262D23200709009305EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C8262C23200709009305EB /* Assets.xcassets */; };
+		33C8263023200709009305EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33C8262E23200709009305EB /* LaunchScreen.storyboard */; };
+		33C8263C2320081C009305EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8263A2320081C009305EB /* HomeViewController.swift */; };
+		33C8263D2320081C009305EB /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33C8263B2320081C009305EB /* HomeViewController.xib */; };
+		33C826402320082A009305EB /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8263E2320082A009305EB /* VideoViewController.swift */; };
+		33C826412320082A009305EB /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33C8263F2320082A009305EB /* VideoViewController.xib */; };
+		33C8264423200833009305EB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8264223200833009305EB /* ShareViewController.swift */; };
+		33C8264523200833009305EB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33C8264323200833009305EB /* ShareViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1B9E444A96612506FE93F25F /* Pods-MuangUdonThaniMuseum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuangUdonThaniMuseum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MuangUdonThaniMuseum/Pods-MuangUdonThaniMuseum.debug.xcconfig"; sourceTree = "<group>"; };
+		1F2E2B8310ABC017AC08741C /* Pods_MuangUdonThaniMuseum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuangUdonThaniMuseum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3313DAE62323E509002F4578 /* TopStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryTableViewCell.swift; sourceTree = "<group>"; };
+		3313DAE72323E509002F4578 /* TopStoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopStoryTableViewCell.xib; sourceTree = "<group>"; };
+		3313DAEA2323F582002F4578 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		3313DAEB2323F582002F4578 /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
+		3313DAEE2323F591002F4578 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		3313DAEF2323F591002F4578 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		33A3D076232604B100F9E4E2 /* TopStoryDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryDescriptionViewController.swift; sourceTree = "<group>"; };
+		33A3D077232604B100F9E4E2 /* TopStoryDescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopStoryDescriptionViewController.xib; sourceTree = "<group>"; };
+		33A3D0802326344400F9E4E2 /* VideoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellTableViewCell.swift; sourceTree = "<group>"; };
+		33A3D0812326344400F9E4E2 /* VideoCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCellTableViewCell.xib; sourceTree = "<group>"; };
+		33AA26CE23228CBC00822127 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		33AA26D123228E2600822127 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		33AA26D323228E3800822127 /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
+		33AA26D82322C3AA00822127 /* TopStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryViewController.swift; sourceTree = "<group>"; };
+		33AA26D92322C3AA00822127 /* TopStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopStoryViewController.xib; sourceTree = "<group>"; };
+		33C8262223200709009305EB /* MuangUdonThaniMuseum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuangUdonThaniMuseum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33C8262523200709009305EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		33C8262723200709009305EB /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		33C8262A23200709009305EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		33C8262C23200709009305EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33C8262F23200709009305EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		33C8263123200709009305EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33C8263A2320081C009305EB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		33C8263B2320081C009305EB /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		33C8263E2320082A009305EB /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		33C8263F2320082A009305EB /* VideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		33C8264223200833009305EB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		33C8264323200833009305EB /* ShareViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		6DA21A11BAE3607B50368FFC /* Pods-MuangUdonThaniMuseum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuangUdonThaniMuseum.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuangUdonThaniMuseum/Pods-MuangUdonThaniMuseum.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33C8261F23200708009305EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03FC09663D62D601642A4BF4 /* Pods_MuangUdonThaniMuseum.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A4ACE84DF8727F9B722A0E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F2E2B8310ABC017AC08741C /* Pods_MuangUdonThaniMuseum.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3313DAE52323E4EB002F4578 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3313DAE62323E509002F4578 /* TopStoryTableViewCell.swift */,
+				3313DAE72323E509002F4578 /* TopStoryTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		33A3D0752326049600F9E4E2 /* TopStoryDescription */ = {
+			isa = PBXGroup;
+			children = (
+				33A3D076232604B100F9E4E2 /* TopStoryDescriptionViewController.swift */,
+				33A3D077232604B100F9E4E2 /* TopStoryDescriptionViewController.xib */,
+			);
+			path = TopStoryDescription;
+			sourceTree = "<group>";
+		};
+		33A3D07F2326339600F9E4E2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				33A3D0802326344400F9E4E2 /* VideoCellTableViewCell.swift */,
+				33A3D0812326344400F9E4E2 /* VideoCellTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		33AA26D023228CC600822127 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				33AA26CE23228CBC00822127 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		33AA26D52322C37900822127 /* TopStory */ = {
+			isa = PBXGroup;
+			children = (
+				33A3D0752326049600F9E4E2 /* TopStoryDescription */,
+				3313DAE52323E4EB002F4578 /* Cell */,
+				33AA26D82322C3AA00822127 /* TopStoryViewController.swift */,
+				33AA26D92322C3AA00822127 /* TopStoryViewController.xib */,
+			);
+			path = TopStory;
+			sourceTree = "<group>";
+		};
+		33AA26D62322C38500822127 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				3313DAEA2323F582002F4578 /* NewsViewController.swift */,
+				3313DAEB2323F582002F4578 /* NewsViewController.xib */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		33AA26D72322C38900822127 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				3313DAEE2323F591002F4578 /* MapViewController.swift */,
+				3313DAEF2323F591002F4578 /* MapViewController.xib */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		33C8261923200708009305EB = {
+			isa = PBXGroup;
+			children = (
+				33C8262423200709009305EB /* MuangUdonThaniMuseum */,
+				33C8262323200709009305EB /* Products */,
+				FFF31611AB3BEDEEEE699C6D /* Pods */,
+				2A4ACE84DF8727F9B722A0E7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		33C8262323200709009305EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33C8262223200709009305EB /* MuangUdonThaniMuseum.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33C8262423200709009305EB /* MuangUdonThaniMuseum */ = {
+			isa = PBXGroup;
+			children = (
+				33C8262523200709009305EB /* AppDelegate.swift */,
+				33AA26D123228E2600822127 /* LandingViewController.swift */,
+				33AA26D323228E3800822127 /* IntroductionViewController.swift */,
+				33C8262723200709009305EB /* TabBarViewController.swift */,
+				33C82637232007EC009305EB /* Home */,
+				33C82638232007F5009305EB /* Video */,
+				33C8263923200808009305EB /* Share */,
+				33AA26D023228CC600822127 /* Service */,
+				33C8262923200709009305EB /* Main.storyboard */,
+				33C8262C23200709009305EB /* Assets.xcassets */,
+				33C8262E23200709009305EB /* LaunchScreen.storyboard */,
+				33C8263123200709009305EB /* Info.plist */,
+			);
+			path = MuangUdonThaniMuseum;
+			sourceTree = "<group>";
+		};
+		33C82637232007EC009305EB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				33C8263A2320081C009305EB /* HomeViewController.swift */,
+				33C8263B2320081C009305EB /* HomeViewController.xib */,
+				33AA26D52322C37900822127 /* TopStory */,
+				33AA26D62322C38500822127 /* News */,
+				33AA26D72322C38900822127 /* Map */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		33C82638232007F5009305EB /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				33A3D07F2326339600F9E4E2 /* Cell */,
+				33C8263E2320082A009305EB /* VideoViewController.swift */,
+				33C8263F2320082A009305EB /* VideoViewController.xib */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		33C8263923200808009305EB /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				33C8264223200833009305EB /* ShareViewController.swift */,
+				33C8264323200833009305EB /* ShareViewController.xib */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		FFF31611AB3BEDEEEE699C6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1B9E444A96612506FE93F25F /* Pods-MuangUdonThaniMuseum.debug.xcconfig */,
+				6DA21A11BAE3607B50368FFC /* Pods-MuangUdonThaniMuseum.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33C8262123200708009305EB /* MuangUdonThaniMuseum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33C8263423200709009305EB /* Build configuration list for PBXNativeTarget "MuangUdonThaniMuseum" */;
+			buildPhases = (
+				E8C69D2BCF5759451654DB2C /* [CP] Check Pods Manifest.lock */,
+				33C8261E23200708009305EB /* Sources */,
+				33C8261F23200708009305EB /* Frameworks */,
+				33C8262023200708009305EB /* Resources */,
+				88707E4439846E5D324D0832 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MuangUdonThaniMuseum;
+			productName = MuangUdonThaniMuseum;
+			productReference = 33C8262223200709009305EB /* MuangUdonThaniMuseum.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33C8261A23200708009305EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "Supannee Mutitanon";
+				TargetAttributes = {
+					33C8262123200708009305EB = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = 33C8261D23200708009305EB /* Build configuration list for PBXProject "MuangUdonThaniMuseum" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 33C8261923200708009305EB;
+			productRefGroup = 33C8262323200709009305EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33C8262123200708009305EB /* MuangUdonThaniMuseum */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		33C8262023200708009305EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33C8263023200709009305EB /* LaunchScreen.storyboard in Resources */,
+				33A3D0832326344400F9E4E2 /* VideoCellTableViewCell.xib in Resources */,
+				3313DAE92323E509002F4578 /* TopStoryTableViewCell.xib in Resources */,
+				33C8262D23200709009305EB /* Assets.xcassets in Resources */,
+				3313DAF12323F591002F4578 /* MapViewController.xib in Resources */,
+				33C8262B23200709009305EB /* Main.storyboard in Resources */,
+				33AA26DB2322C3AA00822127 /* TopStoryViewController.xib in Resources */,
+				33C826412320082A009305EB /* VideoViewController.xib in Resources */,
+				33C8264523200833009305EB /* ShareViewController.xib in Resources */,
+				33C8263D2320081C009305EB /* HomeViewController.xib in Resources */,
+				3313DAED2323F582002F4578 /* NewsViewController.xib in Resources */,
+				33A3D079232604B100F9E4E2 /* TopStoryDescriptionViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		88707E4439846E5D324D0832 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MuangUdonThaniMuseum/Pods-MuangUdonThaniMuseum-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${PODS_ROOT}/KontaktSDK/Cocoapods/iOS/KontaktSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KontaktSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MuangUdonThaniMuseum/Pods-MuangUdonThaniMuseum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8C69D2BCF5759451654DB2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MuangUdonThaniMuseum-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33C8261E23200708009305EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33AA26D423228E3800822127 /* IntroductionViewController.swift in Sources */,
+				33A3D0822326344400F9E4E2 /* VideoCellTableViewCell.swift in Sources */,
+				3313DAE82323E509002F4578 /* TopStoryTableViewCell.swift in Sources */,
+				33AA26DA2322C3AA00822127 /* TopStoryViewController.swift in Sources */,
+				33C8262823200709009305EB /* TabBarViewController.swift in Sources */,
+				3313DAEC2323F582002F4578 /* NewsViewController.swift in Sources */,
+				33AA26D223228E2600822127 /* LandingViewController.swift in Sources */,
+				33A3D078232604B100F9E4E2 /* TopStoryDescriptionViewController.swift in Sources */,
+				33C8262623200709009305EB /* AppDelegate.swift in Sources */,
+				3313DAF02323F591002F4578 /* MapViewController.swift in Sources */,
+				33C8264423200833009305EB /* ShareViewController.swift in Sources */,
+				33C826402320082A009305EB /* VideoViewController.swift in Sources */,
+				33C8263C2320081C009305EB /* HomeViewController.swift in Sources */,
+				33AA26CF23228CBC00822127 /* Service.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		33C8262923200709009305EB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33C8262A23200709009305EB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		33C8262E23200709009305EB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33C8262F23200709009305EB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		33C8263223200709009305EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		33C8263323200709009305EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		33C8263523200709009305EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B9E444A96612506FE93F25F /* Pods-MuangUdonThaniMuseum.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 72RQPQDMZD;
+				INFOPLIST_FILE = MuangUdonThaniMuseum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = billbill.MuangUdonThaniMuseum;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		33C8263623200709009305EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA21A11BAE3607B50368FFC /* Pods-MuangUdonThaniMuseum.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 72RQPQDMZD;
+				INFOPLIST_FILE = MuangUdonThaniMuseum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = billbill.MuangUdonThaniMuseum;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33C8261D23200708009305EB /* Build configuration list for PBXProject "MuangUdonThaniMuseum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33C8263223200709009305EB /* Debug */,
+				33C8263323200709009305EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33C8263423200709009305EB /* Build configuration list for PBXNativeTarget "MuangUdonThaniMuseum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33C8263523200709009305EB /* Debug */,
+				33C8263623200709009305EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 33C8261A23200708009305EB /* Project object */;
+}
