@@ -13,6 +13,8 @@ import AVKit
 class VideoViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
+
     let cellHeight: CGFloat = 275
         
     override func viewDidLoad() {
@@ -43,6 +45,12 @@ class VideoViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = cellHeight
+
+        activityIndicator.center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
+        activityIndicator.color = UIColor.yellow
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
     }
 
 }
@@ -64,13 +72,16 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource,VideoC
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath {
+                activityIndicator.stopAnimating()
+            }
+        }
+    }
+    
     func playVideo(url: String) {
         guard let url = URL(string: url) else { return }
-//        let player = AVPlayer(url: url)
-//        let playerLayer = AVPlayerLayer(player: player)
-//        playerLayer.frame = view.bounds
-//        view.layer.addSublayer(playerLayer)
-//        player.play()
         let player = AVPlayer(url: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player

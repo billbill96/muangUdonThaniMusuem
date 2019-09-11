@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r8b-5J-c9O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Mx-Yf-zDE">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Introduction View Controller-->
         <scene sceneID="lqo-eu-H1Z">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="5AR-A8-nrT" customClass="IntroductionViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IntroductionViewController" hidesBottomBarWhenPushed="YES" id="5AR-A8-nrT" customClass="IntroductionViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="coW-er-1bk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,16 +28,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="807"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XfH-yD-Ia5">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="166.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mo4-oW-Jkx">
-                                                        <rect key="frame" x="161.5" y="55" width="91" height="48"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mo4-oW-Jkx">
+                                                        <rect key="frame" x="207" y="55" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Bold" family="Bodoni 72 Oldstyle" pointSize="40"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sc-aK-tbf">
-                                                        <rect key="frame" x="30" y="135" width="354" height="31.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sc-aK-tbf">
+                                                        <rect key="frame" x="30" y="135" width="354" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="26"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -144,6 +144,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1603" y="25"/>
+        </scene>
+        <!--Landing View Controller-->
+        <scene sceneID="QvZ-PK-LUN">
+            <objects>
+                <viewController id="5Mx-Yf-zDE" customClass="LandingViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pNy-KC-9jV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-gx-b8d">
+                                <rect key="frame" x="0.0" y="862" width="414" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-IH-OV5">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCs-vZ-ei2">
+                                <rect key="frame" x="8" y="99" width="398" height="0.0"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="MD9-gx-b8d" secondAttribute="trailing" id="8Fr-t0-YDV"/>
+                            <constraint firstItem="yCs-vZ-ei2" firstAttribute="top" secondItem="ZbK-3I-aWs" secondAttribute="top" constant="55" id="Bw3-9u-H4F"/>
+                            <constraint firstItem="yCs-vZ-ei2" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" constant="8" id="Duk-qt-pIg"/>
+                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="bottom" secondItem="MD9-gx-b8d" secondAttribute="bottom" id="If6-kV-dDb"/>
+                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="bottom" secondItem="FrK-IH-OV5" secondAttribute="bottom" id="ZWZ-U0-nzr"/>
+                            <constraint firstItem="MD9-gx-b8d" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" id="att-im-utt"/>
+                            <constraint firstItem="yCs-vZ-ei2" firstAttribute="centerX" secondItem="pNy-KC-9jV" secondAttribute="centerX" id="cR1-VG-Lca"/>
+                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="FrK-IH-OV5" secondAttribute="trailing" id="eif-HW-trW"/>
+                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="yCs-vZ-ei2" secondAttribute="trailing" constant="8" id="fd7-UV-vQY"/>
+                            <constraint firstItem="FrK-IH-OV5" firstAttribute="top" secondItem="ZbK-3I-aWs" secondAttribute="top" id="mTs-aI-1I8"/>
+                            <constraint firstItem="MD9-gx-b8d" firstAttribute="top" secondItem="ZbK-3I-aWs" secondAttribute="bottom" id="pmf-K5-Ijl"/>
+                            <constraint firstItem="FrK-IH-OV5" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" id="zXQ-WC-HMB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZbK-3I-aWs"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="FrK-IH-OV5" id="9X5-GT-vNJ"/>
+                        <outlet property="backgroundView" destination="MD9-gx-b8d" id="ViI-ST-7Rm"/>
+                        <outlet property="welcomeLabel" destination="yCs-vZ-ei2" id="Czo-S5-d4r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5i9-bD-EzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1810" y="29"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Juf-hs-YuA">

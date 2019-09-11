@@ -14,6 +14,9 @@
 		3313DAED2323F582002F4578 /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3313DAEB2323F582002F4578 /* NewsViewController.xib */; };
 		3313DAF02323F591002F4578 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DAEE2323F591002F4578 /* MapViewController.swift */; };
 		3313DAF12323F591002F4578 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3313DAEF2323F591002F4578 /* MapViewController.xib */; };
+		337843A823292D6000AEA38F /* IntroductionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337843A723292D6000AEA38F /* IntroductionViewModel.swift */; };
+		337843AB23293F9300AEA38F /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337843AA23293F9300AEA38F /* LandingViewModel.swift */; };
+		337843AE2329408B00AEA38F /* Style+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337843AD2329408B00AEA38F /* Style+Extention.swift */; };
 		33A3D078232604B100F9E4E2 /* TopStoryDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3D076232604B100F9E4E2 /* TopStoryDescriptionViewController.swift */; };
 		33A3D079232604B100F9E4E2 /* TopStoryDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A3D077232604B100F9E4E2 /* TopStoryDescriptionViewController.xib */; };
 		33A3D0822326344400F9E4E2 /* VideoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3D0802326344400F9E4E2 /* VideoCellTableViewCell.swift */; };
@@ -45,6 +48,10 @@
 		3313DAEB2323F582002F4578 /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
 		3313DAEE2323F591002F4578 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3313DAEF2323F591002F4578 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		337843A62327F5A900AEA38F /* UdonThani-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UdonThani-Header.h"; sourceTree = "<group>"; };
+		337843A723292D6000AEA38F /* IntroductionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewModel.swift; sourceTree = "<group>"; };
+		337843AA23293F9300AEA38F /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
+		337843AD2329408B00AEA38F /* Style+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Style+Extention.swift"; sourceTree = "<group>"; };
 		33A3D076232604B100F9E4E2 /* TopStoryDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryDescriptionViewController.swift; sourceTree = "<group>"; };
 		33A3D077232604B100F9E4E2 /* TopStoryDescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopStoryDescriptionViewController.xib; sourceTree = "<group>"; };
 		33A3D0802326344400F9E4E2 /* VideoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -97,6 +104,24 @@
 				3313DAE72323E509002F4578 /* TopStoryTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		337843A923293F8100AEA38F /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				33AA26D123228E2600822127 /* LandingViewController.swift */,
+				337843AA23293F9300AEA38F /* LandingViewModel.swift */,
+			);
+			path = Landing;
+			sourceTree = "<group>";
+		};
+		337843AC2329406300AEA38F /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				33AA26D323228E3800822127 /* IntroductionViewController.swift */,
+				337843A723292D6000AEA38F /* IntroductionViewModel.swift */,
+			);
+			path = Introduction;
 			sourceTree = "<group>";
 		};
 		33A3D0752326049600F9E4E2 /* TopStoryDescription */ = {
@@ -176,9 +201,10 @@
 			isa = PBXGroup;
 			children = (
 				33C8262523200709009305EB /* AppDelegate.swift */,
-				33AA26D123228E2600822127 /* LandingViewController.swift */,
-				33AA26D323228E3800822127 /* IntroductionViewController.swift */,
+				337843AD2329408B00AEA38F /* Style+Extention.swift */,
 				33C8262723200709009305EB /* TabBarViewController.swift */,
+				337843A923293F8100AEA38F /* Landing */,
+				337843AC2329406300AEA38F /* Introduction */,
 				33C82637232007EC009305EB /* Home */,
 				33C82638232007F5009305EB /* Video */,
 				33C8263923200808009305EB /* Share */,
@@ -187,6 +213,7 @@
 				33C8262C23200709009305EB /* Assets.xcassets */,
 				33C8262E23200709009305EB /* LaunchScreen.storyboard */,
 				33C8263123200709009305EB /* Info.plist */,
+				337843A62327F5A900AEA38F /* UdonThani-Header.h */,
 			);
 			path = MuangUdonThaniMuseum;
 			sourceTree = "<group>";
@@ -316,15 +343,21 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MuangUdonThaniMuseum/Pods-MuangUdonThaniMuseum-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${PODS_ROOT}/KontaktSDK/Cocoapods/iOS/KontaktSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KontaktSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -366,10 +399,13 @@
 				33A3D078232604B100F9E4E2 /* TopStoryDescriptionViewController.swift in Sources */,
 				33C8262623200709009305EB /* AppDelegate.swift in Sources */,
 				3313DAF02323F591002F4578 /* MapViewController.swift in Sources */,
+				337843AB23293F9300AEA38F /* LandingViewModel.swift in Sources */,
 				33C8264423200833009305EB /* ShareViewController.swift in Sources */,
 				33C826402320082A009305EB /* VideoViewController.swift in Sources */,
 				33C8263C2320081C009305EB /* HomeViewController.swift in Sources */,
+				337843AE2329408B00AEA38F /* Style+Extention.swift in Sources */,
 				33AA26CF23228CBC00822127 /* Service.swift in Sources */,
+				337843A823292D6000AEA38F /* IntroductionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

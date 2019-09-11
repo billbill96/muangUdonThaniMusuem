@@ -53,6 +53,7 @@ class VideoCellTableViewCell: UITableViewCell {
     }
     
     func getThumbnailImage(forUrl url: URL) -> UIImage? {
+        
         let asset: AVAsset = AVAsset(url: url)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         

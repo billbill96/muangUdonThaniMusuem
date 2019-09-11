@@ -9,4 +9,7 @@ target 'MuangUdonThaniMuseum' do
 	pod 'KontaktSDK', '~> 2.0'
 	pod 'ObjectMapper', '~> 3.4'
 	pod 'Kingfisher', '~> 5.0'
+	pod 'Alamofire', '~> 5.0.0-rc.2'
+	pod "PromiseKit", "~> 6.8"
+	pod 'SwiftyJSON', '~> 4.0'
 end

@@ -26,9 +26,26 @@ class HomeViewController: UIViewController {
     var didselect: [Bool] = [true,false,false]
     weak var presentViewController: UIViewController?
     
+    var devicesManager: KTKDevicesManager!
+    var beaconManager: KTKBeaconManager!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        beaconManager = KTKBeaconManager(delegate: self)
+        beaconManager.requestLocationAlwaysAuthorization()
+        
+        let proximityUUID = NSUUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
+        let region = KTKBeaconRegion(proximityUUID: proximityUUID! as UUID,
+                                     identifier: "region-identifier")
+        
+        beaconManager.startMonitoring(for: region)
+        beaconManager.startRangingBeacons(in: region)
+        
+        devicesManager = KTKDevicesManager(delegate: self)
+        
+//        devicesManager.startDevicesDiscovery(withInterval: 2.0)
+
         setupNavigation()
         setupStackView()
         
@@ -144,7 +161,38 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
-    
+extension HomeViewController: KTKDevicesManagerDelegate {
+    func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
+//        for device in devices {
+//            print(device)
+//        }
+    }
 }
 
+extension HomeViewController: KTKBeaconManagerDelegate {
+    func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
+        // Do something when monitoring for a particular
+        // region is successfully initiated
+    }
+    
+    func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
+        // Decide what to do when a user enters a range of your region; usually used
+        // for triggering a local notification and/or starting a beacon ranging
+        print("Enter region \(region)")
+    }
+    
+    func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
+        // Decide what to do when a user exits a range of your region; usually used
+        // for triggering a local notification and stoping a beacon ranging
+        print("Exit region \(region)")
+    }
+    
+    func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
+        if beacons.count > 0 {
+            for beacon in beacons {
+                    print("\(beacon)")
+            }
+        }
+        
+    }
+}

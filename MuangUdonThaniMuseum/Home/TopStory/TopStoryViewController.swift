@@ -52,8 +52,6 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let topStoryDescription = TopStoryDescriptionViewController()
-        let childNavigation = UINavigationController(rootViewController: topStoryDescription)
-//        self.present(childNavigation, animated: true, completion: nil)
         navigationController?.pushViewController(topStoryDescription, animated: true)
         
     }

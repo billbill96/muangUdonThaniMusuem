@@ -26,10 +26,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let shareVC = ShareViewController()
         let share = UINavigationController(rootViewController: shareVC)
         shareVC.tabBarItem = UITabBarItem(title: "Share", image: UIImage(named: "icons8-play-64"), selectedImage: UIImage(named: ""))
-        
-        let topstory = TopStoryDescriptionViewController()
-        let top = UINavigationController(rootViewController: topstory)
-        
+                
         self.viewControllers = [home,video,share]
         
         
