@@ -35,12 +35,13 @@ class VideoCellTableViewCell: UITableViewCell {
         topicLabel.text = topic
         descripLabel.text = descrip
         
-        guard let url = URL(string: urlVideo) else { return }
-        if let thumbnailImage = getThumbnailImage(forUrl: url) {
-            imageVideo.image = thumbnailImage
+        let imgStr = getThumbnailImage(url: urlVideo)
+        if let url = URL(string: imgStr) {
+            imageVideo.kf.setImage(with: url)
         }else {
             //TODO: default image
         }
+        
         self.url = urlVideo
         imageVideo.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didClickImage))
@@ -52,18 +53,14 @@ class VideoCellTableViewCell: UITableViewCell {
         delegate.playVideo(url: url)
     }
     
-    func getThumbnailImage(forUrl url: URL) -> UIImage? {
-        
-        let asset: AVAsset = AVAsset(url: url)
-        let imageGenerator = AVAssetImageGenerator(asset: asset)
-        
-        do {
-            let thumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60) , actualTime: nil)
-            return UIImage(cgImage: thumbnailImage)
-        } catch let error {
-            print(error)
+    func getThumbnailImage(url: String) -> String {
+        if let start = url.firstIndex(of: "=") {
+            let index = url.index(after: start)
+            let imgUrl = url[index..<url.endIndex]
+            let url = "https://img.youtube.com/vi/\(imgUrl)/default.jpg"
+            return String(url)
         }
-        return nil
+        return ""
     }
     
 }
