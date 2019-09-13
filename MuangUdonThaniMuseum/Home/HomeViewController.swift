@@ -39,12 +39,12 @@ class HomeViewController: UIViewController {
         let region = KTKBeaconRegion(proximityUUID: proximityUUID! as UUID,
                                      identifier: "region-identifier")
         
-        beaconManager.startMonitoring(for: region)
-        beaconManager.startRangingBeacons(in: region)
+//        beaconManager.startMonitoring(for: region)
+//        beaconManager.startRangingBeacons(in: region)
         
         devicesManager = KTKDevicesManager(delegate: self)
         
-//        devicesManager.startDevicesDiscovery(withInterval: 2.0)
+        devicesManager.startDevicesDiscovery(withInterval: 2.0)
 
         setupNavigation()
         setupStackView()
@@ -163,9 +163,9 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: KTKDevicesManagerDelegate {
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
-//        for device in devices {
-//            print(device)
-//        }
+        for device in devices {
+            print(device.peripheral.identifier)
+        }
     }
 }
 

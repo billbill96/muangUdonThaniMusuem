@@ -9,6 +9,13 @@
 import UIKit
 import AVFoundation
 import AVKit
+import XCDYouTubeKit
+
+struct YouTubeVideoQuality {
+    static let hd720 = NSNumber(value: XCDYouTubeVideoQuality.HD720.rawValue)
+    static let medium360 = NSNumber(value: XCDYouTubeVideoQuality.medium360.rawValue)
+    static let small240 = NSNumber(value: XCDYouTubeVideoQuality.small240.rawValue)
+}
 
 class VideoViewController: UIViewController {
 
@@ -81,12 +88,22 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource,VideoC
     }
     
     func playVideo(url: String) {
-        guard let url = URL(string: url) else { return }
-        let player = AVPlayer(url: url)
+        var videoIdentifier = ""
+        if let start = url.firstIndex(of: "=") {
+            let index = url.index(after: start)
+            let imgUrl = url[index..<url.endIndex]
+            videoIdentifier = String(imgUrl)
+        }
+        
         let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        self.present(playerViewController, animated: true) {
-            playerViewController.player!.play()
+        self.present(playerViewController, animated: true, completion: nil)
+        
+        XCDYouTubeClient.default().getVideoWithIdentifier(videoIdentifier) { [weak playerViewController] (video: XCDYouTubeVideo?, error: Error?) in
+            if let streamURLs = video?.streamURLs, let streamURL = (streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?? streamURLs[YouTubeVideoQuality.hd720] ?? streamURLs[YouTubeVideoQuality.medium360] ?? streamURLs[YouTubeVideoQuality.small240]) {
+                playerViewController?.player = AVPlayer(url: streamURL)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
 }

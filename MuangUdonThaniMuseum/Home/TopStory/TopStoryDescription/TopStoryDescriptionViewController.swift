@@ -14,12 +14,34 @@ class TopStoryDescriptionViewController: UIViewController {
     @IBOutlet weak var topicLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var stackImage: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageTop: UIImageView!
+    
+    var topic: String = ""
+    var image: String = ""
+    var detail: String = ""
+    
+    convenience init() {
+        self.init(topic: "", image: "", detail: "")
+    }
+    
+    init(topic: String, image: String, detail: String) {
+        self.topic = topic
+        self.image = image
+        self.detail = detail
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let titleLabel = UILabel()
-        titleLabel.text = "Khun Thong Boran"
+        titleLabel.text = "Top Stories"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)//UIFont(name: "Roboto-Bold", size: 20)
 
@@ -28,6 +50,9 @@ class TopStoryDescriptionViewController: UIViewController {
         
         navigationController?.navigationBar.barTintColor = AppsColor.red
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = false
+        
+        scrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
         setupView()
     }
     
@@ -36,10 +61,11 @@ class TopStoryDescriptionViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    
+
     override func viewDidLayoutSubviews() {
         descriptionLabel.sizeToFit()
     }
+    
     
     func setupView() {
         topicLabel.font = UIFont(name: "HelveticaNeue-bold", size: 21)
@@ -47,21 +73,25 @@ class TopStoryDescriptionViewController: UIViewController {
         descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 20)
         descriptionLabel.textColor = AppsColor.lightGrey
 
-        topicLabel.text = "Khun Thong Boran"
-        descriptionLabel.text = "The sixth zone called Khun Thong Boran, A 3,000-Year-Old Ancestor Of Dogs showcases the skeleton of a dog unearthed in the compound of Wat Pho Sri Nai in Ban Chiang, Nong Han district, Udon Thani, between 2003-2004."
+        topicLabel.text = topic
+        descriptionLabel.text = detail
         
-        setupStackView(images: ["https://f.ptcdn.info/528/058/000/pbl2puvqmiWhzv01YO4-o.jpg"])
+        guard let url = URL(string: image) else { return }
+        imageTop.kf.setImage(with: url)
+
+//        setupStackView(images: [image])
     }
 
     func setupStackView(images: [String]) {
-        for image in images {
-            let imageView = UIImageView()
-            imageView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-            imageView.heightAnchor.constraint(equalToConstant: 250.0).isActive = true
-            guard let url = URL(string: image) else { return }
-            imageView.kf.setImage(with: url)
-            stackImage.addArrangedSubview(imageView)
-        }
+//        for image in images {
+//            let imageView = UIImageView()
+//            imageView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+//            imageView.heightAnchor.constraint(equalToConstant: 250.0).isActive = true
+//            guard let url = URL(string: image) else { return }
+//            imageView.kf.setImage(with: url)
+//            stackImage.addArrangedSubview(imageView)
+//        }
+
     }
 }
 

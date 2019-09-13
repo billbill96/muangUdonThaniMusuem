@@ -33,7 +33,7 @@ class LandingViewController: UIViewController {
                 print(data)
                 self.setupView(data: data)
             }else {
-                //TODO: handle fail
+                //TODO: handle data
             }
         }
     }
@@ -43,7 +43,7 @@ class LandingViewController: UIViewController {
         
         guard let url = URL(string: data.start_img!) else { return }
         backgroundImage.kf.setImage(with: url)
-//        changeViewController()
+        changeViewController()
     }
     
     func changeViewController() {
@@ -51,7 +51,6 @@ class LandingViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "IntroductionViewController") as? IntroductionViewController else { return }
             self.present(vc,animated: true, completion: nil)
-
         }
 
     }

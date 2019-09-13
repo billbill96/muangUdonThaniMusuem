@@ -10,6 +10,6 @@ target 'MuangUdonThaniMuseum' do
 	pod 'ObjectMapper', '~> 3.4'
 	pod 'Kingfisher', '~> 5.0'
 	pod 'Alamofire', '~> 5.0.0-rc.2'
-	pod "PromiseKit", "~> 6.8"
 	pod 'SwiftyJSON', '~> 4.0'
+	pod "XCDYouTubeKit", "~> 2.8"
 end

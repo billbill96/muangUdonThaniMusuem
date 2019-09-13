@@ -10,7 +10,6 @@ import UIKit
 import Kingfisher
 import Alamofire
 import ObjectMapper
-import PromiseKit
 
 class IntroductionViewController: UIViewController {
   
@@ -63,6 +62,7 @@ class IntroductionViewController: UIViewController {
     @IBAction func continueButtonClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as? TabBarViewController else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true, completion: nil)
+
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
 
 class TopStoryViewController: UIViewController {
 
@@ -14,6 +16,11 @@ class TopStoryViewController: UIViewController {
     
     let identifier = "cell"
     let cellHeight: CGFloat = 400
+    var data : [TopStroyViewModel] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +29,21 @@ class TopStoryViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = cellHeight
+        
+        getData()
     }
     
-    
+    func getData() {
+        let url = "http://104.199.252.182:9000/api/Beacon/top/stories"
+        AF.request(url).responseJSON { (response) in
+            let model =  Mapper<TopStroyViewModel>().mapArray(JSONObject: response.result.value)
+            if let viewModel = model {
+                self.data = viewModel
+            }else {
+                //TOOD: handle data
+            }
+        }
+    }
 }
 
 extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
@@ -33,16 +52,17 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TopStoryTableViewCell
-        cell.setupCell(image: "https://f.ptcdn.info/528/058/000/pbl2puvqmiWhzv01YO4-o.jpg", topic: "The Rachinuthit Building used as a building for the promotion of women's culture", time: "6 hours ago")
+        cell.setupCell(image: data[indexPath.row].topic_image ?? "", topic: data[indexPath.row].topic ?? "", time: "6 hours ago")
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
-    
+        cell.selectionStyle = .none
+        
         return cell
     }
     
@@ -51,8 +71,11 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let topStoryDescription = TopStoryDescriptionViewController()
-        navigationController?.pushViewController(topStoryDescription, animated: true)
+        let topic = data[indexPath.row].topic ?? ""
+        let image = data[indexPath.row].topic_image ?? ""
+        let detail = data[indexPath.row].detail ?? ""
         
+        let topStoryDescription = TopStoryDescriptionViewController(topic: topic, image: image, detail: detail)
+        navigationController?.pushViewController(topStoryDescription, animated: true)
     }
 }
