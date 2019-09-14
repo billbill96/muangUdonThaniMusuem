@@ -8,6 +8,8 @@
 
 import UIKit
 import KontaktSDK
+import NotificationCenter
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Kontakt.setAPIKey("dYysPEwOZXFSqTbtoioQDxWAffdJfAAB")
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("permission granted \(granted)")
+            guard granted else { return }
+        }
+
         return true
     }
 
@@ -46,3 +55,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    // called when user interacts with notification (app not running in foreground)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse, withCompletionHandler
+        completionHandler: @escaping () -> Void) {
+        
+        print(response.notification.request.content.userInfo)
+        
+        let userInfo = response.notification.request.content.userInfo
+        let uuid = userInfo["uuid"]
+        let vc = NotiDetailViewController()
+        vc.uuid = uuid as! String
+        let noti = UINavigationController(rootViewController: vc)
+        self.window?.rootViewController = noti
+        self.window?.makeKeyAndVisible()
+        
+        return completionHandler()
+    }
+    
+    // called if app is running in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent
+        notification: UNNotification, withCompletionHandler completionHandler:
+        @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        // show alert while app is running in foreground
+        return completionHandler(UNNotificationPresentationOptions.alert)
+    }
+}

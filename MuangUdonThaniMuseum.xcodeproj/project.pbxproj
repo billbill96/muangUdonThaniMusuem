@@ -22,6 +22,8 @@
 		33922FBB232A98F9007EC99F /* NotiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33922FB9232A98F9007EC99F /* NotiDetailViewController.swift */; };
 		33922FBC232A98F9007EC99F /* NotiDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33922FBA232A98F9007EC99F /* NotiDetailViewController.xib */; };
 		33922FBE232A992F007EC99F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33922FBD232A992F007EC99F /* NotificationModel.swift */; };
+		33922FC1232CB434007EC99F /* NotiDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33922FC0232CB434007EC99F /* NotiDetailViewCell.swift */; };
+		33922FC3232CB451007EC99F /* NotiDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33922FC2232CB451007EC99F /* NotiDetailViewCell.xib */; };
 		33A3D078232604B100F9E4E2 /* TopStoryDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3D076232604B100F9E4E2 /* TopStoryDescriptionViewController.swift */; };
 		33A3D079232604B100F9E4E2 /* TopStoryDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A3D077232604B100F9E4E2 /* TopStoryDescriptionViewController.xib */; };
 		33A3D0822326344400F9E4E2 /* VideoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3D0802326344400F9E4E2 /* VideoCellTableViewCell.swift */; };
@@ -62,6 +64,8 @@
 		33922FB9232A98F9007EC99F /* NotiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiDetailViewController.swift; sourceTree = "<group>"; };
 		33922FBA232A98F9007EC99F /* NotiDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotiDetailViewController.xib; sourceTree = "<group>"; };
 		33922FBD232A992F007EC99F /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		33922FC0232CB434007EC99F /* NotiDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiDetailViewCell.swift; sourceTree = "<group>"; };
+		33922FC2232CB451007EC99F /* NotiDetailViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotiDetailViewCell.xib; sourceTree = "<group>"; };
 		33A3D076232604B100F9E4E2 /* TopStoryDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryDescriptionViewController.swift; sourceTree = "<group>"; };
 		33A3D077232604B100F9E4E2 /* TopStoryDescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopStoryDescriptionViewController.xib; sourceTree = "<group>"; };
 		33A3D0802326344400F9E4E2 /* VideoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -148,10 +152,20 @@
 		33922FB8232A98DF007EC99F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				33922FBF232CB418007EC99F /* Cell */,
 				33922FB9232A98F9007EC99F /* NotiDetailViewController.swift */,
 				33922FBA232A98F9007EC99F /* NotiDetailViewController.xib */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		33922FBF232CB418007EC99F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				33922FC0232CB434007EC99F /* NotiDetailViewCell.swift */,
+				33922FC2232CB451007EC99F /* NotiDetailViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		33A3D0752326049600F9E4E2 /* TopStoryDescription */ = {
@@ -356,6 +370,7 @@
 				3313DAF12323F591002F4578 /* MapViewController.xib in Resources */,
 				33922FBC232A98F9007EC99F /* NotiDetailViewController.xib in Resources */,
 				33C8262B23200709009305EB /* Main.storyboard in Resources */,
+				33922FC3232CB451007EC99F /* NotiDetailViewCell.xib in Resources */,
 				33AA26DB2322C3AA00822127 /* TopStoryViewController.xib in Resources */,
 				33C826412320082A009305EB /* VideoViewController.xib in Resources */,
 				33C8264523200833009305EB /* ShareViewController.xib in Resources */,
@@ -431,6 +446,7 @@
 				33AA26D223228E2600822127 /* LandingViewController.swift in Sources */,
 				33A3D078232604B100F9E4E2 /* TopStoryDescriptionViewController.swift in Sources */,
 				33C8262623200709009305EB /* AppDelegate.swift in Sources */,
+				33922FC1232CB434007EC99F /* NotiDetailViewCell.swift in Sources */,
 				337843B2232A8D8800AEA38F /* NewsViewModel.swift in Sources */,
 				3313DAF02323F591002F4578 /* MapViewController.swift in Sources */,
 				337843AB23293F9300AEA38F /* LandingViewModel.swift in Sources */,

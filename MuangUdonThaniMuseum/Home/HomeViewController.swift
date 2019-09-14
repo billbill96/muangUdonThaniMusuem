@@ -8,6 +8,9 @@
 
 import UIKit
 import KontaktSDK
+import Alamofire
+import ObjectMapper
+import UserNotifications
 
 class HomeViewController: UIViewController {
     
@@ -35,16 +38,19 @@ class HomeViewController: UIViewController {
         beaconManager = KTKBeaconManager(delegate: self)
         beaconManager.requestLocationAlwaysAuthorization()
         
-        let proximityUUID = NSUUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
-        let region = KTKBeaconRegion(proximityUUID: proximityUUID! as UUID,
-                                     identifier: "region-identifier")
+//        let proximityUUID = NSUUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
+//        let region = KTKBeaconRegion(proximityUUID: proximityUUID! as UUID,
+//                                     identifier: "region-identifier")
         
 //        beaconManager.startMonitoring(for: region)
 //        beaconManager.startRangingBeacons(in: region)
         
         devicesManager = KTKDevicesManager(delegate: self)
         
-        devicesManager.startDevicesDiscovery(withInterval: 2.0)
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
 
         setupNavigation()
         setupStackView()
@@ -67,8 +73,7 @@ class HomeViewController: UIViewController {
         let titleLabel = UILabel()
         titleLabel.text = "Home"
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)//UIFont(name: "Roboto-Bold", size: 20)
-        
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
         let hStack = UIStackView(arrangedSubviews: [imageView, titleLabel])
         hStack.spacing = 10
@@ -76,6 +81,7 @@ class HomeViewController: UIViewController {
         
         navigationItem.titleView = hStack
         navigationController?.navigationBar.barTintColor = AppsColor.red
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     func setupStackView() {
@@ -159,20 +165,48 @@ class HomeViewController: UIViewController {
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()
     }
+    
+    func getNotification(uuid: String) {
+        devicesManager.stopDevicesDiscovery()
+        let url = "http://104.199.252.182:9000/api/Beacon/notification"
+        AF.request(url, method: .get, parameters: ["id":uuid]).responseJSON { response in
+            let model =  Mapper<NotificationModel>().mapArray(JSONObject: response.result.value)
+            if let data = model?[0] {
+                if data.notify != "" {
+                    self.createLocalNotification(title: data.notify ?? "", uuid: uuid)
+                }
+            }else {
+            }
+        }
+    }
+    
+    func createLocalNotification(title: String, uuid: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.userInfo = ["uuid":"980dc4e81fec52199cbf2d930b8e2326"] as [String:String]
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
 }
 
 extension HomeViewController: KTKDevicesManagerDelegate {
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
         for device in devices {
             print(device.peripheral.identifier)
+            var uuid = "\(device.peripheral.identifier)"
+            uuid = uuid.replacingOccurrences(of: "-", with: "").lowercased()
+            getNotification(uuid: "980dc4e81fec52199cbf2d930b8e2326")
         }
     }
 }
 
 extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
-        // Do something when monitoring for a particular
-        // region is successfully initiated
+        if status == .authorizedAlways {
+            devicesManager.startDevicesDiscovery()
+        }
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
@@ -193,6 +227,5 @@ extension HomeViewController: KTKBeaconManagerDelegate {
                     print("\(beacon)")
             }
         }
-        
     }
 }

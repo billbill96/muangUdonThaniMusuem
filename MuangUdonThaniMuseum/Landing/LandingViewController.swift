@@ -27,13 +27,12 @@ class LandingViewController: UIViewController {
 
     func getData() {
         let url = "http://104.199.252.182:9000/api/Beacon/welcome"
-        AF.request(url, method: .get).responseJSON { response in
-            let model =  Mapper<LandingViewModel>().mapArray(JSONObject: response.result.value)
-            if let data = model?[0] {
-                print(data)
+        AF.request(url, method: .get, parameters: ["id":1]).responseJSON { response in
+            let model =  Mapper<LandingViewModel>().map(JSONObject: response.result.value)
+            if let data = model {
                 self.setupView(data: data)
             }else {
-                //TODO: handle data
+                
             }
         }
     }

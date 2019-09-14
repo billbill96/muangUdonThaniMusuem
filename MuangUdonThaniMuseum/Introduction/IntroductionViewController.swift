@@ -38,11 +38,10 @@ class IntroductionViewController: UIViewController {
     }
     
     func getData() {
-        let url = ""
-//        let url = "http://104.199.252.182:9000/api/Beacon/introduction"
-        AF.request(url, method: .get).responseJSON { response in
-            let model =  Mapper<IntroductionViewModel>().mapArray(JSONObject: response.result.value)
-            if let data = model?[0] {
+        let url = "http://104.199.252.182:9000/api/Beacon/introduction"
+        AF.request(url, method: .get, parameters: ["id":1]).responseJSON { response in
+            let model =  Mapper<IntroductionViewModel>().map(JSONObject: response.result.value)
+            if let data = model {
                 self.setupView(data: data)
             }else {
                 //TODO: handle fail
@@ -60,8 +59,8 @@ class IntroductionViewController: UIViewController {
     }
 
     @IBAction func continueButtonClicked(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as? TabBarViewController else { return }
+        let home = HomeViewController()
+        let vc = UINavigationController(rootViewController: home)
         self.present(vc, animated: true, completion: nil)
 
     }

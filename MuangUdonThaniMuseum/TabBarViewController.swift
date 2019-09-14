@@ -9,10 +9,12 @@
 import UIKit
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
-        
-    @IBOutlet weak var label: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    let cellHeight: CGFloat = 319
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         delegate = self
         
         let homeVC = HomeViewController()
@@ -28,10 +30,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         shareVC.tabBarItem = UITabBarItem(title: "Share", image: UIImage(named: "icons8-play-64"), selectedImage: UIImage(named: ""))
                 
         self.viewControllers = [home,video,share]
-        
-        
     }
 
 
 }
-

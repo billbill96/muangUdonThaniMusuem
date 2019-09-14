@@ -57,7 +57,7 @@ class VideoCellTableViewCell: UITableViewCell {
         if let start = url.firstIndex(of: "=") {
             let index = url.index(after: start)
             let imgUrl = url[index..<url.endIndex]
-            let url = "https://img.youtube.com/vi/\(imgUrl)/default.jpg"
+            let url = "https://img.youtube.com/vi/\(imgUrl)/mqdefault.jpg"
             return String(url)
         }
         return ""

@@ -47,9 +47,9 @@ struct NotificationViewModel {
     var img_detail: [String]
     var video: [String]
     var video_detail: [String]
-    var b_id: String
+    var b_id: Int
     
-    init(u_id: String, notify: String, topic: String, img: [String], img_detail: [String], video: [String], video_detail: [String], b_id: String) {
+    init(u_id: String, notify: String, topic: String, img: [String], img_detail: [String], video: [String], video_detail: [String], b_id: Int) {
         self.u_id = u_id
         self.notify = notify
         self.topic = topic

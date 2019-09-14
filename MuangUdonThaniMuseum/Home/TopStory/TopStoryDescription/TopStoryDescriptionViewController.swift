@@ -57,7 +57,6 @@ class TopStoryDescriptionViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //TODO: handle from noti show tabbar
         self.tabBarController?.tabBar.isHidden = false
     }
     

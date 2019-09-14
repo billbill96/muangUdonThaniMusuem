@@ -20,32 +20,28 @@ struct YouTubeVideoQuality {
 class VideoViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
 
     let cellHeight: CGFloat = 275
-        
+    var videoUrl: [String] = []
+    var videoDescrip: [String] = []
+    var navTitle = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let imageView = UIImageView()
-        NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 17),
-            imageView.widthAnchor.constraint(equalToConstant: 17)
-            ])
-        imageView.image = UIImage(named: "icons8-home-filled-50-white")
         
         let titleLabel = UILabel()
-        titleLabel.text = "Video"
+        titleLabel.text = title
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)//UIFont(name: "Roboto-Bold", size: 20)
         
         
-        let hStack = UIStackView(arrangedSubviews: [imageView, titleLabel])
+        let hStack = UIStackView(arrangedSubviews: [titleLabel])
         hStack.spacing = 10
         hStack.alignment = .center
         
         navigationItem.titleView = hStack
         navigationController?.navigationBar.barTintColor = AppsColor.red
+        navigationController?.navigationBar.isTranslucent = false
         
         tableView.register(UINib(nibName: "VideoCellTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.delegate = self
@@ -53,23 +49,45 @@ class VideoViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = cellHeight
 
-        activityIndicator.center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
-        activityIndicator.color = UIColor.yellow
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
+    }
+    
+    convenience init() {
+        self.init(title: "",video: [], videoDescrip: [])
+    }
+    
+    init(title: String,video: [String], videoDescrip: [String]) {
+        var newVideoUrl: [String] = []
+        var newDes: [String] = []
+        for video in video {
+            if video != "" {
+                newVideoUrl.append(video)
+            }
+        }
+        for des in videoDescrip {
+            if des != "" {
+                newDes.append(des)
+            }
+        }
+        self.navTitle = title
+        self.videoUrl = newVideoUrl
+        self.videoDescrip = newDes
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
 }
 
 extension VideoViewController: UITableViewDelegate, UITableViewDataSource,VideoCellTableViewCellDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return videoUrl.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! VideoCellTableViewCell
-        cell.setupCell(topic: "Example 1", descrip: "sample caption asdfasdfalksdjfaklscasdasdkjfaklsjdfklajsdklfjaklsjcklajsklcmasdfmaksjdfklasdlkfjaskldfjkalsdjfklajsdklfjaskldfjaklsdcas", urlVideo: "https://www.youtube.com/watch?v=Izz0bHVOF_8")
+        cell.setupCell(topic: "Example 1", descrip: videoDescrip[indexPath.row], urlVideo: videoUrl[indexPath.row])
         cell.selectionStyle = .none
         cell.delegate = self
         return cell
@@ -77,14 +95,6 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource,VideoC
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
-            if indexPath == lastVisibleIndexPath {
-                activityIndicator.stopAnimating()
-            }
-        }
     }
     
     func playVideo(url: String) {
