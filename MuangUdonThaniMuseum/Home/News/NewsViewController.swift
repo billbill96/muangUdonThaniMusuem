@@ -37,9 +37,9 @@ class NewsViewController: UIViewController {
             self.data = data
             self.removeSpinner()
             }.catch { error in
-                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
         }
 
     }
