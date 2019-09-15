@@ -36,10 +36,8 @@ class NotiDetailViewCell: UITableViewCell {
         if let url = URL(string: img) {
             imageDetail.kf.setImage(with: url)
         }else {
-            //TODO: default image
+            imageDetail.image = UIImage(named: "Unknown")
         }
     }
-
-
 
 }

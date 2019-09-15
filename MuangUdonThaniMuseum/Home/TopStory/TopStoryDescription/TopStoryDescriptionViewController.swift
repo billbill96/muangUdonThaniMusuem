@@ -75,10 +75,11 @@ class TopStoryDescriptionViewController: UIViewController {
         topicLabel.text = topic
         descriptionLabel.text = detail
         
-        guard let url = URL(string: image) else { return }
-        imageTop.kf.setImage(with: url)
-
-//        setupStackView(images: [image])
+        if let url = URL(string: image){
+            imageTop.kf.setImage(with: url)
+        } else {
+            imageTop.image = UIImage(named: "Unknown")
+        }
     }
 
     func setupStackView(images: [String]) {

@@ -36,16 +36,22 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         beaconManager = KTKBeaconManager(delegate: self)
-        beaconManager.requestLocationAlwaysAuthorization()
-        
-//        let proximityUUID = NSUUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
-//        let region = KTKBeaconRegion(proximityUUID: proximityUUID! as UUID,
-//                                     identifier: "region-identifier")
-        
-//        beaconManager.startMonitoring(for: region)
-//        beaconManager.startRangingBeacons(in: region)
-        
         devicesManager = KTKDevicesManager(delegate: self)
+        
+        switch KTKBeaconManager.locationAuthorizationStatus() {
+        case .notDetermined:
+            beaconManager.requestLocationAlwaysAuthorization()
+        case .denied, .restricted:
+            break
+        case .authorizedWhenInUse:
+            break
+        case .authorizedAlways:
+            devicesManager.startDevicesDiscovery()
+        @unknown default:
+            break
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
@@ -58,8 +64,19 @@ class HomeViewController: UIViewController {
         setPresentViewController(viewController: TopStoryViewController())
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
+    @objc func willEnterForeground() {
+        switch KTKBeaconManager.locationAuthorizationStatus() {
+        case .notDetermined:
+            beaconManager.requestLocationAlwaysAuthorization()
+        case .denied, .restricted:
+            break
+        case .authorizedWhenInUse:
+            break
+        case .authorizedAlways:
+            devicesManager.startDevicesDiscovery()
+        @unknown default:
+            break
+        }
     }
     
     func setupNavigation() {
@@ -183,11 +200,15 @@ class HomeViewController: UIViewController {
     func createLocalNotification(title: String, uuid: String) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.userInfo = ["uuid":"980dc4e81fec52199cbf2d930b8e2326"] as [String:String]
+        content.userInfo = ["uuid": uuid] as [String:String]
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.devicesManager.startDevicesDiscovery()
+        }
     }
 }
 
@@ -205,7 +226,6 @@ extension HomeViewController: KTKDevicesManagerDelegate {
 extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
-            devicesManager.startDevicesDiscovery()
         }
     }
     
@@ -224,7 +244,7 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         if beacons.count > 0 {
             for beacon in beacons {
-                    print("\(beacon)")
+                print("\(beacon)")
             }
         }
     }

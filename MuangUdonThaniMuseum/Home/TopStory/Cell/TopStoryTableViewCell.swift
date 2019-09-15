@@ -29,9 +29,13 @@ class TopStoryTableViewCell: UITableViewCell {
     }
     
     func setupCell(image: String, topic: String, time: String) {
-        guard let url = URL(string: image) else { return }
-        imageTopic.kf.setImage(with: url)
-
+        if let url = URL(string: image){
+            imageTopic.kf.setImage(with: url)
+        }
+        else{
+            imageTopic.image = UIImage(named: "Unknown")
+        }
+        
         topicLabel.text = topic
         timeLabel.text = time
     }

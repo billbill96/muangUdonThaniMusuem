@@ -39,7 +39,7 @@ class VideoCellTableViewCell: UITableViewCell {
         if let url = URL(string: imgStr) {
             imageVideo.kf.setImage(with: url)
         }else {
-            //TODO: default image
+            imageVideo.image = UIImage(named: "Unknown")
         }
         
         self.url = urlVideo

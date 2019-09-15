@@ -30,16 +30,9 @@ class NotiDetailViewController: UIViewController {
 
         tabBar.delegate = self
         firstTabBar.tag = 1
-        firstTabBar.image = UIImage(named: "icons8-home-filled-50")
-        firstTabBar.title = "Home"
         secondTabBar.tag = 2
-        secondTabBar.image = UIImage(named: "icons8-play-64")
-        secondTabBar.title = "Video"
         thirdTabBar.tag = 3
-        thirdTabBar.image = UIImage(named: "icons8-facebook-26")
-        thirdTabBar.title = "Share"
         
-
         tableView.register(UINib(nibName: "NotiDetailViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.delegate = self
         tableView.dataSource = self

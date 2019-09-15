@@ -41,9 +41,9 @@
                         <constraint firstAttribute="height" constant="60" id="Tf7-PA-hwn"/>
                     </constraints>
                     <items>
-                        <tabBarItem systemItem="favorites" id="h5B-m2-Ap6"/>
-                        <tabBarItem title="Item" id="AKS-02-5lA"/>
-                        <tabBarItem systemItem="more" id="7W6-dg-mB8"/>
+                        <tabBarItem title="Home" image="icons8-home-filled-50" id="h5B-m2-Ap6"/>
+                        <tabBarItem title="Video" image="icons8-play-64" id="AKS-02-5lA"/>
+                        <tabBarItem title="Share" image="icons8-facebook-26" id="7W6-dg-mB8"/>
                     </items>
                 </tabBar>
             </subviews>
@@ -65,4 +65,9 @@
             <point key="canvasLocation" x="131.8840579710145" y="82.366071428571431"/>
         </view>
     </objects>
+    <resources>
+        <image name="icons8-facebook-26" width="22" height="22"/>
+        <image name="icons8-home-filled-50" width="23" height="23"/>
+        <image name="icons8-play-64" width="22" height="22"/>
+    </resources>
 </document>
