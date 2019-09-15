@@ -38,6 +38,11 @@ class HomeViewController: UIViewController {
         beaconManager = KTKBeaconManager(delegate: self)
         devicesManager = KTKDevicesManager(delegate: self)
         
+        let myProximityUuid = UUID(uuidString: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E")
+        let region = KTKBeaconRegion(proximityUUID: myProximityUuid!,major: 3424, minor: 54960, identifier: "Beacon region 1")
+        let region2 = KTKBeaconRegion(proximityUUID: myProximityUuid!,major: 28538, minor: 40233, identifier: "Beacon region 2")
+
+        beaconManager.requestState(for: region2)
         switch KTKBeaconManager.locationAuthorizationStatus() {
         case .notDetermined:
             beaconManager.requestLocationAlwaysAuthorization()
@@ -46,12 +51,13 @@ class HomeViewController: UIViewController {
         case .authorizedWhenInUse:
             break
         case .authorizedAlways:
-            devicesManager.startDevicesDiscovery()
+            if KTKBeaconManager.isMonitoringAvailable() {
+                beaconManager.startMonitoring(for: region)
+                beaconManager.startMonitoring(for: region2)
+            }
         @unknown default:
             break
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
@@ -62,21 +68,6 @@ class HomeViewController: UIViewController {
         setupStackView()
         
         setPresentViewController(viewController: TopStoryViewController())
-    }
-    
-    @objc func willEnterForeground() {
-        switch KTKBeaconManager.locationAuthorizationStatus() {
-        case .notDetermined:
-            beaconManager.requestLocationAlwaysAuthorization()
-        case .denied, .restricted:
-            break
-        case .authorizedWhenInUse:
-            break
-        case .authorizedAlways:
-            devicesManager.startDevicesDiscovery()
-        @unknown default:
-            break
-        }
     }
     
     func setupNavigation() {
@@ -205,15 +196,12 @@ class HomeViewController: UIViewController {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.devicesManager.startDevicesDiscovery()
-        }
     }
 }
 
 extension HomeViewController: KTKDevicesManagerDelegate {
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
+        devicesManager.stopDevicesDiscovery()
         for device in devices {
             print(device.peripheral.identifier)
             var uuid = "\(device.peripheral.identifier)"
@@ -224,20 +212,22 @@ extension HomeViewController: KTKDevicesManagerDelegate {
 }
 
 extension HomeViewController: KTKBeaconManagerDelegate {
+    func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
+        print("in state \(region)")
+    }
+
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
         }
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
-        // Decide what to do when a user enters a range of your region; usually used
-        // for triggering a local notification and/or starting a beacon ranging
+        devicesManager.startDevicesDiscovery()
         print("Enter region \(region)")
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
-        // Decide what to do when a user exits a range of your region; usually used
-        // for triggering a local notification and stoping a beacon ranging
+        beaconManager.stopRangingBeacons(in: region)
         print("Exit region \(region)")
     }
     
