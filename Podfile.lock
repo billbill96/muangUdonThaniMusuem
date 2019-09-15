@@ -3,6 +3,15 @@ PODS:
   - Kingfisher (5.6.0)
   - KontaktSDK (2.0.1)
   - ObjectMapper (3.5.0)
+  - PromiseKit (6.11.0):
+    - PromiseKit/CorePromise (= 6.11.0)
+    - PromiseKit/Foundation (= 6.11.0)
+    - PromiseKit/UIKit (= 6.11.0)
+  - PromiseKit/CorePromise (6.11.0)
+  - PromiseKit/Foundation (6.11.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.11.0):
+    - PromiseKit/CorePromise
   - SwiftyJSON (4.3.0)
   - XCDYouTubeKit (2.8.0)
 
@@ -11,6 +20,7 @@ DEPENDENCIES:
   - Kingfisher (~> 5.0)
   - KontaktSDK (~> 2.0)
   - ObjectMapper (~> 3.4)
+  - PromiseKit (~> 6.8)
   - SwiftyJSON (~> 4.0)
   - XCDYouTubeKit (~> 2.8)
 
@@ -20,6 +30,7 @@ SPEC REPOS:
     - Kingfisher
     - KontaktSDK
     - ObjectMapper
+    - PromiseKit
     - SwiftyJSON
     - XCDYouTubeKit
 
@@ -28,9 +39,10 @@ SPEC CHECKSUMS:
   Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
   KontaktSDK: 7dc507f20c8821d13132c6ec09089972e9b8bf5b
   ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
+  PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   XCDYouTubeKit: 207fa50f3648fc0fd1558b2496c74c3b34af982c
 
-PODFILE CHECKSUM: 7676f781aba3b532c42fdff925696304d1d00881
+PODFILE CHECKSUM: a6b50a889de26393fd692cc7db1a71af1b5136e0
 
 COCOAPODS: 1.5.3

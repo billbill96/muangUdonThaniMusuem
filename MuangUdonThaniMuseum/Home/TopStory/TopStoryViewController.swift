@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import ObjectMapper
+import PromiseKit
 
 class TopStoryViewController: UIViewController {
 
@@ -21,6 +22,8 @@ class TopStoryViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    var vSpinner : UIView?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +33,29 @@ class TopStoryViewController: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = cellHeight
         
-        getData()
+        self.showSpinner(onView: self.view)
+        getData().done { (data) in
+            self.data = data
+            self.removeSpinner()
+            }.catch { error in
+                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
-    func getData() {
+    func getData() -> Promise<[TopStroyViewModel]>{
         let url = "http://104.199.252.182:9000/api/Beacon/top/stories"
-        AF.request(url).responseJSON { (response) in
-            let model =  Mapper<TopStroyViewModel>().mapArray(JSONObject: response.result.value)
-            if let viewModel = model {
-                self.data = viewModel
-            }else {
-                //TOOD: handle data
+        return Promise () { resolver in
+            AF.request(url).responseJSON { (response) in
+                switch response.result {
+                case .success(let _):
+                    if let model = Mapper<TopStroyViewModel>().mapArray(JSONObject: response.result.value) {
+                        resolver.fulfill(model)
+                    }
+                case .failure(let error):
+                    resolver.reject(error)
+                }
             }
         }
     }
@@ -77,5 +92,29 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
         
         let topStoryDescription = TopStoryDescriptionViewController(topic: topic, image: image, detail: detail)
         navigationController?.pushViewController(topStoryDescription, animated: true)
+    }
+}
+
+extension TopStoryViewController {
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            self.vSpinner?.removeFromSuperview()
+            self.vSpinner = nil
+        }
     }
 }

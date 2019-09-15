@@ -12,4 +12,5 @@ target 'MuangUdonThaniMuseum' do
 	pod 'Alamofire', '~> 5.0.0-rc.2'
 	pod 'SwiftyJSON', '~> 4.0'
 	pod "XCDYouTubeKit", "~> 2.8"
+	pod "PromiseKit", "~> 6.8"
 end
