@@ -87,7 +87,7 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource,VideoC
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! VideoCellTableViewCell
-        cell.setupCell(topic: "Example 1", descrip: videoDescrip[indexPath.row], urlVideo: videoUrl[indexPath.row])
+        cell.setupCell(topic: videoDescrip[indexPath.row], urlVideo: videoUrl[indexPath.row])
         cell.selectionStyle = .none
         cell.delegate = self
         return cell

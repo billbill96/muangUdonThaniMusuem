@@ -14,6 +14,7 @@ import PromiseKit
 class TopStoryViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     
     let identifier = "cell"
     let cellHeight: CGFloat = 400
@@ -35,8 +36,8 @@ class TopStoryViewController: UIViewController {
         
         self.showSpinner(onView: self.view)
         getData().done { (data) in
-            self.data = data
             self.removeSpinner()
+            self.data = data
             }.catch { error in
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -97,11 +98,11 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension TopStoryViewController {
     func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: onView.bounds)
+        let spinnerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.startAnimating()
-        ai.center = spinnerView.center
+        ai.center = CGPoint(x: spinnerView.bounds.width/2 - 20, y: spinnerView.bounds.height/2 - 150)
         
         DispatchQueue.main.async {
             spinnerView.addSubview(ai)

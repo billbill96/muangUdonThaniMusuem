@@ -69,7 +69,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         let uuid = userInfo["uuid"]
         let vc = NotiDetailViewController()
-        vc.uuid = uuid as! String
+        let uuidString = uuid as! String
+        vc.uuid = uuidString.lowercased()
         let noti = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = noti
         self.window?.makeKeyAndVisible()

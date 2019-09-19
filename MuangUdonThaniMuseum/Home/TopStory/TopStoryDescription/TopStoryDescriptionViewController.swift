@@ -60,7 +60,6 @@ class TopStoryDescriptionViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-
     override func viewDidLayoutSubviews() {
         descriptionLabel.sizeToFit()
     }

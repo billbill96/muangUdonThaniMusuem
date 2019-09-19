@@ -13,12 +13,8 @@ struct NotificationModel: Mappable {
     var u_id: String?
     var notify: String?
     var topic: String?
-    var img: String?
-    var img_detail: String?
-    var img_order: Int?
-    var video: String?
-    var video_detail: String?
-    var video_order: Int?
+    var image: [imageObject]?
+    var video: [videoObejct]?
     var b_id: Int?
     
     init?(map: Map) {
@@ -29,12 +25,8 @@ struct NotificationModel: Mappable {
         u_id <- map["u_id"]
         notify <- map["beacon_notify"]
         topic <- map["beacon_topic"]
-        img <- map["beacon_img"]
-        img_detail <- map["beacon_img_detail"]
-        img_order <- map["beacon_img_order"]
-        video <- map["beacon_video"]
-        video_detail <- map["beacon_video_detail"]
-        video_order <- map["beacon_video_order"]
+        image <- map["img_dep"]
+        video <- map["vdo_dep"]
         b_id <- map["b_id"]
     }
 }
@@ -58,5 +50,37 @@ struct NotificationViewModel {
         self.video = video
         self.video_detail = video_detail
         self.b_id = b_id
+    }
+}
+
+struct imageObject: Mappable {
+    var image: String?
+    var image_detail: String?
+    var image_order: String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        image <- map["beacon_img"]
+        image_detail <- map["beacon_img_detail"]
+        image_order <- map["beacon_img_order"]
+    }
+}
+
+struct videoObejct: Mappable {
+    var video: String?
+    var video_detail: String?
+    var video_order: String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        video <- map["beacon_video"]
+        video_detail <- map["beacon_video_detail"]
+        video_order <- map["beacon_video_order"]
     }
 }

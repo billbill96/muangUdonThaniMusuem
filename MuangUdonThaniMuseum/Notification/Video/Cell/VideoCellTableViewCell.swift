@@ -27,13 +27,13 @@ class VideoCellTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    func setupCell(topic: String, descrip: String, urlVideo: String) {
+    func setupCell(topic: String, urlVideo: String) {
         topicLabel.font = UIFont(name: "HelveticaNeue-medium", size: 25)
-        descripLabel.font = UIFont(name: "HelveticaNeue-regular", size: 16)
+//        descripLabel.font = UIFont(name: "HelveticaNeue-regular", size: 16)
         topicLabel.textColor = AppsColor.darkGrey
-        descripLabel.textColor = AppsColor.darkGrey
+//        descripLabel.textColor = AppsColor.darkGrey
         topicLabel.text = topic
-        descripLabel.text = descrip
+//        descripLabel.text = descrip
         
         let imgStr = getThumbnailImage(url: urlVideo)
         if let url = URL(string: imgStr) {

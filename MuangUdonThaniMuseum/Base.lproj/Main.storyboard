@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGC-NS-tKv">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="30a-YF-uPJ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="30a-YF-uPJ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     </imageView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrB-aD-Lci">
@@ -153,12 +153,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-gx-b8d">
-                                <rect key="frame" x="0.0" y="862" width="414" height="0.0"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-IH-OV5">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-IH-OV5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCs-vZ-ei2">
                                 <rect key="frame" x="8" y="99" width="398" height="0.0"/>
@@ -169,24 +165,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="MD9-gx-b8d" secondAttribute="trailing" id="8Fr-t0-YDV"/>
                             <constraint firstItem="yCs-vZ-ei2" firstAttribute="top" secondItem="ZbK-3I-aWs" secondAttribute="top" constant="55" id="Bw3-9u-H4F"/>
                             <constraint firstItem="yCs-vZ-ei2" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" constant="8" id="Duk-qt-pIg"/>
-                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="bottom" secondItem="MD9-gx-b8d" secondAttribute="bottom" id="If6-kV-dDb"/>
                             <constraint firstItem="ZbK-3I-aWs" firstAttribute="bottom" secondItem="FrK-IH-OV5" secondAttribute="bottom" id="ZWZ-U0-nzr"/>
-                            <constraint firstItem="MD9-gx-b8d" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" id="att-im-utt"/>
                             <constraint firstItem="yCs-vZ-ei2" firstAttribute="centerX" secondItem="pNy-KC-9jV" secondAttribute="centerX" id="cR1-VG-Lca"/>
                             <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="FrK-IH-OV5" secondAttribute="trailing" id="eif-HW-trW"/>
                             <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="yCs-vZ-ei2" secondAttribute="trailing" constant="8" id="fd7-UV-vQY"/>
-                            <constraint firstItem="FrK-IH-OV5" firstAttribute="top" secondItem="ZbK-3I-aWs" secondAttribute="top" id="mTs-aI-1I8"/>
-                            <constraint firstItem="MD9-gx-b8d" firstAttribute="top" secondItem="ZbK-3I-aWs" secondAttribute="bottom" id="pmf-K5-Ijl"/>
+                            <constraint firstItem="FrK-IH-OV5" firstAttribute="top" secondItem="pNy-KC-9jV" secondAttribute="top" id="mTs-aI-1I8"/>
                             <constraint firstItem="FrK-IH-OV5" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" id="zXQ-WC-HMB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZbK-3I-aWs"/>
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="FrK-IH-OV5" id="9X5-GT-vNJ"/>
-                        <outlet property="backgroundView" destination="MD9-gx-b8d" id="ViI-ST-7Rm"/>
                         <outlet property="welcomeLabel" destination="yCs-vZ-ei2" id="Czo-S5-d4r"/>
                     </connections>
                 </viewController>

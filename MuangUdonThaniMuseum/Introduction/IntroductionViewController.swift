@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import Alamofire
 import ObjectMapper
+import PromiseKit
 
 class IntroductionViewController: UIViewController {
   
@@ -18,6 +19,8 @@ class IntroductionViewController: UIViewController {
     @IBOutlet weak var descripLabel: UILabel!
     @IBOutlet weak var continueButton: UIButton!
     
+    var vSpinner : UIView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,18 +37,32 @@ class IntroductionViewController: UIViewController {
         continueButton.layer.borderColor = AppsColor.oldRed.cgColor
         continueButton.layer.borderWidth = 3
         
-        getData()
+        continueButton.isHidden = true
+        self.showSpinner(onView: self.view)
+        getData().done { (data) in
+            self.removeSpinner()
+            self.setupView(data: data)
+            }.catch { error in
+                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
-    func getData() {
+    func getData() -> Promise<IntroductionViewModel> {
         let url = "http://104.199.252.182:9000/api/Beacon/introduction"
-        AF.request(url, method: .get, parameters: ["id":1]).responseJSON { response in
-            let model =  Mapper<IntroductionViewModel>().map(JSONObject: response.result.value)
-            if let data = model {
-                self.setupView(data: data)
-            }else {
-                //TODO: handle fail
+        return Promise () { resolver in
+            AF.request(url, method: .get, parameters: ["id":1]).responseJSON { response in
+            switch response.result {
+            case .success(let _):
+                if let model = Mapper<IntroductionViewModel>().map(JSONObject: response.result.value) {
+                    resolver.fulfill(model)
+                }
+            case .failure(let error):
+                resolver.reject(error)
             }
+        }
         }
     }
 
@@ -56,6 +73,8 @@ class IntroductionViewController: UIViewController {
         guard let url = URL(string: data.intro_img ?? "") else { return }
         guard let data = try? Data(contentsOf: url) else { return }
         imageView.image = UIImage(data: data)?.image(alpha: 0.16)
+        
+        continueButton.isHidden = false
     }
 
     @IBAction func continueButtonClicked(_ sender: Any) {
@@ -63,5 +82,29 @@ class IntroductionViewController: UIViewController {
         let vc = UINavigationController(rootViewController: home)
         self.present(vc, animated: true, completion: nil)
 
+    }
+}
+
+extension IntroductionViewController {
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        ai.startAnimating()
+        ai.center = view.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            self.vSpinner?.removeFromSuperview()
+            self.vSpinner = nil
+        }
     }
 }

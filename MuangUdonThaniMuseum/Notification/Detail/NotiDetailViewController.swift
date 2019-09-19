@@ -66,13 +66,13 @@ class NotiDetailViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
     }
 
-    func getData(uuid: String) -> Promise<[NotificationModel]>{
+    func getData(uuid: String) -> Promise<NotificationModel>{
         let url = "http://104.199.252.182:9000/api/Beacon/notification"
         return Promise() { resolver in
             AF.request(url, method: .get, parameters: ["id":uuid]).responseJSON { response in
                 switch response.result{
                 case .success(let _):
-                    if let model =  Mapper<NotificationModel>().mapArray(JSONObject: response.result.value) {
+                    if let model =  Mapper<NotificationModel>().map(JSONObject: response.result.value) {
                         resolver.fulfill(model)
                     }
                 case .failure(let error):
@@ -83,7 +83,7 @@ class NotiDetailViewController: UIViewController {
         }
     }
     
-    func setupData(model: [NotificationModel]) {
+    func setupData(model: NotificationModel) {
         var u_id : String = ""
         var notify: String = ""
         var topic: String = ""
@@ -92,17 +92,24 @@ class NotiDetailViewController: UIViewController {
         var image_detail: [String] = []
         var video : [String] = []
         var video_detail: [String] = []
-        for data in model {
-            u_id = data.u_id ?? ""
-            notify = data.notify ?? ""
-            topic = data.topic ?? ""
-            b_id = data.b_id ?? 0
-            
-            image.append(data.img ?? "")
-            image_detail.append(data.img_detail ?? "")
-            
-            video.append(data.video ?? "")
-            video_detail.append(data.video_detail ?? "")
+        
+        u_id = model.u_id ?? ""
+        notify = model.notify ?? ""
+        topic = model.topic ?? ""
+        b_id = model.b_id ?? 0
+        
+        if let videos = model.video ?? nil {
+            for vd in videos {
+                video.append(vd.video ?? "")
+                video_detail.append(vd.video_detail ?? "")
+            }
+        }
+
+        if let images = model.image ?? nil {
+            for img in images {
+                image.append(img.image ?? "")
+                image_detail.append(img.image_detail ?? "")
+            }
         }
         self.viewModel = NotificationViewModel(u_id: u_id, notify: notify, topic: topic, img: image, img_detail: image_detail, video: video, video_detail: video_detail, b_id: b_id)
         setNavigationBar(title: viewModel?.notify ?? "Detail")
@@ -197,7 +204,7 @@ extension NotiDetailViewController {
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.startAnimating()
-        ai.center = spinnerView.center
+        ai.center = CGPoint(x: spinnerView.bounds.width/2 - 20, y: spinnerView.bounds.height/2 - 150)
         
         DispatchQueue.main.async {
             spinnerView.addSubview(ai)
