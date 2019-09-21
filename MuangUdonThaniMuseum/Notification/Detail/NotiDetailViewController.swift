@@ -188,6 +188,7 @@ extension NotiDetailViewController: UITabBarDelegate {
         let shareVC = ShareViewController()
         
         if item.tag == 1 {
+            home.modalPresentationStyle = .fullScreen
             self.present(home,animated: true)
         }else if item.tag == 2{
             setPresentViewController(viewController: videoVC)

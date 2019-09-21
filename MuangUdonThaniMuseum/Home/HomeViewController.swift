@@ -53,13 +53,13 @@ class HomeViewController: UIViewController {
         case .authorizedWhenInUse:
             break
         case .authorizedAlways:
-//             print("start monitoring")
-//            if KTKBeaconManager.isMonitoringAvailable() {
-//                for region in regions {
-//                    beaconManager.startMonitoring(for: region)
-//                }
-//            }
-            devicesManager.startDevicesDiscovery(withInterval: 10)
+             print("start monitoring")
+            if KTKBeaconManager.isMonitoringAvailable() {
+                for region in regions {
+                    beaconManager.startMonitoring(for: region)
+                }
+            }
+//            devicesManager.startDevicesDiscovery(withInterval: 10)
         @unknown default:
             break
         }
@@ -231,7 +231,7 @@ extension HomeViewController: KTKDevicesManagerDelegate {
             print(device.peripheral.identifier)
 //            let uuid = "\(device.peripheral.identifier)"
             let uuid = "481ADDF5-B65D-45AF-8C48-8B2AA42B7FA3"
-            getNotification(uuid: uuid)
+//            getNotification(uuid: uuid)
         }
     }
 }
