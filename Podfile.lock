@@ -1,5 +1,19 @@
 PODS:
   - Alamofire (5.0.0-rc.2)
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookShare (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKShareKit (~> 5.0)
+  - FBSDKCoreKit (5.5.0):
+    - FBSDKCoreKit/Basics (= 5.5.0)
+    - FBSDKCoreKit/Core (= 5.5.0)
+  - FBSDKCoreKit/Basics (5.5.0)
+  - FBSDKCoreKit/Core (5.5.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKShareKit (5.5.0):
+    - FBSDKCoreKit (~> 5.0)
   - Kingfisher (5.6.0)
   - KontaktSDK (2.0.1)
   - ObjectMapper (3.5.0)
@@ -17,6 +31,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.2)
+  - FacebookShare
   - Kingfisher (~> 5.0)
   - KontaktSDK (~> 2.0)
   - ObjectMapper (~> 3.4)
@@ -27,6 +42,10 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - FacebookCore
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKShareKit
     - Kingfisher
     - KontaktSDK
     - ObjectMapper
@@ -36,6 +55,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
+  FBSDKCoreKit: 7ade9cfea30eef2f6cf105a1aa904f89ea68fb7d
+  FBSDKShareKit: 6316a2dcd2fbc419c87281aa4c50ad0b6ed431e7
   Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
   KontaktSDK: 7dc507f20c8821d13132c6ec09089972e9b8bf5b
   ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
@@ -43,6 +66,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   XCDYouTubeKit: 207fa50f3648fc0fd1558b2496c74c3b34af982c
 
-PODFILE CHECKSUM: a6b50a889de26393fd692cc7db1a71af1b5136e0
+PODFILE CHECKSUM: 36ca91646be3379c293bab8998e315fb27cbed74
 
 COCOAPODS: 1.5.3

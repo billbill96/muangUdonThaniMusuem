@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Mx-Yf-zDE">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Mx-Yf-zDE">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,7 +119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wi-YH-UE0">
-                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem tag="1" title="Home" image="icons8-facebook-26" id="yWy-pu-r2N"/>
@@ -154,7 +152,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-IH-OV5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCs-vZ-ei2">
                                 <rect key="frame" x="8" y="99" width="398" height="0.0"/>
@@ -167,7 +165,7 @@
                         <constraints>
                             <constraint firstItem="yCs-vZ-ei2" firstAttribute="top" secondItem="ZbK-3I-aWs" secondAttribute="top" constant="55" id="Bw3-9u-H4F"/>
                             <constraint firstItem="yCs-vZ-ei2" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" constant="8" id="Duk-qt-pIg"/>
-                            <constraint firstItem="ZbK-3I-aWs" firstAttribute="bottom" secondItem="FrK-IH-OV5" secondAttribute="bottom" id="ZWZ-U0-nzr"/>
+                            <constraint firstAttribute="bottom" secondItem="FrK-IH-OV5" secondAttribute="bottom" id="ZWZ-U0-nzr"/>
                             <constraint firstItem="yCs-vZ-ei2" firstAttribute="centerX" secondItem="pNy-KC-9jV" secondAttribute="centerX" id="cR1-VG-Lca"/>
                             <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="FrK-IH-OV5" secondAttribute="trailing" id="eif-HW-trW"/>
                             <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="yCs-vZ-ei2" secondAttribute="trailing" constant="8" id="fd7-UV-vQY"/>

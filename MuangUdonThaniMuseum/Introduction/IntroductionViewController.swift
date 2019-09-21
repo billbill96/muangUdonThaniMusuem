@@ -80,8 +80,8 @@ class IntroductionViewController: UIViewController {
     @IBAction func continueButtonClicked(_ sender: Any) {
         let home = HomeViewController()
         let vc = UINavigationController(rootViewController: home)
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
-
     }
 }
 

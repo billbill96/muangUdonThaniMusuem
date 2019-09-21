@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,17 +14,17 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="238"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="390" height="237.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="390" height="238"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRn-lr-3RD">
-                        <rect key="frame" x="16" y="16" width="42" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRn-lr-3RD">
+                        <rect key="frame" x="16" y="16" width="358" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cxa-63-kUI">
-                        <rect key="frame" x="16" y="52.5" width="358" height="185"/>
+                        <rect key="frame" x="16" y="53" width="358" height="185"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="185" id="JTF-Vw-ZfM"/>
                         </constraints>
@@ -34,8 +32,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="kRn-lr-3RD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="3Ji-Bo-tZb"/>
+                    <constraint firstAttribute="bottom" secondItem="Cxa-63-kUI" secondAttribute="bottom" id="6hc-d6-I5x"/>
                     <constraint firstItem="Cxa-63-kUI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Dju-g9-zUd"/>
                     <constraint firstItem="Cxa-63-kUI" firstAttribute="top" secondItem="kRn-lr-3RD" secondAttribute="bottom" constant="16" id="bsM-7P-0bi"/>
+                    <constraint firstAttribute="trailing" secondItem="kRn-lr-3RD" secondAttribute="trailing" constant="16" id="d8l-sE-vdE"/>
                     <constraint firstItem="kRn-lr-3RD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="oqD-7E-qbQ"/>
                     <constraint firstAttribute="trailing" secondItem="Cxa-63-kUI" secondAttribute="trailing" constant="16" id="ydS-2M-A3k"/>
                 </constraints>

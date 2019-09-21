@@ -13,4 +13,5 @@ target 'MuangUdonThaniMuseum' do
 	pod 'SwiftyJSON', '~> 4.0'
 	pod "XCDYouTubeKit", "~> 2.8"
 	pod "PromiseKit", "~> 6.8"
+	pod 'FacebookShare'
 end

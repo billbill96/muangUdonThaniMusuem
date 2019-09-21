@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKShareKit
 
 class ShareViewController: UIViewController {
 
@@ -27,4 +28,22 @@ class ShareViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = AppsColor.red
         navigationController?.navigationBar.isTranslucent = false
     }
+    
+    @IBAction func shareClicked(_ sender: Any) {
+        shareFB(sender: sender as AnyObject)
+    }
+
+    func shareFB(sender: AnyObject){
+        //459273817999660
+        let content = ShareLinkContent()
+        content.contentURL =  URL(string: "https://goo.gl/maps/jWo2pw3PugPcP3Te9")!
+
+        let dialog : ShareDialog = ShareDialog()
+        dialog.fromViewController = self
+        dialog.shareContent = content
+        dialog.mode = ShareDialog.Mode.feedBrowser
+        dialog.show()
+
+    }
+
 }

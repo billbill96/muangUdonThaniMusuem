@@ -49,6 +49,7 @@ class LandingViewController: UIViewController {
          DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "IntroductionViewController") as? IntroductionViewController else { return }
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc,animated: true, completion: nil)
         }
     }

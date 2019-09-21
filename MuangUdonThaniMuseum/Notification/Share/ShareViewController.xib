@@ -19,7 +19,20 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slo-8P-w3X">
+                    <rect key="frame" x="182.5" y="433" width="49" height="30"/>
+                    <state key="normal" title="SHARE"/>
+                    <connections>
+                        <action selector="shareClicked:" destination="-1" eventType="touchUpInside" id="cXq-3r-huw"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="slo-8P-w3X" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="enP-SX-q8o"/>
+                <constraint firstItem="slo-8P-w3X" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="soW-uD-o09"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>

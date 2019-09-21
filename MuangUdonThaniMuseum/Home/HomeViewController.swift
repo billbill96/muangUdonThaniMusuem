@@ -53,11 +53,13 @@ class HomeViewController: UIViewController {
         case .authorizedWhenInUse:
             break
         case .authorizedAlways:
-            if KTKBeaconManager.isMonitoringAvailable() {
-                for region in regions {
-                    beaconManager.startMonitoring(for: region)
-                }
-            }
+//             print("start monitoring")
+//            if KTKBeaconManager.isMonitoringAvailable() {
+//                for region in regions {
+//                    beaconManager.startMonitoring(for: region)
+//                }
+//            }
+            devicesManager.startDevicesDiscovery(withInterval: 10)
         @unknown default:
             break
         }
@@ -224,10 +226,11 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: KTKDevicesManagerDelegate {
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
-        devicesManager.stopDevicesDiscovery()
+//        devicesManager.stopDevicesDiscovery()
         for device in devices {
             print(device.peripheral.identifier)
-            let uuid = "\(device.peripheral.identifier)"
+//            let uuid = "\(device.peripheral.identifier)"
+            let uuid = "481ADDF5-B65D-45AF-8C48-8B2AA42B7FA3"
             getNotification(uuid: uuid)
         }
     }
