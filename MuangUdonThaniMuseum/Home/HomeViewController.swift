@@ -51,15 +51,20 @@ class HomeViewController: UIViewController {
         case .denied, .restricted:
             break
         case .authorizedWhenInUse:
-            break
-        case .authorizedAlways:
-             print("start monitoring")
+            print("monitoring in use")
             if KTKBeaconManager.isMonitoringAvailable() {
                 for region in regions {
                     beaconManager.startMonitoring(for: region)
                 }
             }
-//            devicesManager.startDevicesDiscovery(withInterval: 10)
+        case .authorizedAlways:
+             print("start monitoring")
+//            if KTKBeaconManager.isMonitoringAvailable() {
+//                for region in regions {
+//                    beaconManager.startMonitoring(for: region)
+//                }
+//            }
+            devicesManager.startDevicesDiscovery()
         @unknown default:
             break
         }
@@ -230,8 +235,8 @@ extension HomeViewController: KTKDevicesManagerDelegate {
         for device in devices {
             print(device.peripheral.identifier)
 //            let uuid = "\(device.peripheral.identifier)"
-            let uuid = "481ADDF5-B65D-45AF-8C48-8B2AA42B7FA3"
-//            getNotification(uuid: uuid)
+            let uuid = "67c2b81b-0a55-446b-a0dd-464e5a21ebc2"
+            getNotification(uuid: uuid)
         }
     }
 }
@@ -243,6 +248,19 @@ extension HomeViewController: KTKBeaconManagerDelegate {
 
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
+            print("start monitoring")
+            if KTKBeaconManager.isMonitoringAvailable() {
+                for region in regions {
+                    beaconManager.startMonitoring(for: region)
+                }
+            }
+        } else if status == .authorizedWhenInUse {
+            print("monitoring in use")
+            if KTKBeaconManager.isMonitoringAvailable() {
+                for region in regions {
+                    beaconManager.startMonitoring(for: region)
+                }
+            }
         }
     }
     

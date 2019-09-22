@@ -58,6 +58,8 @@
 	</array>
 	<key>FacebookAppID</key>
 	<string>459273817999660</string>
+	<key>FacebookDisplayName</key>
+	<string>พิพิธภัณฑ์เมืองอุดรธานี</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

@@ -41,7 +41,7 @@ class ShareViewController: UIViewController {
         let dialog : ShareDialog = ShareDialog()
         dialog.fromViewController = self
         dialog.shareContent = content
-        dialog.mode = ShareDialog.Mode.feedBrowser
+        dialog.mode = ShareDialog.Mode.native
         dialog.show()
 
     }

@@ -10,6 +10,7 @@ import UIKit
 import ObjectMapper
 import Alamofire
 import PromiseKit
+import FBSDKShareKit
 
 class NotiDetailViewController: UIViewController {
 
@@ -92,11 +93,13 @@ class NotiDetailViewController: UIViewController {
         var image_detail: [String] = []
         var video : [String] = []
         var video_detail: [String] = []
+        var share_url: String = ""
         
         u_id = model.u_id ?? ""
         notify = model.notify ?? ""
         topic = model.topic ?? ""
         b_id = model.b_id ?? 0
+        share_url = model.share_url ?? ""
         
         if let videos = model.video ?? nil {
             for vd in videos {
@@ -111,8 +114,11 @@ class NotiDetailViewController: UIViewController {
                 image_detail.append(img.image_detail ?? "")
             }
         }
-        self.viewModel = NotificationViewModel(u_id: u_id, notify: notify, topic: topic, img: image, img_detail: image_detail, video: video, video_detail: video_detail, b_id: b_id)
+        self.viewModel = NotificationViewModel(u_id: u_id, notify: notify, topic: topic, img: image, img_detail: image_detail, video: video, video_detail: video_detail, b_id: b_id, share_url:share_url)
         setNavigationBar(title: viewModel?.notify ?? "Detail")
+        if share_url == "" {
+            thirdTabBar.isEnabled = false
+        }
         tableView.reloadData()
     }
     
@@ -176,10 +182,12 @@ extension NotiDetailViewController: UITabBarDelegate {
         var video : [String] = []
         var videoDes: [String] = []
         var title: String = ""
+        var share_url : String = ""
         if let viewModel = viewModel {
             video = viewModel.video
             videoDes = viewModel.video_detail
             title = viewModel.topic
+            share_url = viewModel.share_url
         }else {
             
         }
@@ -193,7 +201,21 @@ extension NotiDetailViewController: UITabBarDelegate {
         }else if item.tag == 2{
             setPresentViewController(viewController: videoVC)
         }else if item.tag == 3 {
-            setPresentViewController(viewController: shareVC)
+            if share_url != "" {
+                let content = ShareLinkContent()
+                content.contentURL =  URL(string: share_url)!
+
+                let dialog : ShareDialog = ShareDialog()
+                dialog.fromViewController = self
+                dialog.shareContent = content
+                let facebookURL = NSURL(string: "fbauth2://app")
+                if(UIApplication.shared.canOpenURL(facebookURL! as URL)){
+                    dialog.mode = ShareDialog.Mode.native
+                }else{
+                    dialog.mode = ShareDialog.Mode.feedWeb
+                }
+                dialog.show()
+            }
         }
     }
 }
