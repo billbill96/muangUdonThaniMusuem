@@ -40,34 +40,39 @@ class HomeViewController: UIViewController {
         devicesManager = KTKDevicesManager(delegate: self)
         kontaktCloud = KTKCloudClient()
         
-        getAllBeacon()
+        getAllBeacon() { regionss in
+            switch KTKBeaconManager.locationAuthorizationStatus() {
+            case .notDetermined:
+                self.beaconManager.requestLocationAlwaysAuthorization()
+            case .denied, .restricted:
+                break
+            case .authorizedWhenInUse:
+                print("monitoring in use")
+                if KTKBeaconManager.isMonitoringAvailable() {
+                    for region in regionss {
+                        self.beaconManager.startMonitoring(for: region)
+                    }
+                }
+            case .authorizedAlways:
+                 print("start monitoring")
+                if KTKBeaconManager.isMonitoringAvailable() {
+                    for region in regionss {
+                        self.beaconManager.startMonitoring(for: region)
+                    }
+                }
+    //            devicesManager.startDevicesDiscovery()
+            @unknown default:
+                break
+            }
+        }
         
         for region in regions {
             beaconManager.requestState(for: region)
         }
-        switch KTKBeaconManager.locationAuthorizationStatus() {
-        case .notDetermined:
-            beaconManager.requestLocationAlwaysAuthorization()
-        case .denied, .restricted:
-            break
-        case .authorizedWhenInUse:
-            print("monitoring in use")
-            if KTKBeaconManager.isMonitoringAvailable() {
-                for region in regions {
-                    beaconManager.startMonitoring(for: region)
-                }
-            }
-        case .authorizedAlways:
-             print("start monitoring")
-//            if KTKBeaconManager.isMonitoringAvailable() {
-//                for region in regions {
-//                    beaconManager.startMonitoring(for: region)
-//                }
-//            }
-            devicesManager.startDevicesDiscovery()
-        @unknown default:
-            break
-        }
+        let myProximityUuid = UUID(uuidString: "481addf5-b65d-45af-8c48-8b2aa42b7fa3")
+        let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region")
+        
+//        devicesManager.startDevicesDiscovery()
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
@@ -207,7 +212,7 @@ class HomeViewController: UIViewController {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
-    func getAllBeacon() {
+    func getAllBeacon(completion: @escaping ([KTKBeaconRegion]) -> ()) {
         let apiClient1 = KTKCloudClient()
         apiClient1.getObjects(KTKDevice.self) {
             response, error in
@@ -215,7 +220,7 @@ class HomeViewController: UIViewController {
                 var count = 0
                 for device in devices {
                     count += 1
-                    if device.uniqueID.count == 4 {
+                    if device.uniqueID.count < 10 {
                         let major = UInt16(truncating: device.configuration.major ?? 0)
                         let minor = UInt16(truncating: device.configuration.minor ?? 0)
                         let uuid = device.configuration.proximityUUID
@@ -224,6 +229,7 @@ class HomeViewController: UIViewController {
                         self.regions.append(region)
                     }
                 }
+                completion(self.regions)
             }
         }
     }
@@ -231,12 +237,11 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: KTKDevicesManagerDelegate {
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
-//        devicesManager.stopDevicesDiscovery()
+        devicesManager.stopDevicesDiscovery()
         for device in devices {
             print(device.peripheral.identifier)
-//            let uuid = "\(device.peripheral.identifier)"
-            let uuid = "67c2b81b-0a55-446b-a0dd-464e5a21ebc2"
-            getNotification(uuid: uuid)
+            let uuid = "\(device.peripheral.identifier)"
+//            getNotification(uuid: uuid)
         }
     }
 }
@@ -270,7 +275,6 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
-        beaconManager.stopRangingBeacons(in: region)
         print("Exit region \(region)")
     }
     

@@ -40,6 +40,7 @@ class NotiDetailViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = cellHeight
+        tableView.separatorStyle = .none
         
         self.showSpinner(onView: self.view)
         getData(uuid: uuid).done { (data) in
@@ -208,6 +209,7 @@ extension NotiDetailViewController: UITabBarDelegate {
                 let dialog : ShareDialog = ShareDialog()
                 dialog.fromViewController = self
                 dialog.shareContent = content
+                dialog.delegate = self
                 let facebookURL = NSURL(string: "fbauth2://app")
                 if(UIApplication.shared.canOpenURL(facebookURL! as URL)){
                     dialog.mode = ShareDialog.Mode.native
@@ -217,6 +219,20 @@ extension NotiDetailViewController: UITabBarDelegate {
                 dialog.show()
             }
         }
+    }
+}
+
+extension NotiDetailViewController: SharingDelegate {
+    func sharer(_ sharer: Sharing, didCompleteWithResults results: [String : Any]) {
+        print("share complete")
+    }
+    
+    func sharer(_ sharer: Sharing, didFailWithError error: Error) {
+        print("share fail")
+    }
+    
+    func sharerDidCancel(_ sharer: Sharing) {
+        print("share cancel")
     }
 }
 
