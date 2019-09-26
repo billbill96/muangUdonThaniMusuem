@@ -56,7 +56,7 @@ class IntroductionViewController: UIViewController {
             AF.request(url, method: .get, parameters: ["id":1]).responseJSON { response in
             switch response.result {
             case .success(let _):
-                if let model = Mapper<IntroductionViewModel>().map(JSONObject: response.result.value) {
+                if let model = Mapper<IntroductionViewModel>().map(JSONObject: response.value) {
                     resolver.fulfill(model)
                 }
             case .failure(let error):

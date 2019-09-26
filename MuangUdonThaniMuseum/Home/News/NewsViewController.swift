@@ -50,7 +50,7 @@ class NewsViewController: UIViewController {
             AF.request(url).responseJSON { (response) in
                 switch response.result{
                 case .success( _):
-                    if let model =  Mapper<NewViewModel>().mapArray(JSONObject: response.result.value) {
+                    if let model =  Mapper<NewViewModel>().mapArray(JSONObject: response.value) {
                         resolver.fulfill(model)
                     }
                 case .failure(let error):
@@ -86,7 +86,7 @@ extension NewsViewController {
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.startAnimating()
-        ai.center = CGPoint(x: spinnerView.bounds.width/2 - 20, y: spinnerView.bounds.height/2 - 150)
+        ai.center = CGPoint(x: spinnerView.bounds.width/2, y: spinnerView.bounds.height/2 - 150)
         
         DispatchQueue.main.async {
             spinnerView.addSubview(ai)

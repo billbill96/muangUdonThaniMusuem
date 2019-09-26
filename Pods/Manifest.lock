@@ -6,17 +6,19 @@ PODS:
     - FacebookCore (~> 0.9.0)
     - FBSDKCoreKit (~> 5.0)
     - FBSDKShareKit (~> 5.0)
-  - FBSDKCoreKit (5.5.0):
-    - FBSDKCoreKit/Basics (= 5.5.0)
-    - FBSDKCoreKit/Core (= 5.5.0)
-  - FBSDKCoreKit/Basics (5.5.0)
-  - FBSDKCoreKit/Core (5.5.0):
+  - FBSDKCoreKit (5.6.0):
+    - FBSDKCoreKit/Basics (= 5.6.0)
+    - FBSDKCoreKit/Core (= 5.6.0)
+  - FBSDKCoreKit/Basics (5.6.0)
+  - FBSDKCoreKit/Core (5.6.0):
     - FBSDKCoreKit/Basics
-  - FBSDKShareKit (5.5.0):
+  - FBSDKShareKit (5.6.0):
+    - FBSDKShareKit/Share (= 5.6.0)
+  - FBSDKShareKit/Share (5.6.0):
     - FBSDKCoreKit (~> 5.0)
-  - Kingfisher (5.6.0)
+  - Kingfisher (5.7.1)
   - KontaktSDK (2.0.1)
-  - ObjectMapper (3.5.0)
+  - ObjectMapper (3.5.1)
   - PromiseKit (6.11.0):
     - PromiseKit/CorePromise (= 6.11.0)
     - PromiseKit/Foundation (= 6.11.0)
@@ -27,7 +29,7 @@ PODS:
   - PromiseKit/UIKit (6.11.0):
     - PromiseKit/CorePromise
   - SwiftyJSON (4.3.0)
-  - XCDYouTubeKit (2.8.0)
+  - XCDYouTubeKit (2.8.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.2)
@@ -57,14 +59,14 @@ SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
-  FBSDKCoreKit: 7ade9cfea30eef2f6cf105a1aa904f89ea68fb7d
-  FBSDKShareKit: 6316a2dcd2fbc419c87281aa4c50ad0b6ed431e7
-  Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
+  FBSDKCoreKit: d6655a343868d4bb5c29a60859bab07c3be14a0b
+  FBSDKShareKit: 0d8c4cfd5c1f185d5f9c26d79758b141086e1251
+  Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   KontaktSDK: 7dc507f20c8821d13132c6ec09089972e9b8bf5b
-  ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
-  XCDYouTubeKit: 207fa50f3648fc0fd1558b2496c74c3b34af982c
+  XCDYouTubeKit: 4ca4e3322fa556ec1c32932d378365c15ce1386e
 
 PODFILE CHECKSUM: 36ca91646be3379c293bab8998e315fb27cbed74
 

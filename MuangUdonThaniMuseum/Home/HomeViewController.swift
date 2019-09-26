@@ -47,12 +47,7 @@ class HomeViewController: UIViewController {
             case .denied, .restricted:
                 break
             case .authorizedWhenInUse:
-                print("monitoring in use")
-                if KTKBeaconManager.isMonitoringAvailable() {
-                    for region in regionss {
-                        self.beaconManager.startMonitoring(for: region)
-                    }
-                }
+                break
             case .authorizedAlways:
                  print("start monitoring")
                 if KTKBeaconManager.isMonitoringAvailable() {
@@ -64,11 +59,15 @@ class HomeViewController: UIViewController {
             @unknown default:
                 break
             }
+            
+            for region in regionss {
+                self.beaconManager.requestState(for: region)
+            }
+
         }
         
-        for region in regions {
-            beaconManager.requestState(for: region)
-        }
+
+        
         let myProximityUuid = UUID(uuidString: "481addf5-b65d-45af-8c48-8b2aa42b7fa3")
         let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region")
         
@@ -192,7 +191,7 @@ class HomeViewController: UIViewController {
     func getNotification(uuid: String) {
         let url = "http://104.199.252.182:9000/api/Beacon/notification"
         AF.request(url, method: .get, parameters: ["id":uuid.lowercased()]).responseJSON { response in
-            let model =  Mapper<NotificationModel>().map(JSONObject: response.result.value)
+            let model =  Mapper<NotificationModel>().map(JSONObject: response.value)
             if let data = model {
                 if data.notify != "" {
                     self.createLocalNotification(title: data.notify ?? "", uuid: uuid)
@@ -248,22 +247,20 @@ extension HomeViewController: KTKDevicesManagerDelegate {
 
 extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
-        print("in state  \(region)")
+        print("in state \(state.rawValue) \(region)")
+        if state.rawValue == 1 {
+//            beaconManager.startRangingBeacons(in: region)
+        }
     }
 
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
-            print("start monitoring")
             if KTKBeaconManager.isMonitoringAvailable() {
-                for region in regions {
-                    beaconManager.startMonitoring(for: region)
-                }
-            }
-        } else if status == .authorizedWhenInUse {
-            print("monitoring in use")
-            if KTKBeaconManager.isMonitoringAvailable() {
-                for region in regions {
-                    beaconManager.startMonitoring(for: region)
+                if regions.count > 0 {
+                    print("start monitoring")
+                    for region in regions {
+                        beaconManager.startMonitoring(for: region)
+                    }
                 }
             }
         }
@@ -280,8 +277,10 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         if beacons.count > 0 {
+            beaconManager.stopMonitoring(for: region)
             for beacon in beacons {
-                print("\(beacon)")
+                let uuid = "\(beacon.proximityUUID)"
+                getNotification(uuid: uuid)
             }
         }
     }

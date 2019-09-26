@@ -53,6 +53,10 @@ class VideoCellTableViewCell: UITableViewCell {
         delegate.playVideo(url: url)
     }
     
+    @IBAction func buttonClicked(_ sender: Any) {
+         delegate.playVideo(url: url)
+    }
+    
     func getThumbnailImage(url: String) -> String {
         if let start = url.firstIndex(of: "=") {
             let index = url.index(after: start)
