@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 import XCDYouTubeKit
+import FBSDKShareKit
 
 struct YouTubeVideoQuality {
     static let hd720 = NSNumber(value: XCDYouTubeVideoQuality.HD720.rawValue)
@@ -20,17 +21,23 @@ struct YouTubeVideoQuality {
 class VideoViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var firstTabBar: UITabBarItem!
+    @IBOutlet weak var secondTabBar: UITabBarItem!
+    @IBOutlet weak var thirdTabBar: UITabBarItem!
+    
+    
     let cellHeight: CGFloat = 275
     var videoUrl: [String] = []
     var videoDescrip: [String] = []
+    var shareUrl: String = ""
     var navTitle = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let titleLabel = UILabel()
-        titleLabel.text = title
+        titleLabel.text = navTitle
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)//UIFont(name: "Roboto-Bold", size: 20)
         
@@ -41,6 +48,7 @@ class VideoViewController: UIViewController {
         
         navigationItem.titleView = hStack
         navigationController?.navigationBar.barTintColor = AppsColor.red
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
         
         tableView.register(UINib(nibName: "VideoCellTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
@@ -49,13 +57,27 @@ class VideoViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = cellHeight
 
+        tabBar.delegate = self
+        firstTabBar.tag = 1
+        secondTabBar.tag = 2
+        thirdTabBar.tag = 3
+        
+        if shareUrl == "" {
+            thirdTabBar.isEnabled = false
+        }
+
+        tabBar.selectedItem = secondTabBar
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBar.selectedItem = secondTabBar
     }
     
     convenience init() {
-        self.init(title: "",video: [], videoDescrip: [])
+        self.init(title: "",video: [], videoDescrip: [], shareUrl: "")
     }
     
-    init(title: String,video: [String], videoDescrip: [String]) {
+    init(title: String,video: [String], videoDescrip: [String],shareUrl: String) {
         var newVideoUrl: [String] = []
         var newDes: [String] = []
         for video in video {
@@ -71,13 +93,15 @@ class VideoViewController: UIViewController {
         self.navTitle = title
         self.videoUrl = newVideoUrl
         self.videoDescrip = newDes
+        self.shareUrl = shareUrl
+        
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
 
 extension VideoViewController: UITableViewDelegate, UITableViewDataSource,VideoCellTableViewCellDelegate {
@@ -115,5 +139,53 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource,VideoC
                 self.dismiss(animated: true, completion: nil)
             }
         }
+    }
+}
+
+extension VideoViewController: UITabBarDelegate {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        let homeVC = HomeViewController()
+        let home = UINavigationController(rootViewController: homeVC)
+        
+        if item.tag == 1 {
+            home.modalPresentationStyle = .fullScreen
+            self.present(home,animated: true)
+        }else if item.tag == 2{
+//            setPresentViewController(viewController: videoVC)
+        }else if item.tag == 3 {
+            if shareUrl != "" {
+                let content = ShareLinkContent()
+                content.contentURL =  URL(string: shareUrl)!
+
+                let dialog : ShareDialog = ShareDialog()
+                dialog.fromViewController = self
+                dialog.shareContent = content
+                dialog.delegate = self
+                let facebookURL = NSURL(string: "fbauth2://app")
+                if(UIApplication.shared.canOpenURL(facebookURL! as URL)){
+                    dialog.mode = ShareDialog.Mode.native
+                }else{
+                    dialog.mode = ShareDialog.Mode.feedWeb
+                }
+                dialog.show()
+            }
+        }
+    }
+}
+
+extension VideoViewController: SharingDelegate {
+    func sharer(_ sharer: Sharing, didCompleteWithResults results: [String : Any]) {
+        print("share complete")
+        tabBar.selectedItem = secondTabBar
+    }
+    
+    func sharer(_ sharer: Sharing, didFailWithError error: Error) {
+        print("share fail")
+        tabBar.selectedItem = secondTabBar
+    }
+    
+    func sharerDidCancel(_ sharer: Sharing) {
+        print("share cancel")
+        tabBar.selectedItem = secondTabBar
     }
 }

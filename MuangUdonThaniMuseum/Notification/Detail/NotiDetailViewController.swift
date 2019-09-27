@@ -51,6 +51,12 @@ class NotiDetailViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
         }
+        
+        tabBar.selectedItem = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBar.selectedItem = .none
     }
     
     func setNavigationBar(title: String) {
@@ -184,23 +190,26 @@ extension NotiDetailViewController: UITabBarDelegate {
         var videoDes: [String] = []
         var title: String = ""
         var share_url : String = ""
+        var navBarTitle: String = "Detail"
         if let viewModel = viewModel {
             video = viewModel.video
             videoDes = viewModel.video_detail
             title = viewModel.topic
             share_url = viewModel.share_url
+            navBarTitle = viewModel.notify
         }else {
             
         }
         
-        let videoVC = VideoViewController(title: title, video: video, videoDescrip: videoDes)
+        let videoVC = VideoViewController(title: title, video: video, videoDescrip: videoDes, shareUrl: share_url)
+        videoVC.navTitle = navBarTitle
         let shareVC = ShareViewController()
         
         if item.tag == 1 {
             home.modalPresentationStyle = .fullScreen
             self.present(home,animated: true)
         }else if item.tag == 2{
-            setPresentViewController(viewController: videoVC)
+            self.navigationController?.pushViewController(videoVC, animated: true)
         }else if item.tag == 3 {
             if share_url != "" {
                 let content = ShareLinkContent()
@@ -225,14 +234,17 @@ extension NotiDetailViewController: UITabBarDelegate {
 extension NotiDetailViewController: SharingDelegate {
     func sharer(_ sharer: Sharing, didCompleteWithResults results: [String : Any]) {
         print("share complete")
+        tabBar.selectedItem = .none
     }
     
     func sharer(_ sharer: Sharing, didFailWithError error: Error) {
         print("share fail")
+        tabBar.selectedItem = .none
     }
     
     func sharerDidCancel(_ sharer: Sharing) {
         print("share cancel")
+        tabBar.selectedItem = .none
     }
 }
 

@@ -55,7 +55,7 @@ class IntroductionViewController: UIViewController {
         return Promise () { resolver in
             AF.request(url, method: .get, parameters: ["id":1]).responseJSON { response in
             switch response.result {
-            case .success(let _):
+            case .success( _):
                 if let model = Mapper<IntroductionViewModel>().map(JSONObject: response.value) {
                     resolver.fulfill(model)
                 }
@@ -67,7 +67,7 @@ class IntroductionViewController: UIViewController {
     }
 
     func setupView(data : IntroductionViewModel) {
-        introductionLabel.text = data.intro_desc
+        introductionLabel.text = "Introduction"
         descripLabel.text = data.intro_desc
         
         guard let url = URL(string: data.intro_img ?? "") else { return }

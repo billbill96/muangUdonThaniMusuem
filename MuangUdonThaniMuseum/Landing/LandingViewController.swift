@@ -38,7 +38,7 @@ class LandingViewController: UIViewController {
     }
 
     func setupView(data: LandingViewModel) {
-        welcomeLabel.text = data.intro_desc
+        welcomeLabel.text = data.start_desc
         
         guard let url = URL(string: data.start_img!) else { return }
         backgroundImage.kf.setImage(with: url)
