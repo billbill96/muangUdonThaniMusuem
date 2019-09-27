@@ -128,37 +128,6 @@ class NotiDetailViewController: UIViewController {
         }
         tableView.reloadData()
     }
-    
-    func setPresentViewController(viewController: UIViewController) {
-        removeViewController(vc: presentViewController)
-        tableView.isHidden = true
-        presentViewController = viewController
-        addViewController(vc: presentViewController)
-    }
-    
-    func addViewController(vc: UIViewController?) {
-        guard let viewController = vc ,let childView = viewController.view else { return }
-        
-        addChild(viewController)
-        contentView.addSubview(childView)
-        viewController.didMove(toParent: self)
-        
-        childView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            childView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            childView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            childView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            childView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            ])
-    }
-    
-    func removeViewController(vc : UIViewController?) {
-        guard let viewController = vc else { return }
-        viewController.willMove(toParent: nil)
-        viewController.view.removeFromSuperview()
-        viewController.removeFromParent()
-    }
-
 }
 
 extension NotiDetailViewController: UITableViewDelegate,UITableViewDataSource {
@@ -198,12 +167,13 @@ extension NotiDetailViewController: UITabBarDelegate {
             share_url = viewModel.share_url
             navBarTitle = viewModel.notify
         }else {
-            
+            let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
         let videoVC = VideoViewController(title: title, video: video, videoDescrip: videoDes, shareUrl: share_url)
         videoVC.navTitle = navBarTitle
-        let shareVC = ShareViewController()
         
         if item.tag == 1 {
             home.modalPresentationStyle = .fullScreen
