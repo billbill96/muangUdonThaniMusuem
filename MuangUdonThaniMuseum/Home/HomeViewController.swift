@@ -249,7 +249,7 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
         print("in state \(state.rawValue) \(region)")
         if state.rawValue == 1 {
-            beaconManager.startRangingBeacons(in: region)
+//            beaconManager.startRangingBeacons(in: region)
         }
     }
 
