@@ -33,10 +33,11 @@ class TopStoryViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = cellHeight
+        tableView.tableFooterView = UIView()
         
-        self.showSpinner(onView: self.view)
+//        self.showSpinner(onView: self.view)
         getData().done { (data) in
-            self.removeSpinner()
+//            self.removeSpinner()
             self.data = data
             }.catch { error in
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
@@ -98,11 +99,11 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension TopStoryViewController {
     func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
+        let spinnerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.startAnimating()
-        ai.center = CGPoint(x: spinnerView.bounds.width/2, y: spinnerView.bounds.height/2 - 150)
+        ai.center = CGPoint(x: spinnerView.frame.width/2, y: spinnerView.frame.height/2 - 150)
         
         DispatchQueue.main.async {
             spinnerView.addSubview(ai)

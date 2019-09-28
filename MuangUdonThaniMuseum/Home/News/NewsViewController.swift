@@ -31,11 +31,12 @@ class NewsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = cellHeight
-
-        self.showSpinner(onView: self.view)
+        tableView.tableFooterView = UIView()
+        
+//        self.showSpinner(onView: self.view)
         getData().done { (data) in
             self.data = data
-            self.removeSpinner()
+//            self.removeSpinner()
             }.catch { error in
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -82,11 +83,11 @@ extension NewsViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension NewsViewController {
     func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: onView.bounds)
+        let spinnerView = UIView.init(frame: onView.frame)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.startAnimating()
-        ai.center = CGPoint(x: spinnerView.bounds.width/2, y: spinnerView.bounds.height/2 - 150)
+        ai.center = CGPoint(x: spinnerView.frame.width/2, y: spinnerView.frame.height/2 - 150)
         
         DispatchQueue.main.async {
             spinnerView.addSubview(ai)

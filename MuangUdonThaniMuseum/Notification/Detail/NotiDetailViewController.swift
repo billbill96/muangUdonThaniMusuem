@@ -42,10 +42,10 @@ class NotiDetailViewController: UIViewController {
         tableView.estimatedRowHeight = cellHeight
         tableView.separatorStyle = .none
         
-        self.showSpinner(onView: self.view)
+//        self.showSpinner(onView: self.view)
         getData(uuid: uuid).done { (data) in
             self.setupData(model: data)
-            self.removeSpinner()
+//            self.removeSpinner()
             }.catch { error in
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -221,7 +221,7 @@ extension NotiDetailViewController: SharingDelegate {
 
 extension NotiDetailViewController {
     func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: onView.bounds)
+        let spinnerView = UIView.init(frame: onView.frame)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.startAnimating()
