@@ -16,6 +16,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class LandingViewController: UIViewController {
         
         guard let url = URL(string: data.start_img!) else { return }
         backgroundImage.kf.setImage(with: url)
+        backgroundHeight.constant = view.frame.height / 2
         changeViewController()
     }
     

@@ -61,7 +61,7 @@ class NotiDetailViewController: UIViewController {
     
     func setNavigationBar(title: String) {
         let titleLabel = UILabel()
-        titleLabel.text = title
+        titleLabel.text = "Detail"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
@@ -173,7 +173,7 @@ extension NotiDetailViewController: UITabBarDelegate {
         }
         
         let videoVC = VideoViewController(title: title, video: video, videoDescrip: videoDes, shareUrl: share_url)
-        videoVC.navTitle = navBarTitle
+        videoVC.navTitle = "Detail"
         
         if item.tag == 1 {
             home.modalPresentationStyle = .fullScreen

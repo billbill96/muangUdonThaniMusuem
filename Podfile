@@ -14,4 +14,5 @@ target 'MuangUdonThaniMuseum' do
 	pod "XCDYouTubeKit", "~> 2.8"
 	pod "PromiseKit", "~> 6.8"
 	pod 'FacebookShare'
+	pod 'GoogleMaps'
 end

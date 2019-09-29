@@ -12,6 +12,7 @@ import NotificationCenter
 import UserNotifications
 import Alamofire
 import ObjectMapper
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,14 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Kontakt.setAPIKey("dYysPEwOZXFSqTbtoioQDxWAffdJfAAB")
-        
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-            (granted, error) in
-            print("permission granted \(granted)")
-            guard granted else { return }
-        }
+        GMSServices.provideAPIKey("AIzaSyDSKokO88Mtl_WJqJFtRjCjbgCxecDN290")
 
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 

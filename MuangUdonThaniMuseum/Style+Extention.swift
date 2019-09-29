@@ -15,6 +15,7 @@ enum AppsColor {
     static let grey = UIColor(rgb: 0x505050)
     static let lightGrey = UIColor(rgb: 0x707070)
     static let darkGrey = UIColor(rgb: 0x4E4E4E)
+    static let light = UIColor(rgb: 0xB61721)
 }
 
 extension UIColor {

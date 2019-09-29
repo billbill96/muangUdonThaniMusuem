@@ -100,6 +100,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZHl-6k-SGn"/>
                     <connections>
+                        <outlet property="backgroundView" destination="XfH-yD-Ia5" id="vLx-ug-3wq"/>
                         <outlet property="continueButton" destination="0vi-1S-IX0" id="9JX-ve-QK5"/>
                         <outlet property="descripLabel" destination="2Sc-aK-tbf" id="T7V-kk-gT2"/>
                         <outlet property="imageView" destination="30a-YF-uPJ" id="D46-Aj-f1b"/>
@@ -119,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wi-YH-UE0">
-                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem tag="1" title="Home" image="icons8-facebook-26" id="yWy-pu-r2N"/>
@@ -152,7 +153,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-IH-OV5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="435" width="414" height="461"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="461" id="Lcq-48-tZz"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCs-vZ-ei2">
                                 <rect key="frame" x="8" y="99" width="398" height="0.0"/>
@@ -169,19 +173,19 @@
                             <constraint firstItem="yCs-vZ-ei2" firstAttribute="centerX" secondItem="pNy-KC-9jV" secondAttribute="centerX" id="cR1-VG-Lca"/>
                             <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="FrK-IH-OV5" secondAttribute="trailing" id="eif-HW-trW"/>
                             <constraint firstItem="ZbK-3I-aWs" firstAttribute="trailing" secondItem="yCs-vZ-ei2" secondAttribute="trailing" constant="8" id="fd7-UV-vQY"/>
-                            <constraint firstItem="FrK-IH-OV5" firstAttribute="top" secondItem="pNy-KC-9jV" secondAttribute="top" id="mTs-aI-1I8"/>
                             <constraint firstItem="FrK-IH-OV5" firstAttribute="leading" secondItem="ZbK-3I-aWs" secondAttribute="leading" id="zXQ-WC-HMB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZbK-3I-aWs"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundHeight" destination="Lcq-48-tZz" id="3ds-ke-FZK"/>
                         <outlet property="backgroundImage" destination="FrK-IH-OV5" id="9X5-GT-vNJ"/>
                         <outlet property="welcomeLabel" destination="yCs-vZ-ei2" id="Czo-S5-d4r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5i9-bD-EzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1810" y="29"/>
+            <point key="canvasLocation" x="-1810.144927536232" y="28.794642857142854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Juf-hs-YuA">

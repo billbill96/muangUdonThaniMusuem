@@ -18,6 +18,7 @@ class IntroductionViewController: UIViewController {
     @IBOutlet weak var introductionLabel: UILabel!
     @IBOutlet weak var descripLabel: UILabel!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var backgroundView: UIView!
     
     var vSpinner : UIView?
 
@@ -81,7 +82,13 @@ class IntroductionViewController: UIViewController {
         let home = HomeViewController()
         let vc = UINavigationController(rootViewController: home)
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+       
+        let alert = UIAlertController(title: "Permission", message: "To use this app you should allow .... ", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+            self.present(vc, animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+
     }
 }
 

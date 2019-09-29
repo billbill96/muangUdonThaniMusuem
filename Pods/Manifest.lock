@@ -16,7 +16,14 @@ PODS:
     - FBSDKShareKit/Share (= 5.6.0)
   - FBSDKShareKit/Share (5.6.0):
     - FBSDKCoreKit (~> 5.0)
-  - Kingfisher (5.7.1)
+  - GoogleMaps (3.4.0):
+    - GoogleMaps/Maps (= 3.4.0)
+  - GoogleMaps/Base (3.4.0)
+  - GoogleMaps/Maps (3.4.0):
+    - GoogleMaps/Base
+  - Kingfisher (5.8.1):
+    - Kingfisher/Core (= 5.8.1)
+  - Kingfisher/Core (5.8.1)
   - KontaktSDK (2.0.1)
   - ObjectMapper (3.5.1)
   - PromiseKit (6.11.0):
@@ -34,6 +41,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.2)
   - FacebookShare
+  - GoogleMaps
   - Kingfisher (~> 5.0)
   - KontaktSDK (~> 2.0)
   - ObjectMapper (~> 3.4)
@@ -48,6 +56,7 @@ SPEC REPOS:
     - FacebookShare
     - FBSDKCoreKit
     - FBSDKShareKit
+    - GoogleMaps
     - Kingfisher
     - KontaktSDK
     - ObjectMapper
@@ -61,13 +70,14 @@ SPEC CHECKSUMS:
   FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
   FBSDKCoreKit: d6655a343868d4bb5c29a60859bab07c3be14a0b
   FBSDKShareKit: 0d8c4cfd5c1f185d5f9c26d79758b141086e1251
-  Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
+  GoogleMaps: 67f4a604f80dd6a22d09c2a507a3a395b9f23060
+  Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
   KontaktSDK: 7dc507f20c8821d13132c6ec09089972e9b8bf5b
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   XCDYouTubeKit: 4ca4e3322fa556ec1c32932d378365c15ce1386e
 
-PODFILE CHECKSUM: 36ca91646be3379c293bab8998e315fb27cbed74
+PODFILE CHECKSUM: 716e1a4d1e0cd697ed9cceaee99819f8b4ac4b04
 
 COCOAPODS: 1.5.3
