@@ -206,7 +206,7 @@ class HomeViewController: UIViewController {
         content.title = title
         content.userInfo = ["uuid": uuid] as [String:String]
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
