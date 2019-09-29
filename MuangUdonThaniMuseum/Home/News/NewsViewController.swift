@@ -69,7 +69,7 @@ extension NewsViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TopStoryTableViewCell
-        cell.setupCell(image: data[indexPath.row].image ?? "", topic: data[indexPath.row].topic ?? "", time: "6 hours ago")
+        cell.setupCell(image: data[indexPath.row].image ?? "", topic: data[indexPath.row].topic ?? "", time: "")
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
