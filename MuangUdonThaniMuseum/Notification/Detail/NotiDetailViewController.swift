@@ -42,21 +42,23 @@ class NotiDetailViewController: UIViewController {
         tableView.estimatedRowHeight = cellHeight
         tableView.separatorStyle = .none
         
-//        self.showSpinner(onView: self.view)
-        getData(uuid: uuid).done { (data) in
-            self.setupData(model: data)
-//            self.removeSpinner()
-            }.catch { error in
-                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-        }
-        
+        setupData()
         tabBar.selectedItem = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBar.selectedItem = .none
+    }
+    
+    func setupData() {
+        getData(uuid: uuid).done { (data) in
+            self.setupData(model: data)
+            }.catch { error in
+                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                self.setupData()
+        }
     }
     
     func setNavigationBar(title: String) {

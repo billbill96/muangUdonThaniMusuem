@@ -26,16 +26,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="807"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XfH-yD-Ia5">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mo4-oW-Jkx">
-                                                        <rect key="frame" x="207" y="55" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="207" y="50" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Bold" family="Bodoni 72 Oldstyle" pointSize="40"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sc-aK-tbf">
-                                                        <rect key="frame" x="30" y="135" width="354" height="0.0"/>
+                                                        <rect key="frame" x="30" y="80" width="354" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="26"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -44,18 +44,18 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="Mo4-oW-Jkx" firstAttribute="centerX" secondItem="XfH-yD-Ia5" secondAttribute="centerX" id="CRD-6w-fAe"/>
-                                                    <constraint firstAttribute="bottom" secondItem="2Sc-aK-tbf" secondAttribute="bottom" id="IjN-WS-3Of"/>
-                                                    <constraint firstItem="2Sc-aK-tbf" firstAttribute="top" secondItem="XfH-yD-Ia5" secondAttribute="top" constant="135" id="XBq-Dy-tob"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2Sc-aK-tbf" secondAttribute="bottom" id="VeV-fa-us6"/>
                                                     <constraint firstItem="2Sc-aK-tbf" firstAttribute="centerX" secondItem="XfH-yD-Ia5" secondAttribute="centerX" id="hIc-bq-rRq"/>
-                                                    <constraint firstItem="Mo4-oW-Jkx" firstAttribute="top" secondItem="XfH-yD-Ia5" secondAttribute="top" constant="55" id="xAZ-Uz-6UX"/>
+                                                    <constraint firstItem="2Sc-aK-tbf" firstAttribute="top" secondItem="Mo4-oW-Jkx" secondAttribute="bottom" constant="30" id="jHC-dH-2ma"/>
+                                                    <constraint firstItem="Mo4-oW-Jkx" firstAttribute="top" secondItem="XfH-yD-Ia5" secondAttribute="top" constant="50" id="xBm-Vg-rot"/>
                                                     <constraint firstItem="2Sc-aK-tbf" firstAttribute="leading" secondItem="XfH-yD-Ia5" secondAttribute="leading" constant="30" id="xT5-g3-3To"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="XfH-yD-Ia5" firstAttribute="leading" secondItem="OrB-aD-Lci" secondAttribute="leading" id="1A6-t4-Pzb"/>
-                                            <constraint firstAttribute="bottom" secondItem="XfH-yD-Ia5" secondAttribute="bottom" id="Sjq-3o-N2N"/>
                                             <constraint firstItem="XfH-yD-Ia5" firstAttribute="top" secondItem="OrB-aD-Lci" secondAttribute="top" id="VWP-kG-cDK"/>
+                                            <constraint firstItem="XfH-yD-Ia5" firstAttribute="bottom" secondItem="OrB-aD-Lci" secondAttribute="bottom" id="nnF-mS-JMY"/>
                                             <constraint firstItem="XfH-yD-Ia5" firstAttribute="centerX" secondItem="OrB-aD-Lci" secondAttribute="centerX" id="r3J-0m-6Ah"/>
                                             <constraint firstAttribute="trailing" secondItem="XfH-yD-Ia5" secondAttribute="trailing" id="yHW-od-Op8"/>
                                         </constraints>

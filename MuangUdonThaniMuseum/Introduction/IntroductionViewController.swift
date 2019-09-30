@@ -40,6 +40,10 @@ class IntroductionViewController: UIViewController {
         
         continueButton.isHidden = true
         self.showSpinner(onView: self.view)
+        setupData()
+    }
+    
+    func setupData() {
         getData().done { (data) in
             self.removeSpinner()
             self.setupView(data: data)
@@ -47,14 +51,14 @@ class IntroductionViewController: UIViewController {
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.setupData()
         }
-        
     }
     
     func getData() -> Promise<IntroductionViewModel> {
         let url = "http://104.199.252.182:9000/api/Beacon/introduction"
         return Promise () { resolver in
-            AF.request(url, method: .get, parameters: ["id":1]).responseJSON { response in
+            AF.request(url, method: .get).responseJSON { response in
             switch response.result {
             case .success( _):
                 if let model = Mapper<IntroductionViewModel>().map(JSONObject: response.value) {
@@ -82,8 +86,16 @@ class IntroductionViewController: UIViewController {
         let home = HomeViewController()
         let vc = UINavigationController(rootViewController: home)
         vc.modalPresentationStyle = .fullScreen
-       
-        let alert = UIAlertController(title: "Permission", message: "To use this app you should allow .... ", preferredStyle: UIAlertController.Style.alert)
+        
+        var message = ""
+        let preferredLanguage = NSLocale.preferredLanguages[0]
+        if preferredLanguage == "en"  {
+            message = "Application need to access your loacation and bluetooth. Please turn ON your GPS and Blutooth"
+        } else {
+            message = "แอพพลิเคชั่นมีความจำเป็นต้องเปิดใช้งานอินเทอร์เน็ต, gps, blutooth"
+        }
+        
+        let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
             self.present(vc, animated: true, completion: nil)
         }))

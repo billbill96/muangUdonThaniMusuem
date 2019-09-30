@@ -34,6 +34,7 @@ class TopStoryTableViewCell: UITableViewCell {
         }
         else{
             imageTopic.image = UIImage(named: "Unknown")
+            imageTopic.contentMode = .scaleAspectFit
         }
         
         topicLabel.text = topic

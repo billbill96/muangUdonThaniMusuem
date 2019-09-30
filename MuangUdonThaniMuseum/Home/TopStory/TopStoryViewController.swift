@@ -35,14 +35,17 @@ class TopStoryViewController: UIViewController {
         tableView.estimatedRowHeight = cellHeight
         tableView.tableFooterView = UIView()
         
-//        self.showSpinner(onView: self.view)
+        setupData()
+    }
+    
+    func setupData() {
         getData().done { (data) in
-//            self.removeSpinner()
             self.data = data
             }.catch { error in
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.setupData()
         }
     }
     

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03FC09663D62D601642A4BF4 /* Pods_MuangUdonThaniMuseum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2E2B8310ABC017AC08741C /* Pods_MuangUdonThaniMuseum.framework */; };
 		3313DAE82323E509002F4578 /* TopStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DAE62323E509002F4578 /* TopStoryTableViewCell.swift */; };
 		3313DAE92323E509002F4578 /* TopStoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3313DAE72323E509002F4578 /* TopStoryTableViewCell.xib */; };
 		3313DAEC2323F582002F4578 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DAEA2323F582002F4578 /* NewsViewController.swift */; };
@@ -43,6 +42,7 @@
 		33C826412320082A009305EB /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33C8263F2320082A009305EB /* VideoViewController.xib */; };
 		33C8264423200833009305EB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8264223200833009305EB /* ShareViewController.swift */; };
 		33C8264523200833009305EB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33C8264323200833009305EB /* ShareViewController.xib */; };
+		33D893E7234249B80093FBA6 /* Pods_MuangUdonThaniMuseum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2E2B8310ABC017AC08741C /* Pods_MuangUdonThaniMuseum.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03FC09663D62D601642A4BF4 /* Pods_MuangUdonThaniMuseum.framework in Frameworks */,
+				33D893E7234249B80093FBA6 /* Pods_MuangUdonThaniMuseum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +634,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = billbill.MuangUdonThaniMuseum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -656,7 +656,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = billbill.MuangUdonThaniMuseum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
