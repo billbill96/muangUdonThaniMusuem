@@ -13,6 +13,7 @@ import UserNotifications
 import Alamofire
 import ObjectMapper
 import GoogleMaps
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -79,7 +80,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         notification: UNNotification, withCompletionHandler completionHandler:
         @escaping (UNNotificationPresentationOptions) -> Void) {
         
+        
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
         // show alert while app is running in foreground
-        return completionHandler(UNNotificationPresentationOptions.alert)
+        return completionHandler([UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.alert])
     }
 }

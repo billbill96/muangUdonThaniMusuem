@@ -28,7 +28,7 @@ class VideoCellTableViewCell: UITableViewCell {
     }
 
     func setupCell(topic: String, urlVideo: String) {
-        topicLabel.font = UIFont(name: "HelveticaNeue-medium", size: 25)
+        topicLabel.font = UIFont.boldSystemFont(ofSize: 20)
 //        descripLabel.font = UIFont(name: "HelveticaNeue-regular", size: 16)
         topicLabel.textColor = AppsColor.darkGrey
 //        descripLabel.textColor = AppsColor.darkGrey

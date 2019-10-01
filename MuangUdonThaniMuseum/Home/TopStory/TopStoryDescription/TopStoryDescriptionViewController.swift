@@ -66,9 +66,9 @@ class TopStoryDescriptionViewController: UIViewController {
     
     
     func setupView() {
-        topicLabel.font = UIFont(name: "HelveticaNeue-bold", size: 21)
+        topicLabel.font = UIFont.boldSystemFont(ofSize: 20)
         topicLabel.textColor = AppsColor.grey
-        descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 20)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
         descriptionLabel.textColor = AppsColor.lightGrey
 
         topicLabel.text = topic

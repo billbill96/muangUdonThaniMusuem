@@ -6,6 +6,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -46,6 +48,8 @@
 		<true/>
 	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>App uses Bluetooth to find, connect and communicate with nearby devices. Please grant access.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>App uses Bluetooth to find, connect and communicate with nearby devices. Please grant access.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Will you allow this app to always know your location?</string>
