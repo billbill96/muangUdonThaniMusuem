@@ -23,9 +23,9 @@ class NotiDetailViewCell: UITableViewCell {
     }
     
     func setupView() {
-        topicLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        topicLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         topicLabel.textColor = AppsColor.grey
-        descripLabel.font = UIFont.systemFont(ofSize: 16)
+        descripLabel.font = UIFont.preferredFont(forTextStyle: .body)
         descripLabel.textColor = AppsColor.lightGrey
     }
     

@@ -155,19 +155,24 @@ extension VideoViewController: UITabBarDelegate {
         }else if item.tag == 3 {
             if shareUrl != "" {
                 let content = ShareLinkContent()
-                content.contentURL =  URL(string: shareUrl)!
+                if let url =  URL(string: shareUrl) {
+                    content.contentURL =  url
 
-                let dialog : ShareDialog = ShareDialog()
-                dialog.fromViewController = self
-                dialog.shareContent = content
-                dialog.delegate = self
-                let facebookURL = NSURL(string: "fbauth2://app")
-                if(UIApplication.shared.canOpenURL(facebookURL! as URL)){
-                    dialog.mode = ShareDialog.Mode.native
-                }else{
-                    dialog.mode = ShareDialog.Mode.feedWeb
+                    let dialog : ShareDialog = ShareDialog()
+                    dialog.fromViewController = self
+                    dialog.shareContent = content
+                    dialog.delegate = self
+                    let facebookURL = NSURL(string: "fbauth2://app")
+                    if(UIApplication.shared.canOpenURL(facebookURL! as URL)){
+                        dialog.mode = ShareDialog.Mode.native
+                    }else{
+                        dialog.mode = ShareDialog.Mode.feedWeb
+                    }
+                    dialog.show()
                 }
-                dialog.show()
+                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

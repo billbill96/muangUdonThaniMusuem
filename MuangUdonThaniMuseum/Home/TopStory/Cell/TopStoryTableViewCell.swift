@@ -22,9 +22,9 @@ class TopStoryTableViewCell: UITableViewCell {
     }
 
     func setupCellView() {
-        topicLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        topicLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         topicLabel.textColor = AppsColor.grey
-        timeLabel.font = UIFont.systemFont(ofSize: 16)
+        timeLabel.font = UIFont.preferredFont(forTextStyle: .body)
         timeLabel.textColor = AppsColor.grey
     }
     

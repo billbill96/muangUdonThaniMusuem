@@ -68,9 +68,15 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
             case .denied, .restricted:
                 break
             case .authorizedWhenInUse:
-                break
+                print("when in use")
+                if KTKBeaconManager.isMonitoringAvailable() {
+                    self.devicesManager.startDevicesDiscovery()
+                    for region in regionss {
+                        self.beaconManager.startMonitoring(for: region)
+                    }
+                }
             case .authorizedAlways:
-                 print("start monitoring")
+                 print("authorizedAlways")
                 if KTKBeaconManager.isMonitoringAvailable() {
                     self.devicesManager.startDevicesDiscovery()
                     for region in regionss {
@@ -270,6 +276,7 @@ extension HomeViewController: KTKDevicesManagerDelegate {
                 print("unique \(device.uniqueID)")
                 for region in self.regions {
                     if region.identifier == device.uniqueID {
+//                        self.getNotification(uuid: "\(region.proximityUUID)")
                         if !HomeViewController.alreadyDiscover.contains(region) {
                             print("getnotification \(region.identifier)")
                             HomeViewController.alreadyDiscover.append(region)
@@ -308,6 +315,16 @@ extension HomeViewController: KTKBeaconManagerDelegate {
             if KTKBeaconManager.isMonitoringAvailable() {
                 if regions.count > 0 {
                     print("start monitoring")
+                    for region in regions {
+                        beaconManager.startMonitoring(for: region)
+                        devicesManager.startDevicesDiscovery()
+                    }
+                }
+            }
+        } else if status == .authorizedWhenInUse {
+            if KTKBeaconManager.isMonitoringAvailable() {
+                if regions.count > 0 {
+                    print("start authorizedWhenInUse")
                     for region in regions {
                         beaconManager.startMonitoring(for: region)
                         devicesManager.startDevicesDiscovery()

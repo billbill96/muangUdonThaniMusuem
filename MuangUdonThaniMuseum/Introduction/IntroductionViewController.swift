@@ -12,7 +12,7 @@ import Alamofire
 import ObjectMapper
 import PromiseKit
 
-class IntroductionViewController: UIViewController {
+class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
   
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var introductionLabel: UILabel!
@@ -20,15 +20,18 @@ class IntroductionViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
     
-    var vSpinner : UIView?
+    var activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 //        imageView.image = UIImage(named: "museum")?.image(alpha: 0.16)
         introductionLabel.textColor = AppsColor.oldRed
+        introductionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        
         descripLabel.textColor = AppsColor.oldRed
         descripLabel.lineBreakMode = .byWordWrapping
+        descripLabel.font = UIFont.preferredFont(forTextStyle: .body)
         
         continueButton.setTitle("Continue", for: .normal)
         continueButton.setTitleColor(AppsColor.oldRed, for: .normal)
@@ -39,13 +42,13 @@ class IntroductionViewController: UIViewController {
         continueButton.layer.borderWidth = 3
         
         continueButton.isHidden = true
-        self.showSpinner(onView: self.view)
+        showActivityIndicator()
         setupData()
     }
     
     func setupData() {
         getData().done { (data) in
-            self.removeSpinner()
+            self.hideActivityIndicator()
             self.setupView(data: data)
             }.catch { error in
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
@@ -101,29 +104,5 @@ class IntroductionViewController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
 
-    }
-}
-
-extension IntroductionViewController {
-    func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
-        ai.startAnimating()
-        ai.center = view.center
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        vSpinner = spinnerView
-    }
-    
-    func removeSpinner() {
-        DispatchQueue.main.async {
-            self.vSpinner?.removeFromSuperview()
-            self.vSpinner = nil
-        }
     }
 }

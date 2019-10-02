@@ -41,6 +41,7 @@ class LandingViewController: UIViewController {
 
     func setupView(data: LandingViewModel) {
         welcomeLabel.text = data.start_desc
+        welcomeLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         
         guard let url = URL(string: data.start_img!) else { return }
         backgroundImage.kf.setImage(with: url)
