@@ -1,0 +1,10 @@
+version: "Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
+options: "9b8e72131005d9171cb54d56fb7f8c0a"
+build_time: [1570005278, 800036000]
+inputs:
+  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookCore/Sources/Core/AccessToken.swift": [1570003903, 786387835]
+  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookCore/Sources/Core/Dictionary+KeyValueMap.swift": [1570003903, 786500304]
+  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookCore/Sources/Core/FBProfilePictureView.swift": [1570003903, 786734889]
+  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookCore/Sources/Core/FBSDKCoreKit+Typealiases.swift": [1570003903, 786884136]
+  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookCore/Sources/Core/Permission.swift": [1570003903, 786967497]
+  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookCore/Sources/Core/Settings.swift": [1570003903, 787087691]

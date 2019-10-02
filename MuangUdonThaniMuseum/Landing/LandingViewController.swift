@@ -22,6 +22,7 @@ class LandingViewController: UIViewController {
         super.viewDidLoad()
 
         welcomeLabel.textColor = AppsColor.oldRed
+        welcomeLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         getData()
     }
     

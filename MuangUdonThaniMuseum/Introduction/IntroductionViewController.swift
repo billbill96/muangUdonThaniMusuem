@@ -22,6 +22,7 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
     
     var activityIndicator = UIActivityIndicatorView()
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +31,7 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
         introductionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         
         descripLabel.textColor = AppsColor.oldRed
+        descripLabel.font = UIFont.preferredFont(forTextStyle: .body)
         descripLabel.lineBreakMode = .byWordWrapping
         descripLabel.font = UIFont.preferredFont(forTextStyle: .body)
         
@@ -95,7 +97,7 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
         if preferredLanguage == "en"  {
             message = "Application need to access your loacation and bluetooth. Please turn ON your GPS and Blutooth"
         } else {
-            message = "แอพพลิเคชั่นมีความจำเป็นต้องเปิดใช้งานอินเทอร์เน็ต, gps, blutooth"
+            message = "แอพพลิเคชั่นมีความจำเป็นต้องเปิดใช้งานอินเทอร์เน็ต, gps และ bluetooth"
         }
         
         let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
