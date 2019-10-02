@@ -27,7 +27,9 @@ class IntroductionViewController: UIViewController {
 
 //        imageView.image = UIImage(named: "museum")?.image(alpha: 0.16)
         introductionLabel.textColor = AppsColor.oldRed
+        introductionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         descripLabel.textColor = AppsColor.oldRed
+        descripLabel.font = UIFont.preferredFont(forTextStyle: .body)
         descripLabel.lineBreakMode = .byWordWrapping
         
         continueButton.setTitle("Continue", for: .normal)

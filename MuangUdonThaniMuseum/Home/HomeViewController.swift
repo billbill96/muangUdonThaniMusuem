@@ -244,9 +244,7 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         apiClient1.getObjects(KTKDevice.self) {
             response, error in
             if let devices = response?.objects as? [KTKDevice] {
-                var count = 0
                 for device in devices {
-                    count += 1
                     if device.tags == tags {
                         let major = UInt16(truncating: device.configuration.major ?? 0)
                         let minor = UInt16(truncating: device.configuration.minor ?? 0)

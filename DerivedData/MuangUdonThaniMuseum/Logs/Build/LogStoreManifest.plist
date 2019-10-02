@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>0D68430C-66FC-40A9-9C06-C8A7A3AE9809</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>0D68430C-66FC-40A9-9C06-C8A7A3AE9809.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591697043.70516205</real>
+			<key>timeStoppedRecording</key>
+			<real>591697046.29136503</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>0D68430C-66FC-40A9-9C06-C8A7A3AE9809</string>
+		</dict>
+		<key>17190F26-8D3A-4F56-BBCD-3624731964CC</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>17190F26-8D3A-4F56-BBCD-3624731964CC.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591698054.93042898</real>
+			<key>timeStoppedRecording</key>
+			<real>591698107.51587796</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>17190F26-8D3A-4F56-BBCD-3624731964CC</string>
+		</dict>
+		<key>22BECCB1-F0E7-4283-907D-23FD43147051</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>22BECCB1-F0E7-4283-907D-23FD43147051.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591697049.68607402</real>
+			<key>timeStoppedRecording</key>
+			<real>591697049.72604203</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>22BECCB1-F0E7-4283-907D-23FD43147051</string>
+		</dict>
+		<key>7801425E-C10C-4D9C-A85E-3384DC24B72D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>7801425E-C10C-4D9C-A85E-3384DC24B72D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591698816.04056203</real>
+			<key>timeStoppedRecording</key>
+			<real>591698821.10974002</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>7801425E-C10C-4D9C-A85E-3384DC24B72D</string>
+		</dict>
+		<key>82CF6C2B-DCBC-4620-8C31-9C47A9B27431</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>82CF6C2B-DCBC-4620-8C31-9C47A9B27431.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591698122.85900402</real>
+			<key>timeStoppedRecording</key>
+			<real>591698123.02544105</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>82CF6C2B-DCBC-4620-8C31-9C47A9B27431</string>
+		</dict>
+		<key>8CA671C6-5658-4790-BEB7-7E2A3B42FC48</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>8CA671C6-5658-4790-BEB7-7E2A3B42FC48.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591696984.09665895</real>
+			<key>timeStoppedRecording</key>
+			<real>591696984.16244102</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>8CA671C6-5658-4790-BEB7-7E2A3B42FC48</string>
+		</dict>
+		<key>8F5FEA6D-EABD-41EE-8BBF-A91767BAC81C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>8F5FEA6D-EABD-41EE-8BBF-A91767BAC81C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591697034.26403499</real>
+			<key>timeStoppedRecording</key>
+			<real>591697035.24248302</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>8F5FEA6D-EABD-41EE-8BBF-A91767BAC81C</string>
+		</dict>
+		<key>A80C6AA8-30B8-4C8F-8422-67300226885F</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A80C6AA8-30B8-4C8F-8422-67300226885F.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591697050.84722805</real>
+			<key>timeStoppedRecording</key>
+			<real>591697050.89327502</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>A80C6AA8-30B8-4C8F-8422-67300226885F</string>
+		</dict>
+		<key>CF1DE793-98FF-4AE9-A043-8FABB70A2F8C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>CF1DE793-98FF-4AE9-A043-8FABB70A2F8C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591698828.13946199</real>
+			<key>timeStoppedRecording</key>
+			<real>591698828.26530302</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>CF1DE793-98FF-4AE9-A043-8FABB70A2F8C</string>
+		</dict>
+		<key>D1CAC090-9CF3-4165-A5FC-69478EFAC69D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D1CAC090-9CF3-4165-A5FC-69478EFAC69D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuangUdonThaniMuseum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuangUdonThaniMuseum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>timeStartedRecording</key>
+			<real>591698968.06215799</real>
+			<key>timeStoppedRecording</key>
+			<real>591698973.15156102</real>
+			<key>title</key>
+			<string>Build MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>D1CAC090-9CF3-4165-A5FC-69478EFAC69D</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

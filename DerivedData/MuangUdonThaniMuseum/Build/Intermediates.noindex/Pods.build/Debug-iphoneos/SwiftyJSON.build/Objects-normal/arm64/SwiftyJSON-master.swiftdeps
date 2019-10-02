@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
+options: "3587c10bc676a8d8ca49b658fef27172"
+build_time: [1570005260, 66411000]
+inputs:
+  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/SwiftyJSON/Source/SwiftyJSON/SwiftyJSON.swift": [1570003905, 170614144]
