@@ -12,7 +12,7 @@ import Alamofire
 import ObjectMapper
 import PromiseKit
 
-class IntroductionViewController: UIViewController {
+class IntroductionViewController: UIViewController, ActivityIndicatorPresenter {
   
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var introductionLabel: UILabel!
@@ -20,7 +20,8 @@ class IntroductionViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
     
-    var vSpinner : UIView?
+   var activityIndicator = UIActivityIndicatorView()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +42,13 @@ class IntroductionViewController: UIViewController {
         continueButton.layer.borderWidth = 3
         
         continueButton.isHidden = true
-        self.showSpinner(onView: self.view)
+        showActivityIndicator()
         setupData()
     }
     
     func setupData() {
         getData().done { (data) in
-            self.removeSpinner()
+            self.hideActivityIndicator()
             self.setupView(data: data)
             }.catch { error in
                 let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
@@ -94,7 +95,7 @@ class IntroductionViewController: UIViewController {
         if preferredLanguage == "en"  {
             message = "Application need to access your loacation and bluetooth. Please turn ON your GPS and Blutooth"
         } else {
-            message = "แอพพลิเคชั่นมีความจำเป็นต้องเปิดใช้งานอินเทอร์เน็ต, gps, blutooth"
+            message = "แอพพลิเคชั่นมีความจำเป็นต้องเปิดใช้งานอินเทอร์เน็ต, gps และ bluetooth"
         }
         
         let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
@@ -103,29 +104,5 @@ class IntroductionViewController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
 
-    }
-}
-
-extension IntroductionViewController {
-    func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
-        ai.startAnimating()
-        ai.center = view.center
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        vSpinner = spinnerView
-    }
-    
-    func removeSpinner() {
-        DispatchQueue.main.async {
-            self.vSpinner?.removeFromSuperview()
-            self.vSpinner = nil
-        }
     }
 }

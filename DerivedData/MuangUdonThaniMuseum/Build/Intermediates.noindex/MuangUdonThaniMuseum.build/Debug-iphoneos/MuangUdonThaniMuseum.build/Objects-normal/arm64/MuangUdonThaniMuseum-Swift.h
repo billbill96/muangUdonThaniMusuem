@@ -292,8 +292,6 @@ SWIFT_CLASS("_TtC20MuangUdonThaniMuseum26IntroductionViewController")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
-
-
 @class NSLayoutConstraint;
 
 SWIFT_CLASS("_TtC20MuangUdonThaniMuseum21LandingViewController")

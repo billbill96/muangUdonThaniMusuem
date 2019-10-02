@@ -38,6 +38,7 @@ depends-top-level:
 - !private "print"
 depends-member:
 - !private ["9Alamofire2AFO", "request"]
+- !private ["20MuangUdonThaniMuseum26ActivityIndicatorPresenterP", "modalPresentationStyle"]
 - !private ["20MuangUdonThaniMuseum9AppsColorO", "oldRed"]
 - !private ["12ObjectMapper12BaseMappableP", "start_desc"]
 - !private ["12ObjectMapper12BaseMappableP", "start_img"]
@@ -820,6 +821,7 @@ depends-member:
 - !private ["s38__DefaultCustomPlaygroundQuickLookableP", "textColor"]
 depends-nominal:
 - !private "9Alamofire2AFO"
+- !private "20MuangUdonThaniMuseum26ActivityIndicatorPresenterP"
 - !private "20MuangUdonThaniMuseum9AppsColorO"
 - !private "12ObjectMapper12BaseMappableP"
 - !private "So15CALayerDelegateP"

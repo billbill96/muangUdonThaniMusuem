@@ -62,6 +62,34 @@
 			<key>uniqueIdentifier</key>
 			<string>04F821AE-1C3A-47F3-8596-E99A39979BF2</string>
 		</dict>
+		<key>21738491-551D-4F7B-A87C-51F16F22A49B</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.application</string>
+			<key>fileName</key>
+			<string>21738491-551D-4F7B-A87C-51F16F22A49B.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>signature</key>
+			<string>MuangUdonThaniMuseum-amrwchssajdgfhbgfgqhletztmrf</string>
+			<key>timeStartedRecording</key>
+			<real>591702720.55048096</real>
+			<key>timeStoppedRecording</key>
+			<real>591702725.73024201</real>
+			<key>title</key>
+			<string>Build target MuangUdonThaniMuseum</string>
+			<key>uniqueIdentifier</key>
+			<string>21738491-551D-4F7B-A87C-51F16F22A49B</string>
+		</dict>
 		<key>2971EDB5-46F3-4D62-8D48-F9AB2B54B39C</key>
 		<dict>
 			<key>className</key>
@@ -173,34 +201,6 @@
 			<string>Build target SwiftyJSON</string>
 			<key>uniqueIdentifier</key>
 			<string>7310DE6D-B2E8-4CB9-AA2A-D2B398002AE6</string>
-		</dict>
-		<key>821D4BD4-18ED-403A-99A8-D2937DDD66A6</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogMajorGroupSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.target.product-type.application</string>
-			<key>fileName</key>
-			<string>821D4BD4-18ED-403A-99A8-D2937DDD66A6.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>W</string>
-			</dict>
-			<key>signature</key>
-			<string>MuangUdonThaniMuseum-amrwchssajdgfhbgfgqhletztmrf</string>
-			<key>timeStartedRecording</key>
-			<real>591698968.333547</real>
-			<key>timeStoppedRecording</key>
-			<real>591698973.13881695</real>
-			<key>title</key>
-			<string>Build target MuangUdonThaniMuseum</string>
-			<key>uniqueIdentifier</key>
-			<string>821D4BD4-18ED-403A-99A8-D2937DDD66A6</string>
 		</dict>
 		<key>A361A0E1-E284-4AE1-9352-76F6A50F4442</key>
 		<dict>
