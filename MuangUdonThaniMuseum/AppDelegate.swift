@@ -82,7 +82,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-        
+        print("userNotificationCenter")
         // show alert while app is running in foreground
         return completionHandler([UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.alert])
     }

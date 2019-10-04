@@ -32,7 +32,8 @@ class VideoViewController: UIViewController {
     var videoDescrip: [String] = []
     var shareUrl: String = ""
     var navTitle = ""
-
+    var facebook_name = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,10 +75,10 @@ class VideoViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(title: "",video: [], videoDescrip: [], shareUrl: "")
+        self.init(title: "",video: [], videoDescrip: [], shareUrl: "", facebook_name: "")
     }
     
-    init(title: String,video: [String], videoDescrip: [String],shareUrl: String) {
+    init(title: String,video: [String], videoDescrip: [String],shareUrl: String,facebook_name: String) {
         var newVideoUrl: [String] = []
         var newDes: [String] = []
         for video in video {
@@ -94,6 +95,7 @@ class VideoViewController: UIViewController {
         self.videoUrl = newVideoUrl
         self.videoDescrip = newDes
         self.shareUrl = shareUrl
+        self.facebook_name = facebook_name
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -155,9 +157,11 @@ extension VideoViewController: UITabBarDelegate {
         }else if item.tag == 3 {
             if shareUrl != "" {
                 let content = ShareLinkContent()
-                if let url =  URL(string: shareUrl) {
+                if let url =  URL(string: shareUrl.replacingOccurrences(of: " ", with: "")) {
                     content.contentURL =  url
-
+                    let name = facebook_name.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: " ", with: "")
+                    content.hashtag = Hashtag("#\(name)")
+                    
                     let dialog : ShareDialog = ShareDialog()
                     dialog.fromViewController = self
                     dialog.shareContent = content
@@ -169,10 +173,11 @@ extension VideoViewController: UITabBarDelegate {
                         dialog.mode = ShareDialog.Mode.feedWeb
                     }
                     dialog.show()
+                } else {
+                    let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
-                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
             }
         }
     }

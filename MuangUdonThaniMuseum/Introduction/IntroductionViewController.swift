@@ -11,6 +11,8 @@ import Kingfisher
 import Alamofire
 import ObjectMapper
 import PromiseKit
+import KontaktSDK
+import CoreBluetooth
 
 class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
   
@@ -20,8 +22,11 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
     
-    var activityIndicator = UIActivityIndicatorView()
+    var devicesManager: KTKDevicesManager!
+    var beaconManager: KTKBeaconManager!
 
+    var activityIndicator = UIActivityIndicatorView()
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +51,10 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
         continueButton.isHidden = true
         showActivityIndicator()
         setupData()
+        
+        beaconManager = KTKBeaconManager(delegate: self)
+        devicesManager = KTKDevicesManager(delegate: self)
+        
     }
     
     func setupData() {
@@ -99,12 +108,100 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
         } else {
             message = "แอพพลิเคชั่นมีความจำเป็นต้องเปิดใช้งานอินเทอร์เน็ต, gps และ bluetooth"
         }
-        
         let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
-            self.present(vc, animated: true, completion: nil)
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                (granted, error) in
+                print("permission granted \(granted)")
+                guard granted else { return }
+            }
+
+            let locStatus = CLLocationManager.authorizationStatus()
+            switch locStatus {
+            case .notDetermined:
+                self.locationManager.requestWhenInUseAuthorization()
+            case .denied, .restricted:
+                break
+            case .authorizedAlways, .authorizedWhenInUse:
+                break
+            }
+
+            self.checkPermission()
         }))
         self.present(alert, animated: true, completion: nil)
 
     }
+    
+    func checkPermission() {
+
+        var isAuthorised = true
+        let locStatus = CLLocationManager.authorizationStatus()
+        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined:
+                isAuthorised = false
+            case .authorized:
+                break
+            case .denied:
+                 break
+            case .provisional:
+                 break
+            }
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
+         self.devicesManager.startDevicesDiscovery()
+        checkNotificationStatus()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkNotificationStatus()
+    }
+    
+    @objc private func checkNotificationStatus() {
+        var isAuthorised = true
+        let locStatus = CLLocationManager.authorizationStatus()
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                isAuthorised = false
+            case .authorized:
+                break
+            case .denied:
+                 break
+            case .provisional:
+                 break
+            }
+        }
+        
+        let home = HomeViewController()
+        let vc = UINavigationController(rootViewController: home)
+        vc.modalPresentationStyle = .fullScreen
+
+        if isAuthorised && locStatus != .notDetermined {
+            self.present(vc,animated: true,completion: nil)
+        }else {
+            //do stm
+        }
+    }
+    
+    func openNewVC(notiStatus: Bool, locStatus: Bool) {
+        let home = HomeViewController()
+        let vc = UINavigationController(rootViewController: home)
+        vc.modalPresentationStyle = .fullScreen
+
+        if notiStatus && locStatus {
+            self.present(vc,animated: true,completion: nil)
+        }else {
+            //do stm
+        }
+    }
+}
+
+extension IntroductionViewController: KTKBeaconManagerDelegate, KTKDevicesManagerDelegate{
+    func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
+        //do nothing
+        devicesManager.stopDevicesDiscovery()
+    }
+
 }

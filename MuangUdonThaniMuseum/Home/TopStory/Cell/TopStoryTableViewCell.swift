@@ -22,14 +22,14 @@ class TopStoryTableViewCell: UITableViewCell {
     }
 
     func setupCellView() {
-        topicLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        topicLabel.font = UIFont.preferredFont(for: .subheadline, weight: .bold)
         topicLabel.textColor = AppsColor.grey
         timeLabel.font = UIFont.preferredFont(forTextStyle: .body)
         timeLabel.textColor = AppsColor.grey
     }
     
-    func setupCell(image: String, topic: String, time: String) {
-        if let url = URL(string: image){
+    func setupCell(image: String, topic: String, time: String) {        
+        if let url = URL(string: image.replacingOccurrences(of: " ", with: "%20")){
             imageTopic.kf.setImage(with: url)
         }
         else{
@@ -40,5 +40,5 @@ class TopStoryTableViewCell: UITableViewCell {
         topicLabel.text = topic
         timeLabel.text = time
     }
-    
 }
+

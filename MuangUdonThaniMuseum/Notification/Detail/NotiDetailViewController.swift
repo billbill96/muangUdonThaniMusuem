@@ -103,12 +103,14 @@ class NotiDetailViewController: UIViewController {
         var video : [String] = []
         var video_detail: [String] = []
         var share_url: String = ""
+        var facebook_name: String = ""
         
         u_id = model.u_id ?? ""
         notify = model.notify ?? ""
         topic = model.topic ?? ""
         b_id = model.b_id ?? 0
         share_url = model.share_url ?? ""
+        facebook_name = model.facebook_name ?? ""
         
         if let videos = model.video ?? nil {
             for vd in videos {
@@ -123,7 +125,7 @@ class NotiDetailViewController: UIViewController {
                 image_detail.append(img.image_detail ?? "")
             }
         }
-        self.viewModel = NotificationViewModel(u_id: u_id, notify: notify, topic: topic, img: image, img_detail: image_detail, video: video, video_detail: video_detail, b_id: b_id, share_url:share_url)
+        self.viewModel = NotificationViewModel(u_id: u_id, notify: notify, topic: topic, img: image, img_detail: image_detail, video: video, video_detail: video_detail, b_id: b_id, share_url:share_url, facebook_name: facebook_name)
         setNavigationBar(title: viewModel?.notify ?? "Detail")
         if share_url == "" {
             thirdTabBar.isEnabled = false
@@ -141,7 +143,7 @@ extension NotiDetailViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          guard let viewModel = viewModel else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NotiDetailViewCell
-        cell.setupCell(img: viewModel.img[indexPath.row], topic: viewModel.topic, descrip: viewModel.img_detail[indexPath.row])
+        cell.setupCell(img: viewModel.img[indexPath.row], topic: "", descrip: viewModel.img_detail[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
@@ -162,19 +164,22 @@ extension NotiDetailViewController: UITabBarDelegate {
         var title: String = ""
         var share_url : String = ""
         var navBarTitle: String = "Detail"
+        var facebook_name: String = ""
+        
         if let viewModel = viewModel {
             video = viewModel.video
             videoDes = viewModel.video_detail
             title = viewModel.topic
             share_url = viewModel.share_url
             navBarTitle = viewModel.notify
+            facebook_name = viewModel.facebook_name
         }else {
             let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         
-        let videoVC = VideoViewController(title: title, video: video, videoDescrip: videoDes, shareUrl: share_url)
+        let videoVC = VideoViewController(title: title, video: video, videoDescrip: videoDes, shareUrl: share_url,facebook_name: facebook_name)
         videoVC.navTitle = "Detail"
         
         if item.tag == 1 {
@@ -185,9 +190,11 @@ extension NotiDetailViewController: UITabBarDelegate {
         }else if item.tag == 3 {
             if share_url != "" {
                 let content = ShareLinkContent()
-                if let url =  URL(string: share_url) {
+                if let url =  URL(string: share_url.replacingOccurrences(of: " ", with: "")) {
                     content.contentURL =  url
-
+                    let name = facebook_name.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: " ", with: "")
+                    content.hashtag = Hashtag("#\(name)")
+                    
                     let dialog : ShareDialog = ShareDialog()
                     dialog.fromViewController = self
                     dialog.shareContent = content
@@ -199,10 +206,11 @@ extension NotiDetailViewController: UITabBarDelegate {
                         dialog.mode = ShareDialog.Mode.feedWeb
                     }
                     dialog.show()
+                }else {
+                    let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
-                let alert = UIAlertController(title: "Something went wrong!", message: "Please try again.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
             }
         }
     }

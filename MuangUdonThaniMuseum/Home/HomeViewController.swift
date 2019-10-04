@@ -11,6 +11,7 @@ import KontaktSDK
 import Alamofire
 import ObjectMapper
 import UserNotifications
+import CoreBluetooth
 
 class HomeViewController: UIViewController,ActivityIndicatorPresenter {
     @IBOutlet weak var stackView: UIStackView!
@@ -35,7 +36,9 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
     var state: [CLRegionState] = []
     let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
     var activityIndicator = UIActivityIndicatorView()
-
+    var count = 0
+    var timer = Timer()
+    
     static var alreadyDiscover: [KTKBeaconRegion] = []
     
     override func viewDidLoad() {
@@ -46,12 +49,6 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         } else {
             print("First launch, setting UserDefault.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-        }
-
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-            (granted, error) in
-            print("permission granted \(granted)")
-            guard granted else { return }
         }
 
         beaconManager = KTKBeaconManager(delegate: self)
@@ -104,6 +101,7 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         
         setPresentViewController(viewController: TopStoryViewController())
         self.view.isUserInteractionEnabled = false
+        
     }
     
     func setupNavigation() {
@@ -211,13 +209,15 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
     }
     
     func getNotification(uuid: String) {
+        print("in app noti")
         let url = "http://104.199.252.182:9000/api/Beacon/notification"
-//        let uuid = "f2826da6-4fa2-4e98-8024-bc5b71e00016"
         AF.request(url, method: .get, parameters: ["id":uuid.lowercased()]).responseJSON { response in
             let model =  Mapper<NotificationModel>().map(JSONObject: response.value)
             if let data = model {
                 if data.notify != "" {
-                    self.createLocalNotification(title: data.notify ?? "", uuid: uuid)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.createLocalNotification(title: data.notify ?? "", uuid: uuid)
+                    }
                 }
             }else {
             }
@@ -230,10 +230,27 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         content.sound = .default
         content.body = "Tap to view more inforformation of the room"
         content.userInfo = ["uuid": uuid] as [String:String]
-        
+//        count += 1
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "\(uuid)", content: content, trigger: trigger)
+        
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+       
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            print(requests)
+        }
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(getState2), userInfo: nil, repeats: true)
+    }
+
+    @objc func getState2() {
+        state.removeAll()
+        for region in regions {
+            beaconManager.requestState(for: region)
+        }
     }
     
     func getState(completion: @escaping ([CLRegionState]) -> ()) {
@@ -274,11 +291,13 @@ extension HomeViewController: KTKDevicesManagerDelegate {
                 print("unique \(device.uniqueID)")
                 for region in self.regions {
                     if region.identifier == device.uniqueID {
-//                        self.getNotification(uuid: "\(region.proximityUUID)")
+                        print("getnotification \(region.identifier)")
+//                        var uuid = "f2826da6-4fa2-4e98-8024-bc5b71e00016"
+//                        self.getNotification(uuid: uuid)
                         if !HomeViewController.alreadyDiscover.contains(region) {
-                            print("getnotification \(region.identifier)")
                             HomeViewController.alreadyDiscover.append(region)
                             self.getNotification(uuid: "\(region.proximityUUID)")
+//                            self.getNotification(uuid: uuid)
                         }
                     }
                 }
@@ -296,7 +315,7 @@ extension HomeViewController: KTKBeaconManagerDelegate {
         //case 0 unknow case 1 inside , case 2 outside
         print("state \(state.rawValue) \(region.identifier)")
         self.state.append(state)
-        if state.rawValue == 2 {
+        if state.rawValue == 2 || state.rawValue == 0 {
             for already in HomeViewController.alreadyDiscover {
                 if already.proximityUUID == region.proximityUUID {
                     if let index = HomeViewController.alreadyDiscover.index(of: already) {
@@ -341,8 +360,8 @@ extension HomeViewController: KTKBeaconManagerDelegate {
         for already in HomeViewController.alreadyDiscover {
             if already.proximityUUID == region.proximityUUID {
                 if let index = HomeViewController.alreadyDiscover.index(of: already) {
-                    HomeViewController.alreadyDiscover.remove(at: index)
-                    print("remove")
+//                    HomeViewController.alreadyDiscover.remove(at: index)
+//                    print("remove")
                 }
             }
         }

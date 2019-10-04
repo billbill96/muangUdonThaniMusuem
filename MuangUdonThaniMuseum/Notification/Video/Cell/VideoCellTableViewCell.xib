@@ -30,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRY-KA-08M">
-                        <rect key="frame" x="172" y="132" width="45" height="45"/>
+                        <rect key="frame" x="172.5" y="132" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="EOQ-57-NjY"/>
                             <constraint firstAttribute="width" constant="45" id="fxi-nG-Ujl"/>
@@ -45,11 +45,11 @@
                     <constraint firstItem="kRn-lr-3RD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="3Ji-Bo-tZb"/>
                     <constraint firstAttribute="bottom" secondItem="Cxa-63-kUI" secondAttribute="bottom" id="6hc-d6-I5x"/>
                     <constraint firstItem="Cxa-63-kUI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Dju-g9-zUd"/>
-                    <constraint firstItem="ZRY-KA-08M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="152" id="QE0-bK-1K5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ZRY-KA-08M" secondAttribute="bottom" constant="50" id="bqj-N6-wKM"/>
                     <constraint firstItem="Cxa-63-kUI" firstAttribute="top" secondItem="kRn-lr-3RD" secondAttribute="bottom" constant="16" id="bsM-7P-0bi"/>
                     <constraint firstAttribute="trailing" secondItem="kRn-lr-3RD" secondAttribute="trailing" constant="16" id="d8l-sE-vdE"/>
                     <constraint firstItem="kRn-lr-3RD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="oqD-7E-qbQ"/>
+                    <constraint firstItem="ZRY-KA-08M" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="wmR-Jn-JBi"/>
                     <constraint firstAttribute="trailing" secondItem="Cxa-63-kUI" secondAttribute="trailing" constant="16" id="ydS-2M-A3k"/>
                 </constraints>
             </tableViewCellContentView>

@@ -17,6 +17,7 @@ struct NotificationModel: Mappable {
     var video: [videoObejct]?
     var b_id: Int?
     var share_url: String?
+    var facebook_name: String?
     
     init?(map: Map) {
         
@@ -30,6 +31,7 @@ struct NotificationModel: Mappable {
         video <- map["vdo_dep"]
         b_id <- map["b_id"]
         share_url <- map["beacon_share_url"]
+        facebook_name <- map["facebook_name"]
     }
 }
 
@@ -43,8 +45,9 @@ struct NotificationViewModel {
     var video_detail: [String]
     var b_id: Int
     var share_url: String
+    var facebook_name: String
     
-    init(u_id: String, notify: String, topic: String, img: [String], img_detail: [String], video: [String], video_detail: [String], b_id: Int, share_url: String) {
+    init(u_id: String, notify: String, topic: String, img: [String], img_detail: [String], video: [String], video_detail: [String], b_id: Int, share_url: String, facebook_name: String) {
         self.u_id = u_id
         self.notify = notify
         self.topic = topic
@@ -54,6 +57,7 @@ struct NotificationViewModel {
         self.video_detail = video_detail
         self.b_id = b_id
         self.share_url = share_url
+        self.facebook_name = facebook_name
     }
 }
 
