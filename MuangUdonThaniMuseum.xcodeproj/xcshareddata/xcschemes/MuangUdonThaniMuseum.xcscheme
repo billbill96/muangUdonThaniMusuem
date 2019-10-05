@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33C8262123200708009305EB"
-               BuildableName = "MuangUdonThaniMuseum.app"
+               BuildableName = "MP Beacon.app"
                BlueprintName = "MuangUdonThaniMuseum"
                ReferencedContainer = "container:MuangUdonThaniMuseum.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33C8262123200708009305EB"
-            BuildableName = "MuangUdonThaniMuseum.app"
+            BuildableName = "MP Beacon.app"
             BlueprintName = "MuangUdonThaniMuseum"
             ReferencedContainer = "container:MuangUdonThaniMuseum.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33C8262123200708009305EB"
-            BuildableName = "MuangUdonThaniMuseum.app"
+            BuildableName = "MP Beacon.app"
             BlueprintName = "MuangUdonThaniMuseum"
             ReferencedContainer = "container:MuangUdonThaniMuseum.xcodeproj">
          </BuildableReference>

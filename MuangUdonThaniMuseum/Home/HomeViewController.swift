@@ -67,7 +67,7 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
             case .authorizedWhenInUse:
                 print("when in use")
                 if KTKBeaconManager.isMonitoringAvailable() {
-                    self.devicesManager.startDevicesDiscovery()
+                    self.devicesManager.startDevicesDiscovery(withInterval: 2.0)
                     for region in regionss {
                         self.beaconManager.startMonitoring(for: region)
                     }
@@ -75,9 +75,8 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
             case .authorizedAlways:
                  print("authorizedAlways")
                 if KTKBeaconManager.isMonitoringAvailable() {
-                    self.devicesManager.startDevicesDiscovery()
+//                    self.devicesManager.startDevicesDiscovery(withInterval: 2.0)
                     for region in regionss {
-//                        self.beaconManager.startRangingBeacons(in: region)
                         self.beaconManager.startMonitoring(for: region)
                     }
                 }
@@ -95,7 +94,12 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
             // Enable or disable features based on authorization.
         }
+        scheduledTimerWithTimeInterval()
 
+//        let notificationCenter = NotificationCenter.default
+//        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+
+        
         setupNavigation()
         setupStackView()
         
@@ -215,9 +219,9 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
             let model =  Mapper<NotificationModel>().map(JSONObject: response.value)
             if let data = model {
                 if data.notify != "" {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         self.createLocalNotification(title: data.notify ?? "", uuid: uuid)
-                    }
+//                    }
                 }
             }else {
             }
@@ -246,15 +250,21 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(getState2), userInfo: nil, repeats: true)
     }
 
+    @objc func appMovedToBackground() {
+        for region in regions {
+            beaconManager.startRangingBeacons(in: region)
+        }
+    }
+    
     @objc func getState2() {
-        state.removeAll()
+        self.state.removeAll()
         for region in regions {
             beaconManager.requestState(for: region)
         }
     }
     
     func getState(completion: @escaping ([CLRegionState]) -> ()) {
-        state.removeAll()
+        self.state.removeAll()
         for region in regions {
             beaconManager.requestState(for: region)
         }
@@ -276,6 +286,9 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
                         let region = KTKBeaconRegion(proximityUUID: uuid! ,major: major, minor: minor, identifier: unique)
                         print(region)
                         self.regions.append(region)
+                        region.notifyOnExit = true
+                        region.notifyOnEntry = true
+                        region.notifyEntryStateOnDisplay = true
                     }
                 }
                 completion(self.regions)
@@ -287,17 +300,15 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
 extension HomeViewController: KTKDevicesManagerDelegate {
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
         getState { (state) in
+            print("state in discover \(state)")
             for device in devices {
                 print("unique \(device.uniqueID)")
                 for region in self.regions {
                     if region.identifier == device.uniqueID {
                         print("getnotification \(region.identifier)")
-//                        var uuid = "f2826da6-4fa2-4e98-8024-bc5b71e00016"
-//                        self.getNotification(uuid: uuid)
                         if !HomeViewController.alreadyDiscover.contains(region) {
                             HomeViewController.alreadyDiscover.append(region)
                             self.getNotification(uuid: "\(region.proximityUUID)")
-//                            self.getNotification(uuid: uuid)
                         }
                     }
                 }
@@ -314,17 +325,23 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
         //case 0 unknow case 1 inside , case 2 outside
         print("state \(state.rawValue) \(region.identifier)")
-        self.state.append(state)
-        if state.rawValue == 2 || state.rawValue == 0 {
+        if state.rawValue == 2 {
             for already in HomeViewController.alreadyDiscover {
-                if already.proximityUUID == region.proximityUUID {
+                if already.identifier == region.identifier {
                     if let index = HomeViewController.alreadyDiscover.index(of: already) {
                         HomeViewController.alreadyDiscover.remove(at: index)
-                        print("remove")
+                        print("remove state \(region.identifier)")
                     }
                 }
             }
+        } else if state.rawValue == 1 {
+            if !HomeViewController.alreadyDiscover.contains(region) {
+                 HomeViewController.alreadyDiscover.append(region)
+                self.getNotification(uuid: "\(region.proximityUUID)")
+            }
         }
+        self.state.append(state)
+
     }
 
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
@@ -334,7 +351,7 @@ extension HomeViewController: KTKBeaconManagerDelegate {
                     print("start monitoring")
                     for region in regions {
                         beaconManager.startMonitoring(for: region)
-                        devicesManager.startDevicesDiscovery()
+                        devicesManager.startDevicesDiscovery(withInterval: 2.0)
                     }
                 }
             }
@@ -344,7 +361,6 @@ extension HomeViewController: KTKBeaconManagerDelegate {
                     print("start authorizedWhenInUse")
                     for region in regions {
                         beaconManager.startMonitoring(for: region)
-                        devicesManager.startDevicesDiscovery()
                     }
                 }
             }
@@ -353,15 +369,20 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     
     func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
         print("----------------Ente rregion \(region)")
-//        getNotification(uuid: "\(region.proximityUUID)")
+//        beaconManager.startRangingBeacons(in: region)
+        
+        if !HomeViewController.alreadyDiscover.contains(region) {
+            HomeViewController.alreadyDiscover.append(region)
+            self.getNotification(uuid: "\(region.proximityUUID)")
+        }
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
         for already in HomeViewController.alreadyDiscover {
             if already.proximityUUID == region.proximityUUID {
                 if let index = HomeViewController.alreadyDiscover.index(of: already) {
-//                    HomeViewController.alreadyDiscover.remove(at: index)
-//                    print("remove")
+                    HomeViewController.alreadyDiscover.remove(at: index)
+                    print("remove")
                 }
             }
         }
@@ -370,12 +391,16 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         if beacons.count > 0 {
-            beaconManager.stopRangingBeacons(in: region)
             for beacon in beacons {
                 let uuid = "\(beacon.proximityUUID)"
                 print("raging \(uuid)")
-                getNotification(uuid: uuid)
+                
+//                if !HomeViewController.alreadyDiscover.contains(region) {
+//                    HomeViewController.alreadyDiscover.append(region)
+//                    self.getNotification(uuid: "\(region.proximityUUID)")
+//                }
             }
+            beaconManager.stopRangingBeacons(in: region)
         }
     }
 }

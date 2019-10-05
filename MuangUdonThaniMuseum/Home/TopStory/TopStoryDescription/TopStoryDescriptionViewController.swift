@@ -74,7 +74,7 @@ class TopStoryDescriptionViewController: UIViewController {
         topicLabel.text = topic
         descriptionLabel.text = detail
         
-        if let url = URL(string: image){
+        if let url = URL(string: image.replacingOccurrences(of: " ", with: "%20")){
             imageTop.kf.setImage(with: url)
         } else {
             imageTop.image = UIImage(named: "Unknown")

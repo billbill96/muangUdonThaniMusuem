@@ -143,7 +143,7 @@ extension NotiDetailViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          guard let viewModel = viewModel else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NotiDetailViewCell
-        cell.setupCell(img: viewModel.img[indexPath.row], topic: "", descrip: viewModel.img_detail[indexPath.row])
+        cell.setupCell(img: viewModel.img[indexPath.row], topic: viewModel.topic, descrip: viewModel.img_detail[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
