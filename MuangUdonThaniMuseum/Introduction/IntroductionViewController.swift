@@ -119,17 +119,18 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
             let locStatus = CLLocationManager.authorizationStatus()
             switch locStatus {
             case .notDetermined:
-                self.locationManager.requestWhenInUseAuthorization()
+                self.locationManager.requestAlwaysAuthorization()
             case .denied, .restricted:
+                 self.locationManager.requestAlwaysAuthorization()
+            case .authorizedAlways:
                 break
-            case .authorizedAlways, .authorizedWhenInUse:
-                break
+            case .authorizedWhenInUse:
+                self.locationManager.requestAlwaysAuthorization()
             }
 
             self.checkPermission()
         }))
         self.present(alert, animated: true, completion: nil)
-
     }
     
     func checkPermission() {

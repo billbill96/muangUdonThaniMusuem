@@ -95,7 +95,7 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
         let image = data[indexPath.row].topic_image ?? ""
         let detail = data[indexPath.row].detail ?? ""
         
-        let topStoryDescription = TopStoryDescriptionViewController(topic: topic, image: image, detail: detail)
+        let topStoryDescription = TopStoryDescriptionViewController(topic: topic, image: image, detail: detail,navTitle: "Top Stories")
         navigationController?.pushViewController(topStoryDescription, animated: true)
     }
 }

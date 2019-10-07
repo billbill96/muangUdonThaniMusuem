@@ -19,11 +19,14 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var beaconManager: KTKBeaconManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Kontakt.setAPIKey("dYysPEwOZXFSqTbtoioQDxWAffdJfAAB")
         GMSServices.provideAPIKey("AIzaSyDSKokO88Mtl_WJqJFtRjCjbgCxecDN290")
+        
+        beaconManager = KTKBeaconManager(delegate: self)
 
         UNUserNotificationCenter.current().delegate = self
         return true
@@ -48,9 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        beaconManager.stopMonitoringForAllRegions()
+        beaconManager.stopRangingBeaconsInAllRegions()
     }
 }
 
@@ -86,4 +91,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // show alert while app is running in foreground
         return completionHandler([UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.alert])
     }
+}
+
+extension AppDelegate: KTKBeaconManagerDelegate {
+    
 }

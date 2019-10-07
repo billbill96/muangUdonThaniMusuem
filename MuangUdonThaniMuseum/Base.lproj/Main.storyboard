@@ -11,7 +11,7 @@
         <!--Introduction View Controller-->
         <scene sceneID="lqo-eu-H1Z">
             <objects>
-                <viewController storyboardIdentifier="IntroductionViewController" hidesBottomBarWhenPushed="YES" id="5AR-A8-nrT" customClass="IntroductionViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IntroductionViewController" hidesBottomBarWhenPushed="YES" id="5AR-A8-nrT" customClass="IntroductionViewController" customModule="MP_Beacon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="coW-er-1bk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,13 +114,13 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="TabBarViewController" id="BYZ-38-t0r" customClass="TabBarViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TabBarViewController" id="BYZ-38-t0r" customClass="TabBarViewController" customModule="MP_Beacon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wi-YH-UE0">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem tag="1" title="Home" image="icons8-facebook-26" id="yWy-pu-r2N"/>
@@ -147,12 +147,12 @@
         <!--Landing View Controller-->
         <scene sceneID="QvZ-PK-LUN">
             <objects>
-                <viewController id="5Mx-Yf-zDE" customClass="LandingViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5Mx-Yf-zDE" customClass="LandingViewController" customModule="MP_Beacon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pNy-KC-9jV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-IH-OV5">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-IH-OV5">
                                 <rect key="frame" x="0.0" y="435" width="414" height="461"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="461" id="Lcq-48-tZz"/>

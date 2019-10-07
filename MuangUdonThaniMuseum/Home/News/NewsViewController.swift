@@ -84,12 +84,12 @@ extension NewsViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let topic = data[indexPath.row].topic ?? ""
         let image = data[indexPath.row].image ?? ""
+        let detail = data[indexPath.row].detail ?? ""
         
-        let topStoryDescription = TopStoryDescriptionViewController(topic: topic, image: image, detail: "")
+        let topStoryDescription = TopStoryDescriptionViewController(topic: topic, image: image, detail: detail, navTitle: "News")
         navigationController?.pushViewController(topStoryDescription, animated: true)
     }
 
-    
 }
 
 extension NewsViewController {

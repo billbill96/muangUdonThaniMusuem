@@ -20,15 +20,17 @@ class TopStoryDescriptionViewController: UIViewController {
     var topic: String = ""
     var image: String = ""
     var detail: String = ""
+    var navTitle: String = ""
     
     convenience init() {
-        self.init(topic: "", image: "", detail: "")
+        self.init(topic: "", image: "", detail: "",navTitle: "")
     }
     
-    init(topic: String, image: String, detail: String) {
+    init(topic: String, image: String, detail: String, navTitle: String) {
         self.topic = topic
         self.image = image
         self.detail = detail
+        self.navTitle = navTitle
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -41,7 +43,7 @@ class TopStoryDescriptionViewController: UIViewController {
         super.viewDidLoad()
 
         let titleLabel = UILabel()
-        titleLabel.text = "Top Stories"
+        titleLabel.text = navTitle
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)//UIFont(name: "Roboto-Bold", size: 20)
 

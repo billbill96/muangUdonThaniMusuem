@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+import KontaktSDK
+import Alamofire
+import ObjectMapper
+import UserNotifications
+import CoreBluetooth
 
 enum AppsColor {
     static let oldRed = UIColor(rgb: 0x8D312A)
@@ -82,9 +87,36 @@ public extension ActivityIndicatorPresenter where Self: UIViewController {
 
 extension UIFont {
     static func preferredFont(for style: TextStyle, weight: Weight) -> UIFont {
-        let metrics = UIFontMetrics(forTextStyle: style)
-        let desc = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
-        let font = UIFont.systemFont(ofSize: desc.pointSize, weight: weight)
-        return metrics.scaledFont(for: font)
+        if #available(iOS 11.0, *) {
+            let metrics = UIFontMetrics(forTextStyle: style)
+            let desc = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+            let font = UIFont.systemFont(ofSize: desc.pointSize, weight: weight)
+            return metrics.scaledFont(for: font)
+        } else {
+            let desc = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+            return UIFont.systemFont(ofSize: desc.pointSize)
+        }
+    }
+}
+
+
+extension CLProximity {
+    var stringValue: String {
+        switch self {
+        case .unknown:
+            return "unknown"
+        case .immediate:
+            return "immediate"
+        case .near:
+            return "near"
+        case .far:
+            return "far"
+        }
+    }
+}
+
+extension Date {
+    static var currentTimeStamp: Int64{
+        return Int64(Date().timeIntervalSince1970 * 1000)
     }
 }
