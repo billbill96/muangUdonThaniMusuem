@@ -159,7 +159,7 @@ extension VideoViewController: UITabBarDelegate {
                 let content = ShareLinkContent()
                 if let url =  URL(string: shareUrl.replacingOccurrences(of: " ", with: "")) {
                     content.contentURL =  url
-                    let name = facebook_name.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: " ", with: "")
+                    let name = facebook_name.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "#", with: "")
                     content.hashtag = Hashtag("#\(name)")
                     
                     let dialog : ShareDialog = ShareDialog()

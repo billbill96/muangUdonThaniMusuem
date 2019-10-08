@@ -24,14 +24,15 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
     
     var devicesManager: KTKDevicesManager!
     var beaconManager: KTKBeaconManager!
+    var manager:CBCentralManager!
 
     var activityIndicator = UIActivityIndicatorView()
+    var isBlutoothOn = true
     let locationManager = CLLocationManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        imageView.image = UIImage(named: "museum")?.image(alpha: 0.16)
         introductionLabel.textColor = AppsColor.oldRed
         introductionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         
@@ -54,6 +55,10 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
         
         beaconManager = KTKBeaconManager(delegate: self)
         devicesManager = KTKDevicesManager(delegate: self)
+        
+        manager = CBCentralManager()
+        manager.delegate = self
+
         
     }
     
@@ -116,16 +121,15 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
                 guard granted else { return }
             }
 
-            let locStatus = CLLocationManager.authorizationStatus()
-            switch locStatus {
-            case .notDetermined:
-                self.locationManager.requestAlwaysAuthorization()
-            case .denied, .restricted:
-                 self.locationManager.requestAlwaysAuthorization()
-            case .authorizedAlways:
-                break
-            case .authorizedWhenInUse:
-                self.locationManager.requestAlwaysAuthorization()
+            switch KTKBeaconManager.locationAuthorizationStatus() {
+                case .notDetermined:
+                    self.beaconManager.requestLocationAlwaysAuthorization()
+                case .denied, .restricted:
+                    self.beaconManager.requestLocationAlwaysAuthorization()
+                case .authorizedWhenInUse:
+                    self.beaconManager.requestLocationAlwaysAuthorization()
+                case .authorizedAlways:
+                    break
             }
 
             self.checkPermission()
@@ -179,30 +183,48 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
         let vc = UINavigationController(rootViewController: home)
         vc.modalPresentationStyle = .fullScreen
 
-        if isAuthorised && locStatus != .notDetermined {
-            self.present(vc,animated: true,completion: nil)
+        if isAuthorised && locStatus != .notDetermined{
+            if isBlutoothOn {
+                self.present(vc,animated: true,completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Your bluetooth is off", message: "Please change your bluetooth status in setting", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }else {
-            //do stm
-        }
-    }
-    
-    func openNewVC(notiStatus: Bool, locStatus: Bool) {
-        let home = HomeViewController()
-        let vc = UINavigationController(rootViewController: home)
-        vc.modalPresentationStyle = .fullScreen
-
-        if notiStatus && locStatus {
-            self.present(vc,animated: true,completion: nil)
-        }else {
-            //do stm
+            if locStatus != .notDetermined {
+                let alert = UIAlertController(title: "Your location permission is off", message: "Please change your location permission in setting", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }
 
-extension IntroductionViewController: KTKBeaconManagerDelegate, KTKDevicesManagerDelegate{
+extension IntroductionViewController: KTKBeaconManagerDelegate, KTKDevicesManagerDelegate, CBCentralManagerDelegate{
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .poweredOn:
+            isBlutoothOn = true
+        case .poweredOff:
+            print("Bluetooth is Off.")
+            isBlutoothOn = false
+        case .resetting:
+            break
+        case .unauthorized:
+            break
+        case .unsupported:
+            break
+        case .unknown:
+            break
+        default:
+            break
+        }
+    }
+    
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
         //do nothing
         devicesManager.stopDevicesDiscovery()
     }
-
+    
 }

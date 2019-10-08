@@ -192,7 +192,7 @@ extension NotiDetailViewController: UITabBarDelegate {
                 let content = ShareLinkContent()
                 if let url =  URL(string: share_url.replacingOccurrences(of: " ", with: "")) {
                     content.contentURL =  url
-                    let name = facebook_name.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: " ", with: "")
+                    let name = facebook_name.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "#", with: "")
                     content.hashtag = Hashtag("#\(name)")
                     
                     let dialog : ShareDialog = ShareDialog()
