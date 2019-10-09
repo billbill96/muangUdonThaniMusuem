@@ -56,6 +56,12 @@ class TopStoryDescriptionViewController: UIViewController {
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
         setupView()
+        
+//        let notificationCenter = NotificationCenter.default
+//        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+//
+//        notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,7 +71,6 @@ class TopStoryDescriptionViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         descriptionLabel.sizeToFit()
     }
-    
     
     func setupView() {
         topicLabel.font = UIFont.preferredFont(forTextStyle: .headline)
