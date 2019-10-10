@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TopStoryDescriptionViewController" customModule="MP_Beacon" customModuleProvider="target">
             <connections>
-                <outlet property="descriptionLabel" destination="Xuh-UU-lHJ" id="fOU-fb-7Sv"/>
+                <outlet property="descriptionTextView" destination="q97-0Z-UEL" id="sLt-Da-5Jo"/>
                 <outlet property="imageTop" destination="aF3-4c-dUy" id="oCS-Ae-5bd"/>
                 <outlet property="scrollView" destination="wFY-Vz-WvF" id="Aqf-Up-deW"/>
                 <outlet property="topicLabel" destination="1VI-NK-E0o" id="3Qk-dk-P2e"/>
@@ -29,7 +29,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bR-lg-RJ5">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="323"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="631"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aF3-4c-dUy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
@@ -43,38 +43,37 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5GP-TX-Juf">
-                                            <rect key="frame" x="16" y="302.5" width="382" height="20.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xuh-UU-lHJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q97-0Z-UEL">
+                                            <rect key="frame" x="12" y="294.5" width="390" height="336.5"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                        </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="aF3-4c-dUy" firstAttribute="top" secondItem="1bR-lg-RJ5" secondAttribute="top" id="2VJ-I0-e7Q"/>
-                                        <constraint firstItem="5GP-TX-Juf" firstAttribute="top" secondItem="1VI-NK-E0o" secondAttribute="bottom" constant="16" id="4N1-8X-TrB"/>
                                         <constraint firstAttribute="trailing" secondItem="aF3-4c-dUy" secondAttribute="trailing" id="5ny-hd-uyS"/>
-                                        <constraint firstItem="5GP-TX-Juf" firstAttribute="leading" secondItem="1bR-lg-RJ5" secondAttribute="leading" constant="16" id="Aei-em-jPQ"/>
                                         <constraint firstItem="1VI-NK-E0o" firstAttribute="top" secondItem="aF3-4c-dUy" secondAttribute="bottom" constant="16" id="Bzo-9C-h09"/>
-                                        <constraint firstAttribute="bottom" secondItem="5GP-TX-Juf" secondAttribute="bottom" id="Ybl-cw-tnS"/>
+                                        <constraint firstAttribute="trailing" secondItem="q97-0Z-UEL" secondAttribute="trailing" constant="12" id="Ee4-m4-FLc"/>
+                                        <constraint firstAttribute="height" constant="631" id="IJh-dS-ErT"/>
+                                        <constraint firstItem="q97-0Z-UEL" firstAttribute="leading" secondItem="1bR-lg-RJ5" secondAttribute="leading" constant="12" id="UgY-Zi-oky"/>
                                         <constraint firstItem="1VI-NK-E0o" firstAttribute="leading" secondItem="1bR-lg-RJ5" secondAttribute="leading" constant="16" id="a6f-Sm-5nu"/>
                                         <constraint firstItem="aF3-4c-dUy" firstAttribute="leading" secondItem="1bR-lg-RJ5" secondAttribute="leading" id="hTs-SE-DU9"/>
-                                        <constraint firstAttribute="trailing" secondItem="5GP-TX-Juf" secondAttribute="trailing" constant="16" id="qwG-Zv-Osd"/>
+                                        <constraint firstAttribute="bottom" secondItem="q97-0Z-UEL" secondAttribute="bottom" id="hgG-7P-6pD"/>
+                                        <constraint firstItem="q97-0Z-UEL" firstAttribute="top" secondItem="1VI-NK-E0o" secondAttribute="bottom" constant="8" id="qSX-l3-lLL"/>
                                         <constraint firstAttribute="trailing" secondItem="1VI-NK-E0o" secondAttribute="trailing" constant="16" id="v9V-B2-5IX"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="1bR-lg-RJ5" secondAttribute="bottom" constant="5" id="4pb-wU-fOu"/>
                                 <constraint firstItem="1bR-lg-RJ5" firstAttribute="top" secondItem="wFY-Vz-WvF" secondAttribute="top" id="7yv-h0-NWg"/>
                                 <constraint firstItem="1bR-lg-RJ5" firstAttribute="leading" secondItem="wFY-Vz-WvF" secondAttribute="leading" id="IfC-lm-C5B"/>
                                 <constraint firstItem="1bR-lg-RJ5" firstAttribute="centerX" secondItem="wFY-Vz-WvF" secondAttribute="centerX" id="Vk7-92-9vh"/>
-                                <constraint firstAttribute="bottom" secondItem="1bR-lg-RJ5" secondAttribute="bottom" constant="5" id="hcM-oy-E2A"/>
                                 <constraint firstAttribute="trailing" secondItem="1bR-lg-RJ5" secondAttribute="trailing" id="rQi-Ak-GjX"/>
                             </constraints>
                         </scrollView>

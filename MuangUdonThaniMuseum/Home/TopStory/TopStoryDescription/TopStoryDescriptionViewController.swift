@@ -16,6 +16,7 @@ class TopStoryDescriptionViewController: UIViewController {
     @IBOutlet weak var stackImage: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageTop: UIImageView!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     var topic: String = ""
     var image: String = ""
@@ -57,29 +58,20 @@ class TopStoryDescriptionViewController: UIViewController {
         scrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
         setupView()
         
-//        let notificationCenter = NotificationCenter.default
-//        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
-//
-//        notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
-    
-    override func viewDidLayoutSubviews() {
-        descriptionLabel.sizeToFit()
-    }
-    
+        
     func setupView() {
         topicLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         topicLabel.textColor = AppsColor.grey
-        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        descriptionLabel.textColor = AppsColor.lightGrey
-
         topicLabel.text = topic
-        descriptionLabel.text = detail
+        
+        descriptionTextView.text = detail
+        descriptionTextView.font = UIFont.preferredFont(forTextStyle: .body)
+        descriptionTextView.textColor = AppsColor.lightGrey
         
         if let url = URL(string: image.replacingOccurrences(of: " ", with: "%20")){
             imageTop.kf.setImage(with: url)

@@ -14,6 +14,7 @@ class NotiDetailViewCell: UITableViewCell {
     @IBOutlet weak var imageDetail: UIImageView!
     @IBOutlet weak var topicLabel: UILabel!
     @IBOutlet weak var descripLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     
     override func awakeFromNib() {
@@ -25,13 +26,13 @@ class NotiDetailViewCell: UITableViewCell {
     func setupView() {
         topicLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         topicLabel.textColor = AppsColor.grey
-        descripLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        descripLabel.textColor = AppsColor.lightGrey
+        descriptionTextView.font = UIFont.preferredFont(forTextStyle: .body)
+        descriptionTextView.textColor = AppsColor.lightGrey
     }
     
     func setupCell(img: String, topic: String, descrip: String) {
         topicLabel.text = topic
-        descripLabel.text = descrip
+        descriptionTextView.text = descrip
         
         if let url = URL(string: img) {
             imageDetail.kf.setImage(with: url)
