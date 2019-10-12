@@ -262,16 +262,11 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
 
     @objc func appMovedToBackground() {
         print("move background function")
-        beaconManager.stopRangingBeaconsInAllRegions()
         devicesManager.startDevicesDiscovery(withInterval: 3.0)
     }
     
     @objc func willEnterForeground() {
         devicesManager.stopDevicesDiscovery()
-        for region in regions {
-            beaconManager.startRangingBeacons(in: region)
-        }
-
     }
     
     @objc func getState2() {
@@ -319,21 +314,19 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
 
 extension HomeViewController: KTKDevicesManagerDelegate {
     func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
-//        for device in devices {
-//            print("unique \(device.uniqueID)")
-//
-//            for region in self.regions {
-//                if region.identifier == device.uniqueID {
-//                    print("getnotification \(region.identifier)")
-//                    if !HomeViewController.alreadyDiscover.contains(region) {
-//                        HomeViewController.alreadyDiscover.append(region)
-//                        self.getNotification(uuid: "\(region.proximityUUID)")
-//                    }
-//                }
-//            }
-//        }
-        for region in self.regions {
-            beaconManager.requestState(for: region)
+        for device in devices {
+            print("unique \(device.uniqueID)")
+            var count = 0
+            for region in self.regions {
+                count += 1
+                if "\(region.identifier)\(count)" == device.uniqueID {
+                    print("getnotification \(region.identifier)")
+                    if !HomeViewController.alreadyDiscover.contains(region.identifier) {
+                        HomeViewController.alreadyDiscover.append(region.identifier)
+                        self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
+                    }
+                }
+            }
         }
     }
 }
@@ -417,7 +410,7 @@ extension HomeViewController: KTKBeaconManagerDelegate {
         if beacons.count > 0 {
             for beacon in beacons {
                 let proximity = beacon.proximity
-                print("ranging \(beacon.proximityUUID) \(proximity.stringValue)")
+                NSLog("ranging \(beacon.proximityUUID) \(proximity.stringValue)")
                 
                 if !HomeViewController.alreadyDiscover.contains(region.identifier) {
                     HomeViewController.alreadyDiscover.append(region.identifier)
