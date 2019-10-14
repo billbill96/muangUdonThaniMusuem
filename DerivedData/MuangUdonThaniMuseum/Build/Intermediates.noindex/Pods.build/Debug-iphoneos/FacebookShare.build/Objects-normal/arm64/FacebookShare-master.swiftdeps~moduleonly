@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
-options: "e91b1f3eefaadb7ea5b5a069dc9c2f6a"
-build_time: [1570005287, 528115000]
-inputs:
-  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookShare/Sources/Share/Enums+Extensions.swift": [1570003903, 787587208]
-  "/Users/supanneemutitanon/Desktop/muangUdonThaniMusuem/Pods/FacebookShare/Sources/Share/FBSDKShareKit+Typealiases.swift": [1570003903, 787673906]
