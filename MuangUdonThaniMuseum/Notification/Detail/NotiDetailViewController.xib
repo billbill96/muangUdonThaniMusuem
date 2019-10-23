@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotiDetailViewController" customModule="MuangUdonThaniMuseum" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotiDetailViewController" customModule="MP_Beacon" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="jF5-TT-m1l" id="udD-jw-BuI"/>
                 <outlet property="firstTabBar" destination="h5B-m2-Ap6" id="aWT-Nk-z35"/>

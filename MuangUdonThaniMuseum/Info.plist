@@ -34,7 +34,7 @@
 	<key>FacebookAppID</key>
 	<string>459273817999660</string>
 	<key>FacebookDisplayName</key>
-	<string>พิพิธภัณฑ์เมืองอุดรธานี</string>
+	<string>MP Beacon</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -50,15 +50,15 @@
 		<true/>
 	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>App uses Bluetooth to find, connect and communicate with nearby devices. Please grant access.</string>
+	<string>App uses Bluetooth to find, connect and communicate with nearby beacons that can show you details about places.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>App uses Bluetooth to find, connect and communicate with nearby devices. Please grant access.</string>
+	<string>App uses Bluetooth to find, connect and communicate with nearby beacons that can show you details about places</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Will you allow this app to always know your location?</string>
+	<string>App monitors your location to show you details about places that you&apos;re passing by. </string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Will you allow this app to always know your location?</string>
+	<string>App monitors your location to show you details about places that you&apos;re passing by. </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>App uses your location to show you details about places that you&apos;re passing by. </string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

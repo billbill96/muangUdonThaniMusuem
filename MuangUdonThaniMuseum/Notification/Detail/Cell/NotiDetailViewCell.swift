@@ -13,7 +13,6 @@ class NotiDetailViewCell: UITableViewCell {
 
     @IBOutlet weak var imageDetail: UIImageView!
     @IBOutlet weak var topicLabel: UILabel!
-    @IBOutlet weak var descripLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
     
