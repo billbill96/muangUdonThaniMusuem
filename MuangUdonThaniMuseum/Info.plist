@@ -54,11 +54,11 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>App uses Bluetooth to find, connect and communicate with nearby beacons that can show you details about places</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App monitors your location to show you details about places that you&apos;re passing by. </string>
+	<string>App monitors your location to show you details about places that you're passing by. </string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>App monitors your location to show you details about places that you&apos;re passing by. </string>
+	<string>App monitors your location to show you details about places that you're passing by. </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App uses your location to show you details about places that you&apos;re passing by. </string>
+	<string>App uses your location to show you details about places that you're passing by. </string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

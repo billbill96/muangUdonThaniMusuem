@@ -11,6 +11,8 @@ import ObjectMapper
 import Alamofire
 import PromiseKit
 import FBSDKShareKit
+import KontaktSDK
+import UserNotifications
 
 class NotiDetailViewController: UIViewController {
 
@@ -28,6 +30,9 @@ class NotiDetailViewController: UIViewController {
     var viewModel: NotificationViewModel?
     var vSpinner : UIView?
     
+    var devicesManager: KTKDevicesManager!
+    var beaconManager: KTKBeaconManager!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,10 +49,37 @@ class NotiDetailViewController: UIViewController {
         
         setupData()
         tabBar.selectedItem = .none
+        
+        beaconManager = KTKBeaconManager(delegate: self)
+        devicesManager = KTKDevicesManager(delegate: self)
+        
+        for region in HomeViewController.regions {
+            beaconManager.startMonitoring(for: region)
+            beaconManager.startRangingBeacons(in: region)
+        }
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBar.selectedItem = .none
+    }
+    
+    @objc func appMovedToBackground() {
+        print("move background function")
+        devicesManager.startDevicesDiscovery(withInterval: 3.0)
+    }
+    
+    @objc func willEnterForeground() {
+        devicesManager.stopDevicesDiscovery()
+        for region in HomeViewController.regions {
+            beaconManager.startMonitoring(for: region)
+            beaconManager.startRangingBeacons(in: region)
+        }
     }
     
     func setupData() {
@@ -132,6 +164,42 @@ class NotiDetailViewController: UIViewController {
         }
         tableView.reloadData()
     }
+    
+    func getNotification(uuid: String, identifier: String) {
+        print("in app noti \(identifier) \(uuid.lowercased())")
+        let url = "http://104.199.252.182:9000/api/Beacon/notification"
+        AF.request(url, method: .get, parameters: ["id":uuid.lowercased()]).responseJSON { response in
+            let model =  Mapper<NotificationModel>().map(JSONObject: response.value)
+            if let data = model {
+                if data.notify != "" {
+                    print("\(String(describing: data.notify))")
+                    self.createLocalNotification(title: data.notify ?? "", uuid: uuid, identifier: identifier)
+                }
+            }
+            else {
+                print("errrrror")
+            }
+        }
+    }
+    
+    func createLocalNotification(title: String, uuid: String, identifier: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.sound = .default
+        content.body = "Tap to view more inforformation of the room"
+        content.userInfo = ["uuid": uuid] as [String:String]
+//        count += 1
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+       
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            print(requests)
+        }
+    }
+
 }
 
 extension NotiDetailViewController: UITableViewDelegate,UITableViewDataSource {
@@ -234,26 +302,107 @@ extension NotiDetailViewController: SharingDelegate {
 }
 
 
-extension NotiDetailViewController {
-    func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: onView.frame)
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
-        ai.startAnimating()
-        ai.center = CGPoint(x: spinnerView.bounds.width/2, y: spinnerView.bounds.height/2 - 150)
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        vSpinner = spinnerView
-    }
-    
-    func removeSpinner() {
-        DispatchQueue.main.async {
-            self.vSpinner?.removeFromSuperview()
-            self.vSpinner = nil
+extension NotiDetailViewController: KTKDevicesManagerDelegate {
+    func devicesManager(_ manager: KTKDevicesManager, didDiscover devices: [KTKNearbyDevice]) {
+        for device in devices {
+            print("unique \(device.uniqueID)")
+            var count = 0
+            for region in HomeViewController.self.regions {
+                count += 1
+                if "\(region.identifier)\(count)" == device.uniqueID {
+                    print("getnotification \(region.identifier)")
+                    if !HomeViewController.alreadyDiscover.contains(region.identifier) {
+                        HomeViewController.alreadyDiscover.append(region.identifier)
+                        self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
+                    }
+                }
+            }
         }
     }
 }
+
+extension NotiDetailViewController: KTKBeaconManagerDelegate {
+    func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
+        //case 0 unknow case 1 inside , case 2 outside
+        NSLog("state \(state.rawValue) \(region.identifier)")
+        if state.rawValue == 2 {
+            for already in HomeViewController.alreadyDiscover {
+                if already == region.identifier {
+                    if let index = HomeViewController.alreadyDiscover.index(of: already) {
+                        HomeViewController.alreadyDiscover.remove(at: index)
+                        print("remove state \(region.identifier)")
+                    }
+                }
+            }
+        } else if state.rawValue == 1 {
+            if !HomeViewController.alreadyDiscover.contains(region.identifier) {
+                let calendar = Calendar.current
+                
+                HomeViewController.alreadyDiscover.append(region.identifier)
+                self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
+            }
+        }
+//        self.state.append(state)
+    }
+
+    func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if KTKBeaconManager.isMonitoringAvailable() {
+                if HomeViewController.regions.count > 0 {
+                    print("start monitoring")
+                    for region in HomeViewController.regions {
+                        beaconManager.startMonitoring(for: region)
+                        beaconManager.startRangingBeacons(in: region)
+                    }
+                }
+            }
+        } else if status == .authorizedWhenInUse {
+            if KTKBeaconManager.isMonitoringAvailable() {
+                if HomeViewController.regions.count > 0 {
+                    print("start authorizedWhenInUse")
+                    for region in HomeViewController.regions {
+//                        beaconManager.startMonitoring(for: region)
+                        beaconManager.startRangingBeacons(in: region)
+                    }
+                }
+            }
+        }
+    }
+    
+    func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
+        NSLog("----------------Enter region \(region)")
+        
+        
+        beaconManager.requestState(for: region)
+    }
+    
+    func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
+        NSLog("Exit region \(region)")
+        
+        beaconManager.requestState(for: region)
+    }
+    
+    func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
+        if beacons.count > 0 {
+            for beacon in beacons {
+                let proximity = beacon.proximity
+                NSLog("ranging \(beacon.proximityUUID) \(proximity.stringValue)")
+                
+                if !HomeViewController.alreadyDiscover.contains(region.identifier) {
+                    HomeViewController.alreadyDiscover.append(region.identifier)
+                    self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
+                }
+            }
+        } else {
+            for already in HomeViewController.alreadyDiscover {
+                if already == region.identifier {
+                    if let index = HomeViewController.alreadyDiscover.index(of: already) {
+                        HomeViewController.alreadyDiscover.remove(at: index)
+                        print("remove state raging \(region.identifier)")
+                    }
+                }
+            }
+        }
+    }
+}
+

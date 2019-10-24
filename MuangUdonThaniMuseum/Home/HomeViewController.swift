@@ -32,7 +32,7 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
     var devicesManager: KTKDevicesManager!
     var beaconManager: KTKBeaconManager!
     var kontaktCloud: KTKCloudClient!
-    var regions: [KTKBeaconRegion] = []
+    static var regions: [KTKBeaconRegion] = []
     var state: [CLRegionState] = []
     let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
     var activityIndicator = UIActivityIndicatorView()
@@ -60,45 +60,47 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         
         showActivityIndicator()
         
-        getAllBeacon() { regionss in
+        if HomeViewController.regions.count < 1 {
+            self.view.isUserInteractionEnabled = false
+
+            getAllBeacon() { regionss in
+                self.view.isUserInteractionEnabled = true
+                switch KTKBeaconManager.locationAuthorizationStatus() {
+                case .notDetermined:
+                    self.beaconManager.requestLocationAlwaysAuthorization()
+                case .denied, .restricted:
+                    break
+                case .authorizedWhenInUse:
+                    print("when in use")
+                    if KTKBeaconManager.isMonitoringAvailable() {
+                        for region in regionss {
+                            self.beaconManager.startRangingBeacons(in: region)
+    //                        self.beaconManager.startMonitoring(for: region)
+                        }
+                    }
+                case .authorizedAlways:
+                     print("authorizedAlways")
+                    if KTKBeaconManager.isMonitoringAvailable() {
+                        for region in regionss {
+                            self.beaconManager.startRangingBeacons(in: region)
+                            self.beaconManager.startMonitoring(for: region)
+                        }
+                    }
+                @unknown default:
+                    break
+                }
+                self.hideActivityIndicator()
+                
+                if regionss.count < 1 {
+                    let alert = UIAlertController(title: "Something went wrong!", message: "Can't get region for beacon.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        } else {
             self.view.isUserInteractionEnabled = true
-            switch KTKBeaconManager.locationAuthorizationStatus() {
-            case .notDetermined:
-                self.beaconManager.requestLocationAlwaysAuthorization()
-            case .denied, .restricted:
-                break
-            case .authorizedWhenInUse:
-                print("when in use")
-                if KTKBeaconManager.isMonitoringAvailable() {
-                    for region in regionss {
-                        self.beaconManager.startRangingBeacons(in: region)
-//                        self.beaconManager.startMonitoring(for: region)
-                    }
-                }
-            case .authorizedAlways:
-                 print("authorizedAlways")
-                if KTKBeaconManager.isMonitoringAvailable() {
-                    for region in regionss {
-                        self.beaconManager.startRangingBeacons(in: region)
-                        self.beaconManager.startMonitoring(for: region)
-                    }
-                }
-            @unknown default:
-                break
-            }
-            
-//            for region in regionss {
-//                self.beaconManager.requestState(for: region)
-//            }
             self.hideActivityIndicator()
-            
-            if regionss.count < 1 {
-                let alert = UIAlertController(title: "Something went wrong!", message: "Can't get region for beacon.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
         }
-        
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
@@ -114,7 +116,6 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         setupStackView()
         
         setPresentViewController(viewController: TopStoryViewController())
-        self.view.isUserInteractionEnabled = false
     }
     
     func setupNavigation() {
@@ -267,18 +268,22 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
     
     @objc func willEnterForeground() {
         devicesManager.stopDevicesDiscovery()
+        for region in HomeViewController.regions {
+            beaconManager.startMonitoring(for: region)
+            beaconManager.startRangingBeacons(in: region)
+        }
     }
     
     @objc func getState2() {
         self.state.removeAll()
-        for region in regions {
+        for region in HomeViewController.regions {
             beaconManager.requestState(for: region)
         }
     }
     
     func getState(completion: @escaping ([CLRegionState]) -> ()) {
         self.state.removeAll()
-        for region in regions {
+        for region in HomeViewController.regions {
             beaconManager.requestState(for: region)
         }
         completion(self.state)
@@ -300,13 +305,13 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
                         let unique = "\(device.uniqueID)\(count)"
                         let region = KTKBeaconRegion(proximityUUID: uuid! ,major: major, minor: minor, identifier: unique)
                         print(region)
-                        self.regions.append(region)
+                        HomeViewController.regions.append(region)
                         region.notifyOnExit = true
                         region.notifyOnEntry = true
                         region.notifyEntryStateOnDisplay = true
                     }
                 }
-                completion(self.regions)
+                completion(HomeViewController.regions)
             }
         }
     }
@@ -317,7 +322,7 @@ extension HomeViewController: KTKDevicesManagerDelegate {
         for device in devices {
             print("unique \(device.uniqueID)")
             var count = 0
-            for region in self.regions {
+            for region in HomeViewController.self.regions {
                 count += 1
                 if "\(region.identifier)\(count)" == device.uniqueID {
                     print("getnotification \(region.identifier)")
@@ -368,9 +373,9 @@ extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
             if KTKBeaconManager.isMonitoringAvailable() {
-                if regions.count > 0 {
+                if HomeViewController.regions.count > 0 {
                     print("start monitoring")
-                    for region in regions {
+                    for region in HomeViewController.regions {
                         beaconManager.startMonitoring(for: region)
                         beaconManager.startRangingBeacons(in: region)
                     }
@@ -378,9 +383,9 @@ extension HomeViewController: KTKBeaconManagerDelegate {
             }
         } else if status == .authorizedWhenInUse {
             if KTKBeaconManager.isMonitoringAvailable() {
-                if regions.count > 0 {
+                if HomeViewController.regions.count > 0 {
                     print("start authorizedWhenInUse")
-                    for region in regions {
+                    for region in HomeViewController.regions {
 //                        beaconManager.startMonitoring(for: region)
                         beaconManager.startRangingBeacons(in: region)
                     }
@@ -422,11 +427,10 @@ extension HomeViewController: KTKBeaconManagerDelegate {
                 if already == region.identifier {
                     if let index = HomeViewController.alreadyDiscover.index(of: already) {
                         HomeViewController.alreadyDiscover.remove(at: index)
-                        print("remove state \(region.identifier)")
+                        print("remove state raging \(region.identifier)")
                     }
                 }
             }
-
         }
     }
 }

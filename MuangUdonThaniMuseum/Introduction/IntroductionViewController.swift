@@ -185,6 +185,7 @@ class IntroductionViewController: UIViewController,ActivityIndicatorPresenter {
 
         if isAuthorised && locStatus != .notDetermined{
             if isBlutoothOn {
+                devicesManager.stopDevicesDiscovery()
                 self.present(vc,animated: true,completion: nil)
             } else {
                 let alert = UIAlertController(title: "Your bluetooth is off", message: "Please change your bluetooth status in setting", preferredStyle: UIAlertController.Style.alert)
