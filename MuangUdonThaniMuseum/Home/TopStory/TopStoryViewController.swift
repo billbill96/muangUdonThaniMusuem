@@ -99,27 +99,3 @@ extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(topStoryDescription, animated: true)
     }
 }
-
-extension TopStoryViewController {
-    func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
-        ai.startAnimating()
-        ai.center = CGPoint(x: spinnerView.frame.width/2, y: spinnerView.frame.height/2 - 150)
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        vSpinner = spinnerView
-    }
-    
-    func removeSpinner() {
-        DispatchQueue.main.async {
-            self.vSpinner?.removeFromSuperview()
-            self.vSpinner = nil
-        }
-    }
-}

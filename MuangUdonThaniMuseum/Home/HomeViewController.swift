@@ -42,7 +42,10 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
     var timeStampEnter = Date().addingTimeInterval(2)
     var justExitBool: Bool = false
 
+    static var firstLoad: Bool = true
     static var alreadyDiscover: [String] = []
+    static var lastedTime: [String: Double] = [:]
+    static var foundTime: [String: Double] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +119,8 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         setupStackView()
         
         setPresentViewController(viewController: TopStoryViewController())
+        
+        HomeViewController.firstLoad = false
     }
     
     func setupNavigation() {
@@ -245,12 +250,16 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
         content.sound = .default
         content.body = "Tap to view more inforformation of the room"
         content.userInfo = ["uuid": uuid] as [String:String]
-//        count += 1
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-       
+        HomeViewController.alreadyDiscover.append(identifier)
+
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+            if error != nil {
+              print("error notification \(error)")
+            }
+        })
         
         UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
             print(requests)
@@ -306,6 +315,9 @@ class HomeViewController: UIViewController,ActivityIndicatorPresenter {
                         let region = KTKBeaconRegion(proximityUUID: uuid! ,major: major, minor: minor, identifier: unique)
                         print(region)
                         HomeViewController.regions.append(region)
+                        HomeViewController.lastedTime[unique] = 0.0
+                        HomeViewController.foundTime[unique] = 0.0
+                        print(HomeViewController.lastedTime[unique])
                         region.notifyOnExit = true
                         region.notifyOnEntry = true
                         region.notifyEntryStateOnDisplay = true
@@ -327,7 +339,6 @@ extension HomeViewController: KTKDevicesManagerDelegate {
                 if "\(region.identifier)\(count)" == device.uniqueID {
                     print("getnotification \(region.identifier)")
                     if !HomeViewController.alreadyDiscover.contains(region.identifier) {
-                        HomeViewController.alreadyDiscover.append(region.identifier)
                         self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
                     }
                 }
@@ -339,32 +350,31 @@ extension HomeViewController: KTKDevicesManagerDelegate {
 extension HomeViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
         //case 0 unknow case 1 inside , case 2 outside
-        NSLog("state \(state.rawValue) \(region.identifier)")
-        if state.rawValue == 2 {
-            for already in HomeViewController.alreadyDiscover {
-                if already == region.identifier {
-                    if let index = HomeViewController.alreadyDiscover.index(of: already) {
-                        HomeViewController.alreadyDiscover.remove(at: index)
-                        print("remove state \(region.identifier)")
+        if !HomeViewController.firstLoad {
+            NSLog("state \(state.rawValue) \(region.identifier)")
+
+            if state.rawValue == 2 {
+                for already in HomeViewController.alreadyDiscover {
+                    if already == region.identifier {
+                        if let index = HomeViewController.alreadyDiscover.index(of: already) {
+                            HomeViewController.lastedTime[region.identifier] = Date().timeIntervalSince1970
+                            guard let last = HomeViewController.foundTime[region.identifier] else { return }
+                            let dateUX = Date(timeIntervalSince1970: last)
+                            let diff = Date().timeIntervalSince(dateUX)
+                             if diff > 10  && diff < 1000 {
+                                HomeViewController.alreadyDiscover.remove(at: index)
+                                print("remove state state \(region.identifier) \(HomeViewController.lastedTime[region.identifier])")
+
+                            }
+                        }
                     }
                 }
-            }
-        } else if state.rawValue == 1 {
-            if !HomeViewController.alreadyDiscover.contains(region.identifier) {
-                let calendar = Calendar.current
-                let enterMinutes = calendar.component(.minute, from: timeStampEnter)
-                let enterSecond = calendar.component(.second, from: timeStampEnter)
-                let enter = (enterMinutes*60) + enterSecond
-                
-                let exitMinute = calendar.component(.minute, from: timeStampEnter)
-                let exitSecond = calendar.component(.second, from: timeStampExit)
-                let exit = (exitMinute*60) + exitSecond
-                
-                print("\(enter) \(exit)")
-//                if enter - exit >= 2 {
-                HomeViewController.alreadyDiscover.append(region.identifier)
-                self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
-//                }
+            } else if state.rawValue == 1 {
+                HomeViewController.foundTime[region.identifier] = Date().timeIntervalSince1970
+                if !HomeViewController.alreadyDiscover.contains(region.identifier) {
+                    NSLog("founded in state \(region.identifier)")
+                    self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
+                }
             }
         }
         self.state.append(state)
@@ -415,19 +425,28 @@ extension HomeViewController: KTKBeaconManagerDelegate {
         if beacons.count > 0 {
             for beacon in beacons {
                 let proximity = beacon.proximity
+                HomeViewController.foundTime[region.identifier] = Date().timeIntervalSince1970
                 NSLog("ranging \(beacon.proximityUUID) \(proximity.stringValue)")
-                
                 if !HomeViewController.alreadyDiscover.contains(region.identifier) {
-                    HomeViewController.alreadyDiscover.append(region.identifier)
+                    NSLog("founded \(region.identifier)")
                     self.getNotification(uuid: "\(region.proximityUUID)", identifier: region.identifier)
                 }
             }
         } else {
             for already in HomeViewController.alreadyDiscover {
                 if already == region.identifier {
+                    print("notfound \(region.identifier)")
                     if let index = HomeViewController.alreadyDiscover.index(of: already) {
-                        HomeViewController.alreadyDiscover.remove(at: index)
-                        print("remove state raging \(region.identifier)")
+                        HomeViewController.lastedTime[region.identifier] = Date().timeIntervalSince1970
+                        
+                        guard let last = HomeViewController.foundTime[region.identifier] else { return }
+                        let dateUX = Date(timeIntervalSince1970: last)
+                        let diff = Date().timeIntervalSince(dateUX)
+                        print("diff \(diff) \(region.identifier)")
+                         if diff > 10  && diff < 1000 {
+                            HomeViewController.alreadyDiscover.remove(at: index)
+                            NSLog("remove state raging \(region.identifier) \(HomeViewController.lastedTime[region.identifier])")
+                        }
                     }
                 }
             }
